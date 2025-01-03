@@ -19,12 +19,17 @@ BUILD_MODE="all"  # Default mode is 'all'
 if [[ "${1:-}" == "--langs" ]]; then
   if [[ "${2:-}" == "fast" ]]; then
     BUILD_MODE="fast"
+    echo "[INFO] Building only for 'en_US' and 'zh_CN' languages."
   elif [[ "${2:-}" == "all" ]]; then
     BUILD_MODE="all"
+    echo "[INFO] Building for all languages."
   else
     echo "Error: Invalid value for '--langs'. Use 'all' or 'fast'."
     exit 1
   fi
+else
+  echo "Error: Invalid argument. Use '--langs all' or '--langs fast'."
+  exit 1
 fi
 
 # -----------------------------------------------------------------------------
