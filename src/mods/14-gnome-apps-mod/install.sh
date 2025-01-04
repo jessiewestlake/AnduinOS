@@ -46,7 +46,7 @@ judge "Install gnome basic applications"
 
 print_ok "Installing some other basic applications..."
 apt install -y \
-    apt-utils crash debconf-i18n fdisk grub-efi-amd64 hwdata info init numactl cloud-init coreutils dnsutils gvfs-fuse htop httping libsass1 squashfs-tools sysstat thermald traceroute vim whiptail openvpn network-manager-openvpn network-manager-openvpn-gnome network-manager-pptp-gnome ibus gnome-snapshot gnome-text-editor gstreamer1.0-libav gstreamer1.0-alsa gstreamer1.0-vaapi gstreamer1.0-tools gstreamer1.0-packagekit gstreamer1.0-plugins-base-apps alsa-base fprintd pipx
+    apt-utils crash debconf-i18n fdisk grub-efi-amd64 hwdata info init numactl cloud-init coreutils dnsutils gvfs-fuse htop httping libsass1 squashfs-tools sysstat thermald traceroute vim whiptail openvpn network-manager-openvpn network-manager-openvpn-gnome network-manager-pptp-gnome ibus gnome-text-editor gstreamer1.0-libav gstreamer1.0-alsa gstreamer1.0-vaapi gstreamer1.0-tools gstreamer1.0-packagekit gstreamer1.0-plugins-base-apps alsa-base fprintd pipx
 judge "Install some other basic applications"
 
 print_ok "Installing gnome games..."
