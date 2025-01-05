@@ -17,9 +17,17 @@ AnduinOS is built on the Ubuntu Noble package base.
 
 ## How to build
 
-You MUST install AnduinOS first.
+You MUST be using an `AMD64` architecture to build AnduinOS. You MUST install AnduinOS first.
 
 To edit the build parameters, modify the `./src/args.sh` file.
+
+The first two parts of the `TARGET_BUILD_VERSION` MUST be the same as the git branch name. For example:
+
+```bash
+TARGET_BUILD_VERSION="1.2.0"
+```
+
+Then the git branch name MUST be `1.2`.
 
 To build the OS, run the following command:
 
@@ -30,7 +38,7 @@ cd ./src
 
 That's it. The built file will be an ISO file in the `./src/dist` directory.
 
-Simply mount the built ISO file to an virtual machine, and you can install it.
+Simply mount the built ISO file to an virtual machine, and you can start installing it.
 
 ## Document
 
