@@ -63,3 +63,35 @@ To rename the built binary to release format:
 ```bash
 for file in AnduinOS-1.0.1-*{.iso,.sha256}; do mv "$file" "$(echo "$file" | sed -E 's/-[0-9]{10}//')"; done
 ```
+
+To check the checksums of all .iso files and their corresponding .sha256 files:
+
+```bash
+#!/bin/bash
+
+# Find all .iso files and their corresponding .sha256 files, including subdirectories
+find . -type f -name "*.iso" | while read -r iso_file; do
+    # Get the corresponding .sha256 file in the same directory
+    sha256_file="${iso_file%.iso}.sha256"
+
+    # Check if the .sha256 file exists
+    if [[ -f "$sha256_file" ]]; then
+        # Read the expected checksum from the .sha256 file and strip the 'SHA256: ' prefix
+        expected_checksum=$(cat "$sha256_file" | sed 's/^SHA256: //')
+
+        # Calculate the checksum of the .iso file
+        actual_checksum=$(sha256sum "$iso_file" | awk '{ print $1 }')
+
+        # Compare the checksums
+        if [[ "$expected_checksum" == "$actual_checksum" ]]; then
+            echo "Checksum for $iso_file matches."
+        else
+            echo "Checksum for $iso_file does not match!"
+            echo "Expected: $expected_checksum"
+            echo "Actual:   $actual_checksum"
+        fi
+    else
+        echo "SHA256 file for $iso_file not found!"
+    fi
+done
+```
