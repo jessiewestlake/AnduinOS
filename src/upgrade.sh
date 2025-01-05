@@ -479,6 +479,15 @@ function upgrade_105_to_106() {
         apt-utils crash debconf-i18n fdisk grub-efi-amd64 hwdata info init numactl cloud-init coreutils dnsutils gvfs-fuse htop httping libsass1 squashfs-tools sysstat thermald traceroute vim whiptail openvpn network-manager-openvpn network-manager-openvpn-gnome network-manager-pptp-gnome ibus gnome-text-editor gstreamer1.0-libav gstreamer1.0-alsa gstreamer1.0-vaapi gstreamer1.0-tools gstreamer1.0-packagekit gstreamer1.0-plugins-base-apps alsa-base fprintd pipx
     judge "Install new apps"
 
+    print_ok "Adding do_anduinos_upgrade command"
+    sudo bash -c 'cat << EOF > /usr/local/bin/do_anduinos_upgrade
+#!/bin/bash
+echo "Upgrading AnduinOS..."
+curl -sSL https://gitlab.aiursoft.cn/anduin/anduinos/-/raw/1.0/src/upgrade.sh | bash
+EOF
+'
+    judge "Add do_anduinos_upgrade command"
+
     print_ok "Upgrade to 1.0.6 succeeded"
     sleep 5
 }
