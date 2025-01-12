@@ -19,6 +19,7 @@ apt install -y \
     dmidecode \
     dosfstools \
     ed \
+    ethtool \
     fdisk \
     file \
     firmware-sof-signed \
