@@ -24,11 +24,11 @@ if [[ "${1:-}" == "--langs" ]]; then
     BUILD_MODE="all"
     echo "[INFO] Building for all languages."
   else
-    echo "Error: Invalid value for '--langs'. Use 'all' or 'fast'."
+    echo "[ERROR] Invalid value for '--langs'. Use 'all' or 'fast'."
     exit 1
   fi
 else
-  echo "Error: Invalid argument. Use '--langs all' or '--langs fast'."
+  echo "[ERROR] Invalid argument. Use '--langs all' or '--langs fast'."
   exit 1
 fi
 
@@ -67,7 +67,7 @@ if [[ ! -f "args.sh" || ! -f "build.sh" ]]; then
 fi
 
 # -----------------------------------------------------------------------------
-# 5. Build loop for selected languages
+# 5. Build loop for selected languages with retry mechanism
 # -----------------------------------------------------------------------------
 for i in "${!LANG_MODES[@]}"; do
   LANG_MODE="${LANG_MODES[$i]}"
@@ -81,8 +81,28 @@ for i in "${!LANG_MODES[@]}"; do
   echo "[INFO] Starting build -> LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}"
   echo "================================================="
 
-  # Execute build
-  ./build.sh
+  # Initialize retry parameters
+  MAX_RETRIES=3
+  attempt=1
+
+  while [ $attempt -le $MAX_RETRIES ]; do
+    echo "[INFO] Build attempt $attempt for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}"
+    
+    if ./build.sh; then
+      echo "[INFO] Build succeeded for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE} on attempt $attempt."
+      break
+    else
+      echo "[WARNING] Build failed for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE} on attempt $attempt."
+      if [ $attempt -lt $MAX_RETRIES ]; then
+        echo "[INFO] Retrying build for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}..."
+        attempt=$((attempt + 1))
+      else
+        echo "[ERROR] Build failed after $MAX_RETRIES attempts for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}."
+        echo "[ERROR] Stopping build process and waiting for manual intervention."
+        sleep 99999999
+      fi
+    fi
+  done
 done
 
 echo "[INFO] All build tasks have been completed."
