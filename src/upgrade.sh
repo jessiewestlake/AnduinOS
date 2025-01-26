@@ -6,7 +6,7 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 export DEBIAN_FRONTEND=noninteractive
-export LATEST_VERSION="1.1.0"
+export LATEST_VERSION="1.1.1"
 export OS_ID="AnduinOS"
 export CURRENT_VERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | cut -d "=" -f 2)
 
@@ -60,6 +60,13 @@ function ensureCurrentOsAnduinOs() {
     fi
 }
 
+function upgrade_110_to_111() {
+    print_ok "Upgrading from 1.1.0 to 1.1.1..."
+    dconf write /org/gnome/shell/keybindings/focus-active-notification "@as []"
+    dconf write /org/gnome/shell/keybindings/toggle-quick-settings "['<Super>a']"
+    judge "Upgrade from 1.1.0 to 1.1.1 completed"
+}
+
 function applyLsbRelease() {
     # Update /etc/lsb-release
     sudo sed -i "s/DISTRIB_RELEASE=.*/DISTRIB_RELEASE=${LATEST_VERSION}/" /etc/lsb-release
@@ -98,6 +105,9 @@ function main() {
     # Run necessary upgrades based on current version
     case "$CURRENT_VERSION" in
           "1.1.0")
+              upgrade_110_to_111
+              ;;
+          "1.1.1")
               print_ok "Your system is already up to date. No update available."
               exit 0
               ;;
