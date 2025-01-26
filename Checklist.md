@@ -47,13 +47,12 @@
 ## Release steps
 
 * Build the code, test the image.
-* Checkout a new branch with the version number.
-* Write the release notes.
-* Build the image with the new version number.
-* Copy the image and the hash to the server.
-* Create the torrent file.
-* Update the website with the new version number.
-* Write the upgrade script for OTA updates.
+* If all tests passed, tag the commit with the version number.
+* Build the code for all languages.
+* Write the release notes in `AnduinOS-Docs` repo.
+* Copy the image and the hash to the server. Verify the hash on the server.
+* Update the `AnduinOS-Home` repo with the new version number. (Both `versions.json` and `index.html`.)
+* Write the upgrade script for OTA updates in `AnduinOS` repo.
 * Copy the OSS software lists.
 
 ## Helpfull commands
