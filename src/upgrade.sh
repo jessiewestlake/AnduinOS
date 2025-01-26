@@ -75,7 +75,7 @@ function applyLsbRelease() {
     # Update /etc/os-release
     sudo sed -i "s/VERSION_ID=.*/VERSION_ID=\"${LATEST_VERSION}\"/" /etc/os-release
     sudo sed -i "s/ID=.*/ID=\"${OS_ID}\"/" /etc/os-release
-    sudo sed -i "s/VERSION=.*/VERSION=\"${LATEST_VERSION}\"/" /etc/os-release
+    sudo sed -i "s/VERSION=.*/VERSION=\"${LATEST_VERSION}\" (noble)/" /etc/os-release
     sudo sed -i "s/PRETTY_NAME=.*/PRETTY_NAME=\"AnduinOS ${LATEST_VERSION}\"/" /etc/os-release
 
     # Update /etc/issue
