@@ -16,4 +16,5 @@ print_ok "Enabling gnome extensions for root..."
 /root/.local/bin/gext -F enable lockkeys@vaina.lt
 /root/.local/bin/gext -F enable tiling-assistant@leleat-on-github
 /root/.local/bin/gext -F enable mediacontrols@cliffniff.github.com
+/root/.local/bin/gext -F enable clipboard-indicator@tudmotu.com
 judge "Enable gnome extensions"
