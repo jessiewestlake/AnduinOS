@@ -52,12 +52,6 @@ export TARGET_BUILD_VERSION="1.3.0"
 # Fork version. Must be in the format of x.y
 export TARGET_BUILD_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-# The kernel package to install. Can be:
-# linux-generic-hwe-22.04 for jammy
-# linux-generic-hwe-24.04 for noble
-# linux-generic-hwe-24.04 for oracular
-export TARGET_KERNEL_PACKAGE="linux-generic-hwe-24.04"
-
 # Set to mirror-ppa.aiursoft.cn to use that as mirror. Set to empty to disable
 export FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
 
