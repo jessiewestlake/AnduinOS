@@ -30,6 +30,7 @@ find /usr/share/gnome-shell/extensions -type f -name metadata.json | while IFS= 
             print_warn "$file does not contain \"48\", updating file..."
             tmpfile=$(mktemp)
             jq '.["shell-version"] += ["48"]' "$file" > "$tmpfile" && mv "$tmpfile" "$file"
+            chmod 644 "$file"
         fi
     else
         print_error "$file does not contain \"shell-version\"!"
