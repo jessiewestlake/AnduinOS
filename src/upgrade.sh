@@ -67,6 +67,12 @@ function upgrade_110_to_111() {
     judge "Upgrade from 1.1.0 to 1.1.1 completed"
 }
 
+function upgrade_111_to_112() {
+    print_ok "Upgrading from 1.1.1 to 1.1.2..."
+    dconf write /org/gnome/shell/extensions/arcmenu/show-update-notification-v64 false
+    judge "Upgrade from 1.1.1 to 1.1.2 completed"
+}
+
 function applyLsbRelease() {
     # Update /etc/lsb-release
     sudo sed -i "s/DISTRIB_RELEASE=.*/DISTRIB_RELEASE=${LATEST_VERSION}/" /etc/lsb-release
@@ -106,8 +112,12 @@ function main() {
     case "$CURRENT_VERSION" in
           "1.1.0")
               upgrade_110_to_111
+              upgrade_111_to_112
               ;;
           "1.1.1")
+              upgrade_111_to_112
+              ;;
+          "1.1.2")
               print_ok "Your system is already up to date. No update available."
               exit 0
               ;;
