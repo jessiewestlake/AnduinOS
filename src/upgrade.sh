@@ -6,7 +6,7 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 export DEBIAN_FRONTEND=noninteractive
-export LATEST_VERSION="1.2.1"
+export LATEST_VERSION="1.2.2"
 export OS_ID="AnduinOS"
 export CURRENT_VERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | cut -d "=" -f 2)
 
@@ -67,6 +67,12 @@ function upgrade_120_to_121() {
     judge "Upgrade from 1.2.0 to 1.2.1 completed"
 }
 
+function upgrade_121_to_122() {
+    print_ok "Upgrading from 1.2.1 to 1.2.2..."
+    dconf write /org/gnome/shell/extensions/arcmenu/show-update-notification-v64 false
+    judge "Upgrade from 1.2.1 to 1.2.2 completed"
+}
+
 function applyLsbRelease() {
     # Update /etc/lsb-release
     sudo sed -i "s/DISTRIB_RELEASE=.*/DISTRIB_RELEASE=${LATEST_VERSION}/" /etc/lsb-release
@@ -106,8 +112,12 @@ function main() {
     case "$CURRENT_VERSION" in
           "1.2.0")
               upgrade_120_to_121
+              upgrade_121_to_122
               ;;
           "1.2.1")
+              upgrade_121_to_122
+              ;;
+          "1.2.2")
               print_ok "Your system is already up to date. No update available."
               exit 0
               ;;
