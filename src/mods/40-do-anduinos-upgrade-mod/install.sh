@@ -7,7 +7,7 @@ cat <<"EOF" > /usr/local/bin/do_anduinos_upgrade
 #!/bin/bash
 echo "Upgrading AnduinOS..."
 
-VERSION=$(grep -oP 'VERSION="[^"]+' /etc/os-release | cut -d '"' -f 2 | cut -d ' ' -f 1)
+VERSION=$(grep -oP "VERSION_ID=\"\\K\\d+\\.\\d+" /etc/os-release)
 
 echo "Current fork version is: $VERSION, running upgrade script..."
 
