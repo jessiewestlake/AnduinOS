@@ -62,6 +62,7 @@ For bug reports and feature requests, please use the [Issues](https://github.com
 
 * ARM support.
 * WSL support.
+* Docker container support.
 * Customized installer instead of ubiquity.
 * Customized apt source with our own override.
 * Customized kernel with our own override. -->
