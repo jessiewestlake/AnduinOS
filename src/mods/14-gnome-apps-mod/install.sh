@@ -92,6 +92,7 @@ apt install -y \
     gnome-power-manager \
     gnome-snapshot \
     gnome-maps \
+    gnome-software \
     gnome-font-viewer 
 judge "Install gnome basic applications"
 
