@@ -24,6 +24,7 @@ apt install -y \
     file \
     firmware-sof-signed \
     ftp \
+    gettext \
     grub-common \
     grub-efi-amd64 \
     grub2-common \
