@@ -25,7 +25,7 @@
 * Ensure `/opt` folder is empty.
 * Ensure double click a photo file is opened with shotwell; double click a video file is opened with totem; double click a music file is opened with rhythmbox.
 * Download a png file and a mp4 file. Ensure the photo and video files have previews on nautilus.
-* Ensure double clicking a .deb file will open gdebi.
+* Ensure double clicking a .deb file will open gnome-software.
 * Try start instllation (Ubiquty) and ensure all language texts are shown correctly. (Without square boxes)
 * Try running installation. Select `中文`. Ensure in the log there is no error like ``Gtk-WARNING **: Locale not supported by C library. `
 * After installation, ensure the start menu apps' names are localized.
