@@ -38,12 +38,12 @@ apt install -y \
     vim \
     wget \
     whiptail \
-    zip
+    zip --no-install-recommends
 judge "Install basic packages"
 
 print_ok "Installing gnome basic sessions..."
 apt install -y \
-    gnome-shell ubuntu-session yaru-theme-sound yaru-theme-gnome-shell gir1.2-gmenu-3.0 gnome-menus gnome-shell-extensions
+    gnome-shell ubuntu-session ubuntu-session-xsession yaru-theme-sound yaru-theme-gnome-shell gir1.2-gmenu-3.0 gnome-menus gnome-shell-extensions gdm3 --no-install-recommends
 judge "Install gnome basic sessions"
 
 print_ok "Installing plymouth..."
@@ -51,7 +51,7 @@ apt install -y \
     plymouth \
     plymouth-label \
     plymouth-theme-spinner \
-    plymouth-theme-ubuntu-text
+    plymouth-theme-ubuntu-text --no-install-recommends
 judge "Install plymouth"
 
 print_ok "Installing network manager vpn packages..."
@@ -67,7 +67,7 @@ apt install -y \
     openvpn \
     network-manager-openvpn \
     network-manager-openvpn-gnome \
-    network-manager-pptp-gnome
+    network-manager-pptp-gnome --no-install-recommends
 judge "Install network manager vpn packages"
 
 print_ok "Installing gnome basic applications..."
@@ -92,19 +92,19 @@ apt install -y \
     gnome-power-manager \
     gnome-snapshot \
     gnome-maps \
-    gnome-font-viewer 
+    gnome-font-viewer --no-install-recommends
 judge "Install gnome basic applications"
 
 print_ok "Installing gnome games..."
 apt install -y \
-    gnome-chess
+    gnome-chess --no-install-recommends
 judge "Install gnome games"
 
 print_ok "Installing gnome extension utilities..."
 apt install -y \
     gnome-shell-extension-prefs \
     gnome-shell-extension-desktop-icons-ng \
-    gnome-shell-extension-appindicator 
+    gnome-shell-extension-appindicator --no-install-recommends
 judge "Install gnome extension utilities"
 
 print_ok "Installing gnome additional applications..."
@@ -120,7 +120,7 @@ apt install -y \
     rhythmbox rhythmbox-plugins \
     totem totem-plugins \
     transmission-gtk transmission-common \
-    ffmpegthumbnailer
+    ffmpegthumbnailer --no-install-recommends
 judge "Install gnome additional applications"
 
 print_ok "Installing gnome multimedia support..."
@@ -135,27 +135,27 @@ judge "Install gstreamer"
 
 print_ok "Installing gnome console..."
 apt install -y \
-    gnome-console #nautilus-extension-gnome-console
+    gnome-console  --no-install-recommends
 judge "Install gnome console"
 
 print_ok "Installing gnome fonts..."
 apt install -y \
-    fonts-noto-cjk fonts-noto-core fonts-noto-mono fonts-noto-color-emoji
+    fonts-noto-cjk fonts-noto-core fonts-noto-mono fonts-noto-color-emoji --no-install-recommends
 judge "Install gnome fonts"
 
 print_ok "Installing gnome printer support..."
 apt install -y \
-    cups system-config-printer cups-bsd
+    cups system-config-printer cups-bsd --no-install-recommends
 judge "Install gnome printer support"
 
 print_ok "Installing ubuntu drivers support..."
 apt install -y \
-    ubuntu-drivers-common alsa-utils alsa-base fprintd
+    ubuntu-drivers-common alsa-utils alsa-base fprintd --no-install-recommends
 judge "Install ubuntu drivers support"
 
 print_ok "Installing python3..."
 apt install -y \
-    python3 python3-pip python-is-python3 pipx
+    python3 python3-pip python-is-python3 pipx --no-install-recommends
 judge "Install python3"
 
 print_ok "Remove the default htop.desktop file"
@@ -167,5 +167,5 @@ rm /usr/share/applications/vim.desktop
 judge "Remove the default vim.desktop file"
 
 print_ok "Installing $LANGUAGE_PACKS language packs"
-apt install -y $LANGUAGE_PACKS
+apt install -y $LANGUAGE_PACKS --no-install-recommends
 judge "Install language packs"

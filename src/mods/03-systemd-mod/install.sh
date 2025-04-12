@@ -8,5 +8,5 @@ print_ok "Installing systemd"
 # Don't wait for network, because curl is not available
 #waitNetwork
 apt update
-apt install -y libterm-readline-gnu-perl systemd-sysv curl
+apt install -y libterm-readline-gnu-perl systemd-sysv curl --no-install-recommends
 judge "Install systemd"

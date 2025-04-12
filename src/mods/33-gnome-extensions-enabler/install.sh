@@ -21,7 +21,7 @@ judge "Enable gnome extensions"
 
 # Install jq:
 print_ok "Updating gnome extensions to force enable for gnome 48..."
-apt install -y jq
+apt install -y jq --no-install-recommends
 find /usr/share/gnome-shell/extensions -type f -name metadata.json | while IFS= read -r file; do
     if jq -e 'has("shell-version")' "$file" > /dev/null; then
         if jq -e '.["shell-version"] | index("48")' "$file" > /dev/null; then

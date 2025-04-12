@@ -7,7 +7,7 @@ sudo apt install -y \
     flatpak \
     gnome-software \
     gnome-software-plugin-flatpak \
-    gnome-software-plugin-deb
+    gnome-software-plugin-deb --no-install-recommends
 judge "Install gnome software with flatpak support"
 
 print_ok "Installing gnome software plugins..."
