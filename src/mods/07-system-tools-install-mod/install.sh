@@ -66,7 +66,7 @@ apt install -y \
     usbutils \
     uuid-runtime \
     wget \
-    xz-utils
+    xz-utils --no-install-recommends
 judge "Install basic system tool packages"
 
 print_ok "Fixing the package base-files to avoid system upgrading it..."

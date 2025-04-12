@@ -8,7 +8,7 @@ apt install -y \
     casper \
     discover \
     laptop-detect \
-    os-prober
+    os-prober --no-install-recommends
 judge "Install live-boot"
 
 TARGET_KERNEL_PACKAGE=$(apt search linux-generic-hwe-* | awk -F'/' '/linux-generic-hwe-/ {print $1}' | sort | head -n 1)

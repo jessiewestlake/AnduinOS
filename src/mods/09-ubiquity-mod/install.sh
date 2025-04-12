@@ -9,5 +9,5 @@ apt install -y \
     ubiquity-casper \
     ubiquity-frontend-gtk \
     ubiquity-slideshow-ubuntu \
-    ubiquity-ubuntu-artwork
+    ubiquity-ubuntu-artwork --no-install-recommends
 judge "Install ubiquity"
