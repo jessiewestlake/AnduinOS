@@ -52,9 +52,6 @@ export TARGET_BUILD_VERSION="1.3.0"
 # Fork version. Must be in the format of x.y
 export TARGET_BUILD_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-# Set to mirror-ppa.aiursoft.cn to use that as mirror. Set to empty to disable
-export FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
-
 # Packages will be uninstalled during the installation process
 export TARGET_PACKAGE_REMOVE="
     ubiquity \

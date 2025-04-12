@@ -92,7 +92,6 @@ apt install -y \
     gnome-power-manager \
     gnome-snapshot \
     gnome-maps \
-    gnome-software \
     gnome-font-viewer 
 judge "Install gnome basic applications"
 
@@ -115,7 +114,6 @@ apt install -y \
     gnome-nettool \
     gnome-text-editor \
     seahorse \
-    gdebi \
     evince \
     shotwell \
     remmina remmina-plugin-rdp \
@@ -154,11 +152,6 @@ print_ok "Installing ubuntu drivers support..."
 apt install -y \
     ubuntu-drivers-common alsa-utils alsa-base fprintd
 judge "Install ubuntu drivers support"
-
-print_ok "Installing web browser..."
-apt install -y \
-    firefox
-judge "Install web browser"
 
 print_ok "Installing python3..."
 apt install -y \
