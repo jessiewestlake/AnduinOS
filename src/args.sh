@@ -86,9 +86,9 @@ export STORE_PROVIDER="flatpak"
 #============================
 # How to install Firefox. Can be: "none", "deb", "flatpak", "snap"
 # none:     no firefox
-# deb:      install firefox from PPA
-# flatpak:  install firefox from flathub
-# snap:     install firefox from snap
+# deb:      install firefox from PPA with apt
+# flatpak:  install firefox from flathub (Only available if STORE_PROVIDER is set to "flatpak")
+# snap:     install firefox from snap (Only available if STORE_PROVIDER is set to "snap")
 export FIREFOX_PROVIDER="deb"
 
 # Whether to install firefox with apt. If set, it will be installed from the PPA. If empty, it will be installed from the default source
