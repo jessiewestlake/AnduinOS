@@ -20,6 +20,46 @@
 * Ensure there will be a `DO` sound (Yaru) when typing tab on terminal.
 * Ensure when running `sudo apt update`, it's connecting to localized apt source.
 * Ensure `lsb_release` with arg `-i -d -r -c -a` will show the correct information.
+* Ensure some necessary system tools are available, such as:
+  * lspci
+  * lsusb
+  * lsblk
+  * fdisk
+  * df
+  * free
+  * top
+  * htop
+  * ip
+  * ping
+  * curl
+  * wget
+  * zip
+  * unzip
+  * xargs
+  * tar
+  * time
+  * zstd
+  * ssh
+  * adduser
+  * ufw
+  * man
+  * vim
+  * mount
+  * umount
+  * systemctl
+  * journalctl
+  * dmesg
+  * hostname
+  * hostnamectl
+  * cat
+  * echo
+  * grep
+  * awk
+  * sed
+  * cut
+  * find
+  * xargs
+  * ps
 * Ensure folders are sorted before files in nautilus.
 * Ensure the `help` in nautilus is working and localized.
 * Ensure `/opt` folder is empty.
