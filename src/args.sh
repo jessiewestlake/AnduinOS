@@ -67,3 +67,7 @@ export INPUT_METHOD_INSTALL=""
 
 # Boolean indicator for whether to install anduinos-ibus-rime
 export CONFIG_IBUS_RIME="false"
+
+# Whether to install firefox. If Deb, it will be installed from the PPA. If Flatpak, it will be installed from Flathub.
+export DEB_FIREFOX="true"
+export FLATPAK_FIREFOX="false"

@@ -14,6 +14,11 @@ print_ok "Installing gnome software plugins..."
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 judge "Install gnome software plugins"
 
-print_ok "Installing firefox from flathub..."
-flatpak install -y flathub org.mozilla.firefox
-judge "Install firefox from flathub"
+# export FLATPAK_FIREFOX="false"
+if [ "$FLATPAK_FIREFOX" = "true" ]; then
+    print_ok "Installing firefox from flathub..."
+    flatpak install -y flathub org.mozilla.firefox
+    judge "Install firefox from flathub"
+else
+    print_ok "No need to install flatpak firefox, please check the config file"
+fi
