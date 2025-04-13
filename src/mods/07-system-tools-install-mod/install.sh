@@ -63,10 +63,13 @@ apt install -y \
     telnet \
     time \
     ufw \
+    unzip \
     usbutils \
     uuid-runtime \
     wget \
-    xz-utils --no-install-recommends
+    xz-utils \
+    zstd \
+    zip --no-install-recommends
 judge "Install basic system tool packages"
 
 print_ok "Fixing the package base-files to avoid system upgrading it..."
