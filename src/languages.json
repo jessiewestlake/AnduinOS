@@ -1,122 +1,142 @@
 [
     {
-        "lang": "en_US",
+        "lang_mode": "en_US",
         "lang_pack_code": "en",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "America/Los_Angeles"
     },
     {
-        "lang": "zh_CN",
+        "lang_mode": "zh_CN",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-rime",
-        "config_ibus_rime": "true"
+        "config_ibus_rime": "true",
+        "timezone": "Asia/Shanghai"
     },
     {
-        "lang": "zh_TW",
+        "lang_mode": "zh_TW",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-chewing",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Asia/Taipei"
     },
     {
-        "lang": "zh_HK",
+        "lang_mode": "zh_HK",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-table-cangjie",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Asia/Hong_Kong"
     },
     {
-        "lang": "ja_JP",
+        "lang_mode": "ja_JP",
         "lang_pack_code": "ja",
         "input_method_install": "ibus-mozc",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Asia/Tokyo"
     },
     {
-        "lang": "ko_KR",
+        "lang_mode": "ko_KR",
         "lang_pack_code": "ko",
         "input_method_install": "ibus-hangul",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Asia/Seoul"
     },
     {
-        "lang": "vi_VN",
+        "lang_mode": "vi_VN",
         "lang_pack_code": "vi",
         "input_method_install": "ibus-unikey",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Asia/Ho_Chi_Minh"
     },
     {
-        "lang": "th_TH",
+        "lang_mode": "th_TH",
         "lang_pack_code": "th",
         "input_method_install": "ibus-libthai",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Asia/Bangkok"
     },
     {
-        "lang": "de_DE",
+        "lang_mode": "de_DE",
         "lang_pack_code": "de",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Berlin"
     },
     {
-        "lang": "fr_FR",
+        "lang_mode": "fr_FR",
         "lang_pack_code": "fr",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Paris"
     },
     {
-        "lang": "es_ES",
+        "lang_mode": "es_ES",
         "lang_pack_code": "es",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Madrid"
     },
     {
-        "lang": "ru_RU",
+        "lang_mode": "ru_RU",
         "lang_pack_code": "ru",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Moscow"
     },
     {
-        "lang": "it_IT",
+        "lang_mode": "it_IT",
         "lang_pack_code": "it",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Rome"
     },
     {
-        "lang": "pt_PT",
+        "lang_mode": "pt_PT",
         "lang_pack_code": "pt",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Lisbon"
     },
     {
-        "lang": "pt_BR",
+        "lang_mode": "pt_BR",
         "lang_pack_code": "pt",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "America/Sao_Paulo"
     },
     {
-        "lang": "ar_SA",
+        "lang_mode": "ar_SA",
         "lang_pack_code": "ar",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Asia/Riyadh"
     },
     {
-        "lang": "nl_NL",
+        "lang_mode": "nl_NL",
         "lang_pack_code": "nl",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Amsterdam"
     },
     {
-        "lang": "sv_SE",
+        "lang_mode": "sv_SE",
         "lang_pack_code": "sv",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Stockholm"
     },
     {
-        "lang": "pl_PL",
+        "lang_mode": "pl_PL",
         "lang_pack_code": "pl",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Warsaw"
     },
     {
-        "lang": "tr_TR",
+        "lang_mode": "tr_TR",
         "lang_pack_code": "tr",
         "input_method_install": "",
-        "config_ibus_rime": "false"
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Istanbul"
     }
 ]

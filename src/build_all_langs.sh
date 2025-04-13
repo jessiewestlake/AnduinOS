@@ -50,7 +50,7 @@ fi
 # Build array of languages based on the selected mode
 if [[ "$BUILD_MODE" == "fast" ]]; then
   # Just select English and Chinese for fast mode
-  selected_languages=$(jq -c '[.[] | select(.lang == "en_US" or .lang == "zh_CN")]' "$LANGUAGES_JSON")
+  selected_languages=$(jq -c '[.[] | select(.lang_mode == "en_US" or .lang_mode == "zh_CN")]' "$LANGUAGES_JSON")
 else
   # Use all languages for full mode
   selected_languages=$(jq -c '.' "$LANGUAGES_JSON")
@@ -80,21 +80,25 @@ for ((i=0; i<lang_count; i++)); do
   # Extract language information from JSON
   lang_info=$(echo "$selected_languages" | jq -c ".[$i]")
   
-  LANG_MODE=$(echo "$lang_info" | jq -r '.lang')
+  LANG_MODE=$(echo "$lang_info" | jq -r '.lang_mode')
   LANG_CODE=$(echo "$lang_info" | jq -r '.lang_pack_code')
   INPUT_METHOD_INSTALL=$(echo "$lang_info" | jq -r '.input_method_install')
   CONFIG_IBUS_RIME=$(echo "$lang_info" | jq -r '.config_ibus_rime')
+  TIMEZONE=$(echo "$lang_info" | jq -r '.timezone')
 
-  # Update environment variables in args.sh
-  sed -i "s/^export LANG_MODE=\".*\"/export LANG_MODE=\"${LANG_MODE}\"/" args.sh
-  sed -i "s/^export LANG_PACK_CODE=\".*\"/export LANG_PACK_CODE=\"${LANG_CODE}\"/" args.sh
-  sed -i "s/^export INPUT_METHOD_INSTALL=\".*\"/export INPUT_METHOD_INSTALL=\"${INPUT_METHOD_INSTALL}\"/" args.sh
-  sed -i "s/^export CONFIG_IBUS_RIME=\".*\"/export CONFIG_IBUS_RIME=\"${CONFIG_IBUS_RIME}\"/" args.sh
+  # Update environment variables in args.sh using unified delimiter
+  sed -i "s|^export LANG_MODE=\".*\"|export LANG_MODE=\"${LANG_MODE}\"|" args.sh
+  sed -i "s|^export LANG_PACK_CODE=\".*\"|export LANG_PACK_CODE=\"${LANG_CODE}\"|" args.sh
+  sed -i "s|^export INPUT_METHOD_INSTALL=\".*\"|export INPUT_METHOD_INSTALL=\"${INPUT_METHOD_INSTALL}\"|" args.sh
+  sed -i "s|^export CONFIG_IBUS_RIME=\".*\"|export CONFIG_IBUS_RIME=\"${CONFIG_IBUS_RIME}\"|" args.sh
+  sed -i "s|^export TIMEZONE=\".*\"|export TIMEZONE=\"${TIMEZONE}\"|" args.sh
 
   echo "================================================="
   echo "[INFO] Starting build -> LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}"
   echo "[INFO] Input method: ${INPUT_METHOD_INSTALL}, Ibus Rime: ${CONFIG_IBUS_RIME}"
+  echo "[INFO] Timezone: ${TIMEZONE}"
   echo "================================================="
+
 
   # Initialize retry parameters
   MAX_RETRIES=3

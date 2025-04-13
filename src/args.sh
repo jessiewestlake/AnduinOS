@@ -112,3 +112,8 @@ export INPUT_METHOD_INSTALL=""
 
 # Boolean indicator for whether to install anduinos-ibus-rime
 export CONFIG_IBUS_RIME="false"
+
+#============================
+# Time zone configuration
+#============================
+export TIMEZONE="America/Los_Angeles"
