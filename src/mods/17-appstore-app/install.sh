@@ -7,7 +7,6 @@ set -u                  # treat unset variable as error
 
 if [ "$STORE_PROVIDER" == "none" ]; then
     print_ok "No need to install a store because STORE_PROVIDER is set to none, please check the config file"
-    exit 0
 elif [ "$STORE_PROVIDER" == "flatpak" ]; then
     print_ok "Installing gnome software and flatpak support"
     sudo apt install -y \
@@ -20,15 +19,6 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
     print_ok "Installing gnome software plugins..."
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     judge "Install gnome software plugins"
-
-    # export FLATPAK_FIREFOX="false"
-    if [ "$FLATPAK_FIREFOX" == "true" ]; then
-        print_ok "Installing firefox from flathub..."
-        flatpak install -y flathub org.mozilla.firefox
-        judge "Install firefox from flathub"
-    else
-        print_ok "No need to install flatpak firefox, please check the config file"
-    fi
 elif [ "$STORE_PROVIDER" == "snap" ]; then
     print_ok "Installing snap store..."
     sudo apt install -y \
@@ -89,5 +79,7 @@ Icon=system-software-install
 StartupNotify=true
 EOF
 else
-    print_ok "No need to install a store because STORE_PROVIDER is set to web, please check the config file"
+    print_error "Unknown store provider: $STORE_PROVIDER"
+    print_error "Please check the config file"
+    exit 1
 fi
