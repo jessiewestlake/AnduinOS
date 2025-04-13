@@ -125,6 +125,8 @@ function build_iso() {
     
     print_ok "Generating grub.cfg..."
     touch image/$TARGET_NAME
+    cp $SCRIPT_DIR/args.sh image/$TARGET_NAME
+    judge "Copy build args to disk"
 
     # Configurations are setup in new_building_os/usr/share/initramfs-tools/scripts/casper-bottom/25configure_init
     TRY_TEXT="Install $TARGET_BUSINESS_NAME"
