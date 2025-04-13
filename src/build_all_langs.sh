@@ -28,28 +28,32 @@ if [[ "${1:-}" == "--langs" ]]; then
     exit 1
   fi
 else
-  echo "[ERROR] Invalid argument. Use '--langs all' or '--langs fast'."
-  exit 1
+  echo "[INFO] No arguments provided, defaulting to building for all languages."
 fi
 
 # -----------------------------------------------------------------------------
-# 2. Define language modes and their corresponding language pack codes
+# 2. Load language configuration from JSON file
 # -----------------------------------------------------------------------------
-# Full set of languages
-ALL_LANG_MODES=(     "en_US" "zh_CN" "zh_TW" "zh_HK" "ja_JP" "ko_KR" "vi_VN" "th_TH" "de_DE" "fr_FR" "es_ES" "ru_RU" "it_IT" "pt_PT" "pt_BR" "ar_SA" "nl_NL" "sv_SE" "pl_PL" "tr_TR")
-ALL_LANG_PACK_CODES=("en"    "zh"     "zh"   "zh"    "ja"    "ko"    "vi"    "th"    "de"    "fr"    "es"    "ru"    "it"    "pt"    "pt"    "ar"    "nl"    "sv"    "pl"    "tr")
+LANGUAGES_JSON="languages.json"
 
-# Subset for 'fast' builds
-FAST_LANG_MODES=(     "en_US" "zh_CN")
-FAST_LANG_PACK_CODES=("en"    "zh")
+if [[ ! -f "$LANGUAGES_JSON" ]]; then
+  echo "[ERROR] Language configuration file $LANGUAGES_JSON does not exist."
+  exit 1
+fi
 
-# Based on the chosen build mode, select which arrays to iterate over
+# Check if jq is installed, install if not
+if ! command -v jq &> /dev/null; then
+  echo "[INFO] Installing jq for JSON parsing..."
+  sudo apt-get update && sudo apt-get install -y jq
+fi
+
+# Build array of languages based on the selected mode
 if [[ "$BUILD_MODE" == "fast" ]]; then
-  LANG_MODES=("${FAST_LANG_MODES[@]}")
-  LANG_PACK_CODES=("${FAST_LANG_PACK_CODES[@]}")
+  # Just select English and Chinese for fast mode
+  selected_languages=$(jq -c '[.[] | select(.lang == "en_US" or .lang == "zh_CN")]' "$LANGUAGES_JSON")
 else
-  LANG_MODES=("${ALL_LANG_MODES[@]}")
-  LANG_PACK_CODES=("${ALL_LANG_PACK_CODES[@]}")
+  # Use all languages for full mode
+  selected_languages=$(jq -c '.' "$LANGUAGES_JSON")
 fi
 
 # -----------------------------------------------------------------------------
@@ -69,16 +73,27 @@ fi
 # -----------------------------------------------------------------------------
 # 5. Build loop for selected languages with retry mechanism
 # -----------------------------------------------------------------------------
-for i in "${!LANG_MODES[@]}"; do
-  LANG_MODE="${LANG_MODES[$i]}"
-  LANG_CODE="${LANG_PACK_CODES[$i]}"
+# Get the count of languages from the selected_languages JSON array
+lang_count=$(echo "$selected_languages" | jq '. | length')
+
+for ((i=0; i<lang_count; i++)); do
+  # Extract language information from JSON
+  lang_info=$(echo "$selected_languages" | jq -c ".[$i]")
+  
+  LANG_MODE=$(echo "$lang_info" | jq -r '.lang')
+  LANG_CODE=$(echo "$lang_info" | jq -r '.lang_pack_code')
+  INPUT_METHOD_INSTALL=$(echo "$lang_info" | jq -r '.input_method_install')
+  CONFIG_IBUS_RIME=$(echo "$lang_info" | jq -r '.config_ibus_rime')
 
   # Update environment variables in args.sh
   sed -i "s/^export LANG_MODE=\".*\"/export LANG_MODE=\"${LANG_MODE}\"/" args.sh
   sed -i "s/^export LANG_PACK_CODE=\".*\"/export LANG_PACK_CODE=\"${LANG_CODE}\"/" args.sh
+  sed -i "s/^export INPUT_METHOD_INSTALL=\".*\"/export INPUT_METHOD_INSTALL=\"${INPUT_METHOD_INSTALL}\"/" args.sh
+  sed -i "s/^export CONFIG_IBUS_RIME=\".*\"/export CONFIG_IBUS_RIME=\"${CONFIG_IBUS_RIME}\"/" args.sh
 
   echo "================================================="
   echo "[INFO] Starting build -> LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}"
+  echo "[INFO] Input method: ${INPUT_METHOD_INSTALL}, Ibus Rime: ${CONFIG_IBUS_RIME}"
   echo "================================================="
 
   # Initialize retry parameters

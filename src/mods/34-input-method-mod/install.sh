@@ -2,9 +2,19 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
-if [ "$LANG_MODE" == "en_US" ]; then
-    print_ok "United State users do not need to install input method."
-elif [ "$LANG_MODE" == "zh_CN" ]; then
+# Based on variable: INPUT_METHOD_INSTALL and CONFIG_IBUS_RIME
+# If $INPUT_METHOD_INSTALL is not empty, install the packages
+if [ -n "$INPUT_METHOD_INSTALL" ]; then
+    print_ok "Installing input method packages: $INPUT_METHOD_INSTALL"
+    apt install -y --no-install-recommends \
+        $INPUT_METHOD_INSTALL
+    judge "Install input method packages"
+else
+    print_ok "No input method packages to install"
+fi
+
+# If config ibus rime:
+if [ "$CONFIG_IBUS_RIME" == "true" ]; then
     print_ok "Installing ibus-rime..."
     apt install ibus-rime -y --no-install-recommends
     judge "Install ibus-rime"
@@ -20,56 +30,8 @@ elif [ "$LANG_MODE" == "zh_CN" ]; then
     rsync -Aavx --update --delete ./anduinos-rime-master/assets/ /etc/skel/.config/ibus/rime/
     rm -rf ./anduinos-rime-master/
     judge "Install Rime schema"
-elif [ "$LANG_MODE" == "zh_TW" ]; then
-    print_ok "Installing ibus-chewing..."
-    apt install ibus-chewing -y --no-install-recommends
-    judge "Install ibus-chewing"
-elif [ "$LANG_MODE" == "zh_HK" ]; then
-    print_ok "Installing ibus-cangjie..."
-    apt install ibus-table-cangjie -y --no-install-recommends
-    judge "Install ibus-cangjie"
-elif [ "$LANG_MODE" == "ja_JP" ]; then
-    print_ok "Installing ibus-mozc..."
-    apt install ibus-mozc -y --no-install-recommends
-    judge "Install ibus-mozc"
-elif [ "$LANG_MODE" == "ko_KR" ]; then
-    print_ok "Installing ibus-hangul..."
-    apt install ibus-hangul -y --no-install-recommends
-    judge "Install ibus-hangul"
-elif [ "$LANG_MODE" == "vi_VN" ]; then
-    print_ok "Installing ibus-unikey..."
-    apt install ibus-unikey -y --no-install-recommends
-    judge "Install ibus-unikey"
-elif [ "$LANG_MODE" == "th_TH" ]; then
-    print_ok "Installing ibus-libthai..."
-    apt install ibus-libthai -y --no-install-recommends
-    judge "Install ibus-libthai"
-elif [ "$LANG_MODE" == "de_DE" ]; then
-    print_ok "German users do not need to install input method."
-elif [ "$LANG_MODE" == "fr_FR" ]; then
-    print_ok "French users do not need to install input method."
-elif [ "$LANG_MODE" == "es_ES" ]; then
-    print_ok "Spanish users do not need to install input method."
-elif [ "$LANG_MODE" == "ru_RU" ]; then
-    print_ok "Russian users do not need to install input method."
-elif [ "$LANG_MODE" == "it_IT" ]; then
-    print_ok "Italian users do not need to install input method."
-elif [ "$LANG_MODE" == "pt_PT" ]; then
-    print_ok "Portuguese users do not need to install input method."
-elif [ "$LANG_MODE" == "pt_BR" ]; then
-    print_ok "Brazilian users do not need to install input method."
-elif [ "$LANG_MODE" == "ar_SA" ]; then
-    print_ok "Arabic users do not need to install input method."
-elif [ "$LANG_MODE" == "nl_NL" ]; then
-    print_ok "Dutch users do not need to install input method."
-elif [ "$LANG_MODE" == "sv_SE" ]; then
-    print_ok "Swedish users do not need to install input method."
-elif [ "$LANG_MODE" == "pl_PL" ]; then
-    print_ok "Polish users do not need to install input method."
-elif [ "$LANG_MODE" == "tr_TR" ]; then
-    print_ok "Turkish users do not need to install input method."
 else
-    print_warn "Skipping input method installation for $LANG_MODE"
+    print_ok "No ibus-rime to install"
 fi
 
 print_ok "Patching language-selector to install input method packages"
