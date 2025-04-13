@@ -70,4 +70,6 @@ export CONFIG_IBUS_RIME="false"
 
 # Whether to install firefox. If Deb, it will be installed from the PPA. If Flatpak, it will be installed from Flathub.
 export DEB_FIREFOX="true"
+export FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
+
 export FLATPAK_FIREFOX="false"
