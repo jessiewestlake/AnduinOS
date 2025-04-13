@@ -16,7 +16,7 @@ fi
 # If config ibus rime:
 if [ "$CONFIG_IBUS_RIME" == "true" ]; then
     print_ok "Installing ibus-rime..."
-    apt install ibus-rime -y --no-install-recommends
+    apt install ibus-rime im-config -y --no-install-recommends
     judge "Install ibus-rime"
 
     print_ok "Setting up ibus..."
