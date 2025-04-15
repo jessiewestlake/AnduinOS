@@ -60,6 +60,14 @@
   * find
   * xargs
   * ps
+  * less
+  * kmod
+  * iptables
+  * ip6tables
+  * netstat
+  * ss
+  * route
+  * tcpdump
 * Ensure folders are sorted before files in nautilus.
 * Ensure the `help` in nautilus is working and localized.
 * Ensure `/opt` folder is empty.
