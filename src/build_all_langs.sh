@@ -92,6 +92,8 @@ for ((i=0; i<lang_count; i++)); do
   sed -i "s|^export INPUT_METHOD_INSTALL=\".*\"|export INPUT_METHOD_INSTALL=\"${INPUT_METHOD_INSTALL}\"|" args.sh
   sed -i "s|^export CONFIG_IBUS_RIME=\".*\"|export CONFIG_IBUS_RIME=\"${CONFIG_IBUS_RIME}\"|" args.sh
   sed -i "s|^export TIMEZONE=\".*\"|export TIMEZONE=\"${TIMEZONE}\"|" args.sh
+  sed -i "s|^export CONFIG_WEATHER_LOCATION=\".*\"|export CONFIG_WEATHER_LOCATION=\"${CONFIG_WEATHER_LOCATION}\"|" args.sh
+  sed -i "s|^export CONFIG_INPUT_METHOD=\".*\"|export CONFIG_INPUT_METHOD=\"${CONFIG_INPUT_METHOD}\"|" args.sh
 
   echo "================================================="
   echo "[INFO] Starting build -> LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}"

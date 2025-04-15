@@ -4,139 +4,179 @@
         "lang_pack_code": "en",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "America/Los_Angeles"
+        "timezone": "America/Los_Angeles",
+        "config_weather_location": "[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]",
+        "config_input_method": "[('xkb', 'us')]"
     },
     {
         "lang_mode": "zh_CN",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-rime",
         "config_ibus_rime": "true",
-        "timezone": "Asia/Shanghai"
+        "timezone": "Asia/Shanghai",
+        "config_weather_location": "[(uint32 0, '苏州, 江苏', uint32 0, '31.311123,120.6212881')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'rime')]"
     },
     {
         "lang_mode": "zh_TW",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-chewing",
         "config_ibus_rime": "false",
-        "timezone": "Asia/Taipei"
+        "timezone": "Asia/Taipei",
+        "config_weather_location": "[(uint32 0, '臺北市, 臺灣', uint32 0, '25.0329694,121.5654177')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'chewing')]"
     },
     {
         "lang_mode": "zh_HK",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-table-cangjie",
         "config_ibus_rime": "false",
-        "timezone": "Asia/Hong_Kong"
+        "timezone": "Asia/Hong_Kong",
+        "config_weather_location": "[(uint32 0, '香港', uint32 0, '22.3193039,114.1693611')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'table:cangjie-big')]"
     },
     {
         "lang_mode": "ja_JP",
         "lang_pack_code": "ja",
         "input_method_install": "ibus-mozc",
         "config_ibus_rime": "false",
-        "timezone": "Asia/Tokyo"
+        "timezone": "Asia/Tokyo",
+        "config_weather_location": "[(uint32 0, '東京都, 日本', uint32 0, '35.6894875,139.6917064')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'mozc-jp')]"
     },
     {
         "lang_mode": "ko_KR",
         "lang_pack_code": "ko",
         "input_method_install": "ibus-hangul",
         "config_ibus_rime": "false",
-        "timezone": "Asia/Seoul"
+        "timezone": "Asia/Seoul",
+        "config_weather_location": "[(uint32 0, '서울특별시, 대한민국', uint32 0, '37.566535,126.9779692')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'hangul')]"
     },
     {
         "lang_mode": "vi_VN",
         "lang_pack_code": "vi",
         "input_method_install": "ibus-unikey",
         "config_ibus_rime": "false",
-        "timezone": "Asia/Ho_Chi_Minh"
+        "timezone": "Asia/Ho_Chi_Minh",
+        "config_weather_location": "[(uint32 0, 'Thành phố Hà Nội, Việt Nam', uint32 0, '21.028511,105.804817')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'Unikey')]"
     },
     {
         "lang_mode": "th_TH",
         "lang_pack_code": "th",
         "input_method_install": "ibus-libthai",
         "config_ibus_rime": "false",
-        "timezone": "Asia/Bangkok"
+        "timezone": "Asia/Bangkok",
+        "config_weather_location": "[(uint32 0, 'กรุงเทพมหานคร, ประเทศไทย', uint32 0, '13.7563309,100.5017651')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'libthai')]"
     },
     {
         "lang_mode": "de_DE",
         "lang_pack_code": "de",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Berlin"
+        "timezone": "Europe/Berlin",
+        "config_weather_location": "[(uint32 0, 'Berlin, Deutschland', uint32 0, '52.5200066,13.404954')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'de')]"
     },
     {
         "lang_mode": "fr_FR",
         "lang_pack_code": "fr",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Paris"
+        "timezone": "Europe/Paris",
+        "config_weather_location": "[(uint32 0, 'Paris, France', uint32 0, '48.8566969,2.3514616')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'fr')]"
     },
     {
         "lang_mode": "es_ES",
         "lang_pack_code": "es",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Madrid"
+        "timezone": "Europe/Madrid",
+        "config_weather_location": "[(uint32 0, 'Madrid, España', uint32 0, '40.4167754,-3.7037902')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'es')]"
     },
     {
         "lang_mode": "ru_RU",
         "lang_pack_code": "ru",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Moscow"
+        "timezone": "Europe/Moscow",
+        "config_weather_location": "[(uint32 0, 'Москва, Россия', uint32 0, '55.755826,37.6173')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'ru')]"
     },
     {
         "lang_mode": "it_IT",
         "lang_pack_code": "it",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Rome"
+        "timezone": "Europe/Rome",
+        "config_weather_location": "[(uint32 0, 'Roma, Italia', uint32 0, '41.9027835,12.4963655')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'it')]"
     },
     {
         "lang_mode": "pt_PT",
         "lang_pack_code": "pt",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Lisbon"
+        "timezone": "Europe/Lisbon",
+        "config_weather_location": "[(uint32 0, 'Lisboa, Portugal', uint32 0, '38.7222524,-9.1393366')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'pt')]"
     },
     {
         "lang_mode": "pt_BR",
         "lang_pack_code": "pt",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "America/Sao_Paulo"
+        "timezone": "America/Sao_Paulo",
+        "config_weather_location": "[(uint32 0, 'São Paulo, Brasil', uint32 0, '-23.5505199,-46.6333094')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'br')]"
     },
     {
         "lang_mode": "ar_SA",
         "lang_pack_code": "ar",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Asia/Riyadh"
+        "timezone": "Asia/Riyadh",
+        "config_weather_location": "[(uint32 0, 'الرياض, المملكة العربية السعودية', uint32 0, '24.7135517,46.6752957')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'ara')]"
     },
     {
         "lang_mode": "nl_NL",
         "lang_pack_code": "nl",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Amsterdam"
+        "timezone": "Europe/Amsterdam",
+        "config_weather_location": "[(uint32 0, 'Amsterdam, Nederland', uint32 0, '52.3675734,4.9041383')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'nl')]"
     },
     {
         "lang_mode": "sv_SE",
         "lang_pack_code": "sv",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Stockholm"
+        "timezone": "Europe/Stockholm",
+        "config_weather_location": "[(uint32 0, 'Stockholm, Sverige', uint32 0, '59.3293235,18.0685808')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'se')]"
     },
     {
         "lang_mode": "pl_PL",
         "lang_pack_code": "pl",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Warsaw"
+        "timezone": "Europe/Warsaw",
+        "config_weather_location": "[(uint32 0, 'Warszawa, Polska', uint32 0, '52.2296756,21.0122287')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'pl')]"
     },
     {
         "lang_mode": "tr_TR",
         "lang_pack_code": "tr",
         "input_method_install": "",
         "config_ibus_rime": "false",
-        "timezone": "Europe/Istanbul"
+        "timezone": "Europe/Istanbul",
+        "config_weather_location": "[(uint32 0, 'İstanbul, Türkiye', uint32 0, '41.0082376,28.9783589')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'tr')]"
     }
 ]
