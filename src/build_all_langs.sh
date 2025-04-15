@@ -80,47 +80,46 @@ for ((i=0; i<lang_count; i++)); do
   # Extract language information from JSON
   lang_info=$(echo "$selected_languages" | jq -c ".[$i]")
   
+  # Display summary of the current language for logging
   LANG_MODE=$(echo "$lang_info" | jq -r '.lang_mode')
-  LANG_CODE=$(echo "$lang_info" | jq -r '.lang_pack_code')
-  INPUT_METHOD_INSTALL=$(echo "$lang_info" | jq -r '.input_method_install')
-  CONFIG_IBUS_RIME=$(echo "$lang_info" | jq -r '.config_ibus_rime')
-  TIMEZONE=$(echo "$lang_info" | jq -r '.timezone')
-  CONFIG_WEATHER_LOCATION=$(echo "$lang_info" | jq -r '.config_weather_location')
-  CONFIG_INPUT_METHOD=$(echo "$lang_info" | jq -r '.config_input_method')
-
-  # Update environment variables in args.sh using unified delimiter
-  sed -i "s|^export LANG_MODE=\".*\"|export LANG_MODE=\"${LANG_MODE}\"|" args.sh
-  sed -i "s|^export LANG_PACK_CODE=\".*\"|export LANG_PACK_CODE=\"${LANG_CODE}\"|" args.sh
-  sed -i "s|^export INPUT_METHOD_INSTALL=\".*\"|export INPUT_METHOD_INSTALL=\"${INPUT_METHOD_INSTALL}\"|" args.sh
-  sed -i "s|^export CONFIG_IBUS_RIME=\".*\"|export CONFIG_IBUS_RIME=\"${CONFIG_IBUS_RIME}\"|" args.sh
-  sed -i "s|^export TIMEZONE=\".*\"|export TIMEZONE=\"${TIMEZONE}\"|" args.sh
-  sed -i "s|^export CONFIG_WEATHER_LOCATION=\".*\"|export CONFIG_WEATHER_LOCATION=\"${CONFIG_WEATHER_LOCATION}\"|" args.sh
-  sed -i "s|^export CONFIG_INPUT_METHOD=\".*\"|export CONFIG_INPUT_METHOD=\"${CONFIG_INPUT_METHOD}\"|" args.sh
-
   echo "================================================="
-  echo "[INFO] Starting build -> LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}"
-  echo "[INFO] Input method: ${INPUT_METHOD_INSTALL}, Ibus Rime: ${CONFIG_IBUS_RIME}"
-  echo "[INFO] Timezone: ${TIMEZONE}"
+  echo "[INFO] Starting build -> LANG_MODE: ${LANG_MODE}"
+  echo "Current language configuration:"
+  echo "$lang_info" | jq '.'
   echo "================================================="
-
+  
+  # Dynamically update all fields in args.sh
+  # Get all keys from the current language configuration
+  keys=$(echo "$lang_info" | jq -r 'keys[]')
+  
+  # For each key, update the corresponding environment variable in args.sh
+  for key in $keys; do
+    # Convert key to uppercase for environment variable naming
+    env_var=$(echo "$key" | tr '[:lower:]' '[:upper:]')
+    # Get the value and escape any special characters
+    value=$(echo "$lang_info" | jq -r --arg k "$key" '.[$k]')
+    # Replace the line in args.sh
+    escaped_value=$(echo "$value" | sed 's/[\/&]/\\&/g')
+    sed -i "s|^export ${env_var}=\".*\"|export ${env_var}=\"${escaped_value}\"|" args.sh
+  done
 
   # Initialize retry parameters
   MAX_RETRIES=3
   attempt=1
 
   while [ $attempt -le $MAX_RETRIES ]; do
-    echo "[INFO] Build attempt $attempt for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}"
+    echo "[INFO] Build attempt $attempt for LANG_MODE: ${LANG_MODE}"
     
     if ./build.sh; then
-      echo "[INFO] Build succeeded for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE} on attempt $attempt."
+      echo "[INFO] Build succeeded for LANG_MODE: ${LANG_MODE} on attempt $attempt."
       break
     else
-      echo "[WARNING] Build failed for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE} on attempt $attempt."
+      echo "[WARNING] Build failed for LANG_MODE: ${LANG_MODE} on attempt $attempt."
       if [ $attempt -lt $MAX_RETRIES ]; then
-        echo "[INFO] Retrying build for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}..."
+        echo "[INFO] Retrying build for LANG_MODE: ${LANG_MODE}..."
         attempt=$((attempt + 1))
       else
-        echo "[ERROR] Build failed after $MAX_RETRIES attempts for LANG_MODE: ${LANG_MODE}, LANG_CODE: ${LANG_CODE}."
+        echo "[ERROR] Build failed after $MAX_RETRIES attempts for LANG_MODE: ${LANG_MODE}."
         echo "[ERROR] Stopping build process and waiting for manual intervention."
         sleep 99999999
       fi
