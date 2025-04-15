@@ -131,7 +131,15 @@ if [[ "$CONFIG_IBUS_RIME" == "true" && "$INPUT_METHOD_INSTALL" != *"ibus-rime"* 
     exit 1
 fi
 
+# The default keyboard layout. Can be:
+export CONFIG_INPUT_METHOD="[('xkb', 'us')]"
+
 #============================
 # Time zone configuration
 #============================
 export TIMEZONE="America/Los_Angeles"
+
+#============================
+# Weather plugin configuration
+#============================
+export CONFIG_WEATHER_LOCATION="[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]"

@@ -85,6 +85,8 @@ for ((i=0; i<lang_count; i++)); do
   INPUT_METHOD_INSTALL=$(echo "$lang_info" | jq -r '.input_method_install')
   CONFIG_IBUS_RIME=$(echo "$lang_info" | jq -r '.config_ibus_rime')
   TIMEZONE=$(echo "$lang_info" | jq -r '.timezone')
+  CONFIG_WEATHER_LOCATION=$(echo "$lang_info" | jq -r '.config_weather_location')
+  CONFIG_INPUT_METHOD=$(echo "$lang_info" | jq -r '.config_input_method')
 
   # Update environment variables in args.sh using unified delimiter
   sed -i "s|^export LANG_MODE=\".*\"|export LANG_MODE=\"${LANG_MODE}\"|" args.sh
