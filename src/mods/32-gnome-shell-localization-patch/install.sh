@@ -3,7 +3,7 @@ set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 # ...existing code...
 
-# Dictionary of localized strings for "Add to Taskbar" and "Remove from Taskbar"
+# Dictionary of localized strings for "Add to Taskbar" and "Unpin from Taskbar"
 declare -A taskbar_add_strings=(
     ["en"]="Add to Taskbar"
     ["zh_CN"]="添加到任务栏"
@@ -28,7 +28,7 @@ declare -A taskbar_add_strings=(
 )
 
 declare -A taskbar_remove_strings=(
-    ["en"]="Remove from Taskbar"
+    ["en"]="Unpin from Taskbar"
     ["zh_CN"]="从任务栏中移除"
     ["zh_TW"]="從工作列移除"
     ["zh_HK"]="從工作欄移除"
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Pin to Dash"
 msgstr "Add to Taskbar"
 
-msgid "Remove from Favorites"
+msgid "Unpin"
 msgstr "Remove from Taskbar"
 EOL
     msgfmt /tmp/gnome-shell.po -o /usr/share/locale-langpack/en/LC_MESSAGES/gnome-shell.mo
@@ -94,7 +94,7 @@ for lang_dir in /usr/share/locale-langpack/*/; do
         remove_string="${taskbar_remove_strings[$lang]:-${taskbar_remove_strings[$lang_code]:-Remove from Taskbar}}"
         
         sed -i '/msgid "Pin to Dash"/{n;s/.*/msgstr "'"$add_string"'"/}' /tmp/gnome-shell.po
-        sed -i '/msgid "Remove from Favorites"/{n;s/.*/msgstr "'"$remove_string"'"/}' /tmp/gnome-shell.po
+        sed -i '/msgid "Unpin"/{n;s/.*/msgstr "'"$remove_string"'"/}' /tmp/gnome-shell.po
         
         msgfmt /tmp/gnome-shell.po -o "$mo_file"
         judge "Patch Gnome Shell ($lang)"
