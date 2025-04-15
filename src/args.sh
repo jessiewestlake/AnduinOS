@@ -90,10 +90,23 @@ export STORE_PROVIDER="flatpak"
 # flatpak:  install firefox from flathub (Only available if STORE_PROVIDER is set to "flatpak")
 # snap:     install firefox from snap (Only available if STORE_PROVIDER is set to "snap")
 export FIREFOX_PROVIDER="deb"
+if [[ "$FIREFOX_PROVIDER" == "flatpak" && "$STORE_PROVIDER" != "flatpak" ]]; then
+    echo "Error: FIREFOX_PROVIDER is set to flatpak, but STORE_PROVIDER is not set to flatpak"
+    exit 1
+fi
+if [[ "$FIREFOX_PROVIDER" == "snap" && "$STORE_PROVIDER" != "snap" ]]; then
+    echo "Error: FIREFOX_PROVIDER is set to snap, but STORE_PROVIDER is not set to snap"
+    exit 1
+fi
 
 # Whether to install firefox with apt. If set, it will be installed from the PPA. If empty, it will be installed from the default source
 # Must set FIREFOX_PROVIDER to "deb" before using this option
+# Sample: mirror-ppa.aiursoft.cn
 export FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
+if [[ "$FIREFOX_MIRROR" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
+    echo "Error: FIREFOX_MIRROR is set, but FIREFOX_PROVIDER is not set to deb"
+    exit 1
+fi
 
 #============================
 # Input method configuration
@@ -112,6 +125,10 @@ export INPUT_METHOD_INSTALL=""
 
 # Boolean indicator for whether to install anduinos-ibus-rime
 export CONFIG_IBUS_RIME="false"
+if [[ "$CONFIG_IBUS_RIME" == "true" && "$INPUT_METHOD_INSTALL" != *"ibus-rime"* ]]; then
+    echo "Error: CONFIG_IBUS_RIME is set to true, but INPUT_METHOD_INSTALL is not set to ibus-rime"
+    exit 1
+fi
 
 #============================
 # Time zone configuration
