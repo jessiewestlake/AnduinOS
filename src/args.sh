@@ -89,6 +89,7 @@ export STORE_PROVIDER="flatpak"
 # deb:      install firefox from PPA with apt
 # flatpak:  install firefox from flathub (Only available if STORE_PROVIDER is set to "flatpak")
 # snap:     install firefox from snap (Only available if STORE_PROVIDER is set to "snap")
+# TODO: Snap firefox seems to be broken. Investigation required.
 export FIREFOX_PROVIDER="deb"
 if [[ "$FIREFOX_PROVIDER" == "flatpak" && "$STORE_PROVIDER" != "flatpak" ]]; then
     echo "Error: FIREFOX_PROVIDER is set to flatpak, but STORE_PROVIDER is not set to flatpak"
