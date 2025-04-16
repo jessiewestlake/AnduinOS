@@ -6,7 +6,8 @@
         "config_ibus_rime": "false",
         "timezone": "America/Los_Angeles",
         "config_weather_location": "[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]",
-        "config_input_method": "[('xkb', 'us')]"
+        "config_input_method": "[('xkb', 'us')]",
+        "live_ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/"
     },
     {
         "lang_mode": "zh_CN",
@@ -15,7 +16,8 @@
         "config_ibus_rime": "true",
         "timezone": "Asia/Shanghai",
         "config_weather_location": "[(uint32 0, '苏州, 江苏', uint32 0, '31.311123,120.6212881')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'rime')]"
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'rime')]",
+        "live_ubuntu_mirror": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/"
     },
     {
         "lang_mode": "zh_TW",
@@ -24,7 +26,8 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Taipei",
         "config_weather_location": "[(uint32 0, '臺北市, 臺灣', uint32 0, '25.0329694,121.5654177')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'chewing')]"
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'chewing')]",
+        "live_ubuntu_mirror": "https://mirror.twds.com.tw/ubuntu/"
     },
     {
         "lang_mode": "zh_HK",
@@ -33,7 +36,8 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Hong_Kong",
         "config_weather_location": "[(uint32 0, '香港', uint32 0, '22.3193039,114.1693611')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'table:cangjie-big')]"
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'table:cangjie-big')]",
+        "live_ubuntu_mirror": "http://mirror.as.kamatera.com/ubuntu/"
     },
     {
         "lang_mode": "ja_JP",
@@ -42,7 +46,8 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Tokyo",
         "config_weather_location": "[(uint32 0, '東京都, 日本', uint32 0, '35.6894875,139.6917064')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'mozc-jp')]"
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'mozc-jp')]",
+        "live_ubuntu_mirror": "https://ftp.udx.icscoe.jp/Linux/ubuntu/"
     },
     {
         "lang_mode": "ko_KR",
@@ -51,7 +56,8 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Seoul",
         "config_weather_location": "[(uint32 0, '서울특별시, 대한민국', uint32 0, '37.566535,126.9779692')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'hangul')]"
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'hangul')]",
+        "live_ubuntu_mirror": "https://ftp.kaist.ac.kr/ubuntu/"
     },
     {
         "lang_mode": "vi_VN",
@@ -60,7 +66,8 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Ho_Chi_Minh",
         "config_weather_location": "[(uint32 0, 'Thành phố Hà Nội, Việt Nam', uint32 0, '21.028511,105.804817')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'Unikey')]"
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'Unikey')]",
+        "live_ubuntu_mirror": "https://mirror.bizflycloud.vn/ubuntu/"
     },
     {
         "lang_mode": "th_TH",
@@ -69,7 +76,8 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Bangkok",
         "config_weather_location": "[(uint32 0, 'กรุงเทพมหานคร, ประเทศไทย', uint32 0, '13.7563309,100.5017651')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'libthai')]"
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'libthai')]",
+        "live_ubuntu_mirror": "https://mirror.kku.ac.th/ubuntu/"
     },
     {
         "lang_mode": "de_DE",
@@ -78,7 +86,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Berlin",
         "config_weather_location": "[(uint32 0, 'Berlin, Deutschland', uint32 0, '52.5200066,13.404954')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'de')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'de')]",
+        "live_ubuntu_mirror": "https://ftp.uni-stuttgart.de/ubuntu/"
     },
     {
         "lang_mode": "fr_FR",
@@ -87,7 +96,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Paris",
         "config_weather_location": "[(uint32 0, 'Paris, France', uint32 0, '48.8566969,2.3514616')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'fr')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'fr')]",
+        "live_ubuntu_mirror": "https://mirror.ubuntu.ikoula.com/"
     },
     {
         "lang_mode": "es_ES",
@@ -96,7 +106,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Madrid",
         "config_weather_location": "[(uint32 0, 'Madrid, España', uint32 0, '40.4167754,-3.7037902')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'es')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'es')]",
+        "live_ubuntu_mirror": "https://labs.eif.urjc.es/mirror/ubuntu/"
     },
     {
         "lang_mode": "ru_RU",
@@ -105,7 +116,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Moscow",
         "config_weather_location": "[(uint32 0, 'Москва, Россия', uint32 0, '55.755826,37.6173')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'ru')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'ru')]",
+        "live_ubuntu_mirror": "https://mirror.team-host.ru/ubuntu/"
     },
     {
         "lang_mode": "it_IT",
@@ -114,7 +126,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Rome",
         "config_weather_location": "[(uint32 0, 'Roma, Italia', uint32 0, '41.9027835,12.4963655')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'it')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'it')]",
+        "live_ubuntu_mirror": "https://ubuntu.mirror.garr.it/ubuntu/"
     },
     {
         "lang_mode": "pt_PT",
@@ -123,7 +136,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Lisbon",
         "config_weather_location": "[(uint32 0, 'Lisboa, Portugal', uint32 0, '38.7222524,-9.1393366')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'pt')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'pt')]",
+        "live_ubuntu_mirror": "https://labs.eif.urjc.es/mirror/ubuntu/"
     },
     {
         "lang_mode": "pt_BR",
@@ -132,7 +146,8 @@
         "config_ibus_rime": "false",
         "timezone": "America/Sao_Paulo",
         "config_weather_location": "[(uint32 0, 'São Paulo, Brasil', uint32 0, '-23.5505199,-46.6333094')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'br')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'br')]",
+        "live_ubuntu_mirror": "https://mirror.uepg.br/ubuntu/"
     },
     {
         "lang_mode": "ar_SA",
@@ -141,7 +156,8 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Riyadh",
         "config_weather_location": "[(uint32 0, 'الرياض, المملكة العربية السعودية', uint32 0, '24.7135517,46.6752957')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'ara')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'ara')]",
+        "live_ubuntu_mirror": "https://mirrors.isu.net.sa/apt-mirror/"
     },
     {
         "lang_mode": "nl_NL",
@@ -150,7 +166,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Amsterdam",
         "config_weather_location": "[(uint32 0, 'Amsterdam, Nederland', uint32 0, '52.3675734,4.9041383')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'nl')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'nl')]",
+        "live_ubuntu_mirror": "https://mirror.i3d.net/pub/ubuntu/"
     },
     {
         "lang_mode": "sv_SE",
@@ -159,7 +176,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Stockholm",
         "config_weather_location": "[(uint32 0, 'Stockholm, Sverige', uint32 0, '59.3293235,18.0685808')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'se')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'se')]",
+        "live_ubuntu_mirror": "https://ftp.acc.umu.se/ubuntu/"
     },
     {
         "lang_mode": "pl_PL",
@@ -168,7 +186,8 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Warsaw",
         "config_weather_location": "[(uint32 0, 'Warszawa, Polska', uint32 0, '52.2296756,21.0122287')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'pl')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'pl')]",
+        "live_ubuntu_mirror": "https://mirroronet.pl/pub/mirrors/ubuntu/"
     },
     {
         "lang_mode": "tr_TR",
@@ -177,6 +196,7 @@
         "config_ibus_rime": "false",
         "timezone": "Europe/Istanbul",
         "config_weather_location": "[(uint32 0, 'İstanbul, Türkiye', uint32 0, '41.0082376,28.9783589')]",
-        "config_input_method": "[('xkb', 'us'), ('xkb', 'tr')]"
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'tr')]",
+        "live_ubuntu_mirror": "https://mirror.alastyr.com/ubuntu/ubuntu-archive/"
     }
 ]

@@ -143,3 +143,8 @@ export TIMEZONE="America/Los_Angeles"
 # Weather plugin configuration
 #============================
 export CONFIG_WEATHER_LOCATION="[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]"
+
+#============================
+# Live system configuration
+#============================
+export LIVE_UBUNTU_MIRROR="http://archive.ubuntu.com/ubuntu/"
