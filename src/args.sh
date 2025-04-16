@@ -148,3 +148,42 @@ export CONFIG_WEATHER_LOCATION="[(uint32 0, 'San Francisco, California, United S
 # Live system configuration
 #============================
 export LIVE_UBUNTU_MIRROR="http://archive.ubuntu.com/ubuntu/"
+
+#============================
+# System apps configuration
+#============================
+# The default apps to be installed.
+export DEFAULT_APPS="
+    gnome-chess \
+    gnome-clocks \
+    gnome-weather \
+    gnome-nettool \
+    gnome-text-editor \
+    seahorse \
+    evince \
+    shotwell \
+    remmina remmina-plugin-rdp \
+    rhythmbox rhythmbox-plugins \
+    totem totem-plugins \
+    transmission-gtk transmission-common \
+    ffmpegthumbnailer \
+    usb-creator-gtk \
+    baobab \
+    file-roller \
+    gnome-sushi \
+    qalculate-gtk \
+    yelp \
+    gnome-user-docs \
+    gnome-disk-utility \
+    gnome-control-center \
+    gnome-logs \
+    gnome-screenshot \
+    gnome-system-monitor \
+    gnome-sound-recorder \
+    gnome-characters \
+    gnome-bluetooth \
+    gnome-power-manager \
+    gnome-snapshot \
+    gnome-maps \
+    gnome-font-viewer
+"

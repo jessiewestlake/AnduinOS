@@ -5,7 +5,7 @@ set -u                  # treat unset variable as error
 print_ok "Installing gnome-shell and other gnome applications"
 waitNetwork
 
-print_ok "Installing basic packages..."
+print_ok "Installing basic CLI tools..."
 apt install -y \
     apt-transport-https \
     ca-certificates \
@@ -39,7 +39,7 @@ apt install -y \
     wget \
     whiptail \
     zip --no-install-recommends
-judge "Install basic packages"
+judge "Install basic CLI tools"
 
 print_ok "Installing gnome basic sessions..."
 apt install -y \
@@ -70,36 +70,9 @@ apt install -y \
     network-manager-pptp-gnome --no-install-recommends
 judge "Install network manager vpn packages"
 
-print_ok "Installing gnome basic applications..."
-apt install -y \
-    nautilus \
-    usb-creator-gtk \
-    baobab \
-    file-roller \
-    ibus \
-    ibus-gtk ibus-gtk3 ibus-gtk4 im-config \
-    gnome-sushi \
-    qalculate-gtk \
-    yelp \
-    gnome-user-docs \
-    gnome-disk-utility \
-    gnome-control-center \
-    gnome-logs \
-    gnome-screenshot \
-    gnome-system-monitor \
-    gnome-sound-recorder \
-    gnome-characters \
-    gnome-bluetooth \
-    gnome-power-manager \
-    gnome-snapshot \
-    gnome-maps \
-    gnome-font-viewer --no-install-recommends
-judge "Install gnome basic applications"
-
-print_ok "Installing gnome games..."
-apt install -y \
-    gnome-chess --no-install-recommends
-judge "Install gnome games"
+print_ok "Installing nautilus..."
+apt install -y nautilus --no-install-recommends
+judge "Install nautilus"
 
 print_ok "Installing gnome extension utilities..."
 apt install -y \
@@ -108,20 +81,10 @@ apt install -y \
     gnome-shell-extension-appindicator --no-install-recommends
 judge "Install gnome extension utilities"
 
-print_ok "Installing gnome additional applications..."
+print_ok "Installing gnome additional applications $DEFAULT_APPS..."
 apt install -y \
-    gnome-clocks \
-    gnome-weather \
-    gnome-nettool \
-    gnome-text-editor \
-    seahorse \
-    evince \
-    shotwell \
-    remmina remmina-plugin-rdp \
-    rhythmbox rhythmbox-plugins \
-    totem totem-plugins \
-    transmission-gtk transmission-common \
-    ffmpegthumbnailer --no-install-recommends
+    $DEFAULT_APPS \
+    --no-install-recommends
 judge "Install gnome additional applications"
 
 print_ok "Installing gnome multimedia support..."
@@ -138,6 +101,12 @@ print_ok "Installing gnome console..."
 apt install -y \
     gnome-console  --no-install-recommends
 judge "Install gnome console"
+
+print_ok "Installing ibus..."
+apt install -y \
+    ibus \
+    ibus-gtk ibus-gtk3 ibus-gtk4 im-config --no-install-recommends
+judge "Install ibus"
 
 print_ok "Installing gnome fonts..."
 apt install -y \
