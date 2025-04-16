@@ -175,7 +175,6 @@ export DEFAULT_APPS="
     yelp \
     gnome-user-docs \
     gnome-disk-utility \
-    gnome-control-center \
     gnome-logs \
     gnome-screenshot \
     gnome-system-monitor \

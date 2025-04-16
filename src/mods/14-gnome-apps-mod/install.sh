@@ -83,6 +83,7 @@ judge "Install gnome extension utilities"
 
 print_ok "Installing gnome additional applications $DEFAULT_APPS..."
 apt install -y \
+    gnome-control-center \
     $DEFAULT_APPS \
     --no-install-recommends
 judge "Install gnome additional applications"

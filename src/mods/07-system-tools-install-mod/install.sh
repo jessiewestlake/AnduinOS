@@ -30,7 +30,6 @@ apt install -y \
     grub2-common \
     hdparm \
     hwdata \
-    info \
     init \
     iproute2 \
     iptables \
