@@ -14,3 +14,7 @@ deb $MIRROR $TARGET_UBUNTU_VERSION-backports main restricted universe multiverse
 deb $MIRROR $TARGET_UBUNTU_VERSION-security main restricted universe multiverse
 EOF
 judge "Set up apt sources to $MIRROR"
+
+print_info "Setting up apt sources for installed system..."
+apt-modernize-sources
+judge "Set up apt sources for installed system"
