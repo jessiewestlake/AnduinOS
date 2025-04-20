@@ -109,7 +109,7 @@ if [[ "$FIREFOX_MIRROR" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
     exit 1
 fi
 
-export FIREFOX_LOCALE_PACKAGE="firefox-locale-$LANG_PACK_CODE"
+export FIREFOX_LOCALE_PACKAGE="firefox-locale-$LANG_PACK_CODE*"
 if [[ "$FIREFOX_LOCALE_PACKAGE" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
     echo "Error: FIREFOX_LOCALE_PACKAGE is set, but FIREFOX_PROVIDER is not set to deb"
     exit 1
