@@ -24,7 +24,7 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
 
         print_ok "Current flathub repository:"
         flatpak remotes --columns=name,url
-    elif
+    else
         print_error "No flathub mirror is set. Please check the config file"
         exit 1
     fi
