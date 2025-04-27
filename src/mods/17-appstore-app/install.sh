@@ -16,7 +16,12 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
         gnome-software-plugin-deb --no-install-recommends
     judge "Install gnome software with flatpak support"
 
+    print_ok "Adding official flathub repository..."
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    judge "Add official flatpak repository"
+
     if [ -n "$FLATHUB_MIRROR" ]; then
+        print_warn "Using mirror for flatpak. Replacing flathub repository with mirror $FLATHUB_MIRROR..."
 
         # FLATHUB_GPG
         if [ -n "$FLATHUB_GPG" ]; then
@@ -24,22 +29,18 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
             wget $FLATHUB_GPG -O /tmp/flathub.gpg
 
             print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR and gpg key: $FLATHUB_GPG"
-            flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR" --gpg-import=/tmp/flathub.gpg
-            #flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
+            flatpak remote-modify flathub --url="$FLATHUB_MIRROR" --gpg-import=/tmp/flathub.gpg
             judge "Set flathub mirror"
         else
             print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR..."
-            flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR"
-            #flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
+            flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
             judge "Set flathub mirror"
         fi
-
-        print_ok "Current flathub repository:"
-        flatpak remotes --columns=name,url
-    else
-        print_error "No flathub mirror is set. Please check the config file"
-        exit 1
     fi
+
+    print_ok "Current flathub repository:"
+    flatpak remotes --columns=name,url
+
 elif [ "$STORE_PROVIDER" == "snap" ]; then
     print_ok "Installing snap store..."
     sudo apt install -y \

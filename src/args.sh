@@ -81,7 +81,7 @@ export TARGET_PACKAGE_REMOVE="
 # snap:     use gnome software to browse the app store, and install snap as plugin
 export STORE_PROVIDER="flatpak"
 
-export FLATHUB_MIRROR="https://dl.flathub.org/repo/flathub.flatpakrepo"
+export FLATHUB_MIRROR=""
 
 export FLATHUB_GPG=""
 
