@@ -83,6 +83,8 @@ export STORE_PROVIDER="flatpak"
 
 export FLATHUB_MIRROR="https://dl.flathub.org/repo/flathub.flatpakrepo"
 
+export FLATHUB_GPG=""
+
 #============================
 # Browser configuration
 #============================

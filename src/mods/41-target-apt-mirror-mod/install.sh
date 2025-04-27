@@ -15,7 +15,7 @@ deb $MIRROR $TARGET_UBUNTU_VERSION-security main restricted universe multiverse
 EOF
 judge "Set up apt sources to $MIRROR"
 
-print_info "Setting up apt sources for installed system..."
-apt modernize-sources -y
-sudo rm /etc/apt/sources.list.bak
-judge "Set up apt sources for installed system"
+# print_info "Setting up apt sources for installed system..."
+# apt modernize-sources -y
+# sudo rm /etc/apt/sources.list.bak
+# judge "Set up apt sources for installed system"

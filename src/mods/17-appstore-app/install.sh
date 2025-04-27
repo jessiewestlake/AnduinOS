@@ -17,10 +17,22 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
     judge "Install gnome software with flatpak support"
 
     if [ -n "$FLATHUB_MIRROR" ]; then
-        print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR..."
-        flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR"
-        flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
-        judge "Set flathub mirror"
+
+        # FLATHUB_GPG
+        if [ -n "$FLATHUB_GPG" ]; then
+            print_ok "Adding flathub gpg key..."
+            wget $FLATHUB_GPG -O /tmp/flathub.gpg
+
+            print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR and gpg key: $FLATHUB_GPG"
+            flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR" --gpg-import=/tmp/flathub.gpg
+            flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
+            judge "Set flathub mirror"
+        else
+            print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR..."
+            flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR"
+            flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
+            judge "Set flathub mirror"
+        fi
 
         print_ok "Current flathub repository:"
         flatpak remotes --columns=name,url
