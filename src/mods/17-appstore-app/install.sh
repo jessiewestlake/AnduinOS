@@ -16,11 +16,6 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
         gnome-software-plugin-deb --no-install-recommends
     judge "Install gnome software with flatpak support"
 
-    print_ok "Adding flathub repository..."
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-    judge "Add flathub repository"
-
-    # If environment variable: FLATPAK_MIRROR is set, use it as the mirror
     if [ -n "$FLATHUB_MIRROR" ]; then
         print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR..."
         flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR"
@@ -29,9 +24,10 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
 
         print_ok "Current flathub repository:"
         flatpak remotes --columns=name,url
+    elif
+        print_error "No flathub mirror is set. Please check the config file"
+        exit 1
     fi
-
-
 elif [ "$STORE_PROVIDER" == "snap" ]; then
     print_ok "Installing snap store..."
     sudo apt install -y \
