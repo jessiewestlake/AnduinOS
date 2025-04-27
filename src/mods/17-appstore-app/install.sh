@@ -31,6 +31,9 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
             print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR and gpg key: $FLATHUB_GPG"
             flatpak remote-modify flathub --url="$FLATHUB_MIRROR" --gpg-import=/tmp/flathub.gpg
             judge "Set flathub mirror"
+
+            rm /tmp/flathub.gpg
+            judge "Clear temp flathub.gpg"
         else
             print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR..."
             flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
