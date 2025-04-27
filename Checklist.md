@@ -1,5 +1,7 @@
 # Contributor test checklist
 
+Test at least `en_US` and `zh_CN` locales.
+
 * Ensure during boot, it shall show the logo of our distro.
 * Ensure the image can be installed with both BIOS and UEFI.
 * Boot the image with **UEFI**. (This is to test the UEFI grub installation)
@@ -14,6 +16,7 @@
 * Ensure Super + Tab, Alt + Tab, Super + I are functional. (Super + I is (UNDER DEVELOPMENT))
 * Ensure Super + U can toggle network stat display.
 * Ensure Super + Shift + S will take a screenshot.
+* Ensure if the user search `spotify` in the start menu, it will show `Spotify` and can be opened in store.
 * Ensure if the device has a battery, battery is shown on the task bar. Otherwise, it's hidden.
 * Ensure sound theme, icon theme, shell theme are all set.
 * Press `Alt + F2`, then type `r` and press `Enter`. Ensure the shell can be restarted successfully.
