@@ -25,12 +25,12 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
 
             print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR and gpg key: $FLATHUB_GPG"
             flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR" --gpg-import=/tmp/flathub.gpg
-            flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
+            #flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
             judge "Set flathub mirror"
         else
             print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR..."
             flatpak remote-add --if-not-exists flathub "$FLATHUB_MIRROR"
-            flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
+            #flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
             judge "Set flathub mirror"
         fi
 
