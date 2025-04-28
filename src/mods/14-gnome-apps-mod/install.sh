@@ -11,7 +11,6 @@ apt install $INTERACTIVE \
     cifs-utils \
     cloud-init \
     coreutils \
-    bind9-libs \
     gnupg \
     gpg \
     gvfs-fuse \
