@@ -47,6 +47,7 @@ apt install $INTERACTIVE \
     iw \
     xxd \
     xdg-utils \
+    zenity \
     --no-install-recommends
 judge "Install basic CLI tools"
 
