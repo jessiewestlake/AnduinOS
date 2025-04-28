@@ -52,4 +52,14 @@ function waitNetwork() {
     print_ok "Network is online. Continue..."
 }
 
-export -f print_ok print_error print_warn judge waitNetwork print_info
+function install_opt() {
+    print_ok "Installing $1... if available…"
+    if apt-cache show $1 >/dev/null 2>&1; then
+        apt install -y $1 --no-install-recommends
+        judge "Install $1"
+    else
+        print_warn "Package $1 is not available for $TARGET_UBUNTU_VERSION"
+    fi
+}
+
+export -f print_ok print_error print_warn judge waitNetwork print_info install_opt

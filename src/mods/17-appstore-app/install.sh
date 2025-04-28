@@ -9,11 +9,11 @@ if [ "$STORE_PROVIDER" == "none" ]; then
     print_ok "No need to install a store because STORE_PROVIDER is set to none, please check the config file"
 elif [ "$STORE_PROVIDER" == "flatpak" ]; then
     print_ok "Installing gnome software and flatpak support"
-    sudo apt install -y \
+    apt install -y \
         flatpak \
         gnome-software \
-        gnome-software-plugin-flatpak \
-        gnome-software-plugin-deb --no-install-recommends
+        gnome-software-plugin-flatpak --no-install-recommends
+    install_opt gnome-software-plugin-deb
     judge "Install gnome software with flatpak support"
 
     print_ok "Adding official flathub repository..."
@@ -46,10 +46,12 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
 
 elif [ "$STORE_PROVIDER" == "snap" ]; then
     print_ok "Installing snap store..."
-    sudo apt install -y \
+    apt install -y \
         snapd \
         snap \
+        gnome-software \
         gnome-software-plugin-snap --no-install-recommends
+    install_opt gnome-software-plugin-deb
     judge "Install snap store"
 elif [ "$STORE_PROVIDER" == "web" ]; then
     print_ok "Adding new app called AnduinOS Software..."

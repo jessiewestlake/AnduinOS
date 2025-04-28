@@ -43,8 +43,18 @@ judge "Install basic CLI tools"
 
 print_ok "Installing gnome basic sessions..."
 apt install -y \
-    gnome-shell ubuntu-session ubuntu-session-xsession yaru-theme-sound yaru-theme-gnome-shell gir1.2-gmenu-3.0 gnome-menus gnome-shell-extensions gdm3 --no-install-recommends
+    gnome-shell \
+    ubuntu-session \
+    yaru-theme-sound \
+    yaru-theme-gnome-shell \
+    gir1.2-gmenu-3.0 \
+    gnome-menus \
+    gnome-shell-extensions \
+    spice-vdagent \
+    gdm3 --no-install-recommends
 judge "Install gnome basic sessions"
+
+install_opt ubuntu-session-xsession
 
 print_ok "Installing plymouth..."
 apt install -y \
