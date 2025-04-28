@@ -44,6 +44,10 @@ apt install $INTERACTIVE \
     lsof \
     man-db \
     manpages \
+    manpages-dev \
+    dns-root-data \
+    usb-modeswitch \
+    libmbim-utils \
     media-types \
     mtr-tiny \
     net-tools \
