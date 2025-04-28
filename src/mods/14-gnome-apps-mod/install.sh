@@ -50,6 +50,7 @@ apt install $INTERACTIVE \
     exfatprogs \
     vdpau-driver-all \
     xxd \
+    xdg-utils \
     --no-install-recommends
 judge "Install basic CLI tools"
 
