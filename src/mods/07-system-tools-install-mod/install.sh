@@ -87,6 +87,7 @@ apt install $INTERACTIVE \
     linux-base \
     cifs-utils \
     eject \
+    gettext \
     initramfs-tools \
     --no-install-recommends
 judge "Install basic system tool packages"
