@@ -23,9 +23,10 @@ apt install $INTERACTIVE \
     lsb-release \
     nano \
     net-tools \
-    ntp \
-    ntpdate \
-    ntpstat \
+    systemd-timesyncd \
+    fwupd \
+    fwupd-signed \
+    gdb \
     sassc \
     smartmontools \
     software-properties-common \
@@ -44,12 +45,14 @@ apt install $INTERACTIVE \
     gnupg-l10n \
     gpg-wks-client \
     upower \
+    mdadm \
     appstream \
     packagekit-tools \
     python3-babel \
     unattended-upgrades \
     exfatprogs \
     vdpau-driver-all \
+    iw \
     xxd \
     xdg-utils \
     --no-install-recommends
@@ -120,8 +123,11 @@ print_ok "Installing gnome multimedia support..."
 apt install $INTERACTIVE \
     gstreamer1.0-libav \
     gstreamer1.0-alsa \
+    gstreamer1.0-gtk3 \
+    gstreamer1.0-x \
     gstreamer1.0-vaapi \
     gstreamer1.0-tools \
+    gstreamer1.0-pipewire \
     gstreamer1.0-packagekit \
     gstreamer1.0-plugins-base-apps --no-install-recommends
 judge "Install gstreamer"

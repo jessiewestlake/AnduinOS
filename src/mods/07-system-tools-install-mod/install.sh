@@ -55,6 +55,7 @@ apt install $INTERACTIVE \
     nftables \
     numactl \
     openssh-client \
+    python3-systemd \
     parted \
     pciutils \
     psmisc \
