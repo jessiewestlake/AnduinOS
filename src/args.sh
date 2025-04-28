@@ -201,3 +201,23 @@ export DEFAULT_APPS="
     gnome-maps \
     gnome-font-viewer
 "
+
+export DEFAULT_CLI_TOOLS="
+    git \
+    build-essential \
+    make \
+    gcc \
+    g++ \
+    dpkg-dev \
+    gettext \
+    net-tools \
+    htop \
+    httping \
+    iputils-ping \
+    iputils-tracepath \
+    dnsutils \
+    smartmontools \
+    traceroute \
+    whois \
+    nmap
+    "

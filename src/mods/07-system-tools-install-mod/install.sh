@@ -9,7 +9,6 @@ apt install $INTERACTIVE \
     bash-completion \
     bind9-dnsutils \
     bolt \
-    build-essential \
     busybox-static \
     command-not-found \
     coreutils \
@@ -25,7 +24,6 @@ apt install $INTERACTIVE \
     file \
     firmware-sof-signed \
     ftp \
-    gettext \
     grub-common \
     grub2-common \
     hdparm \
@@ -33,8 +31,6 @@ apt install $INTERACTIVE \
     init \
     iproute2 \
     iptables \
-    iputils-ping \
-    iputils-tracepath \
     irqbalance \
     libpam-systemd \
     linux-firmware \
@@ -50,7 +46,6 @@ apt install $INTERACTIVE \
     libmbim-utils \
     media-types \
     mtr-tiny \
-    net-tools \
     network-manager \
     nftables \
     numactl \

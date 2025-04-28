@@ -11,31 +11,23 @@ apt install $INTERACTIVE \
     cifs-utils \
     cloud-init \
     coreutils \
-    curl \
-    dnsutils \
-    git \
+    bind9-libs \
     gnupg \
     gpg \
     gvfs-fuse \
-    htop \
-    httping \
     libsass1 \
     lsb-release \
     nano \
-    net-tools \
     systemd-timesyncd \
     fwupd \
     fwupd-signed \
     gdb \
     sassc \
-    smartmontools \
     software-properties-common \
     gnome-remote-desktop \
     mesa-vulkan-drivers \
     squashfs-tools \
     sysstat \
-    traceroute \
-    vim \
     wget \
     whiptail \
     gdisk \
@@ -119,6 +111,12 @@ apt install $INTERACTIVE \
     --no-install-recommends
 judge "Install gnome additional applications"
 
+print_ok "Installing default cli applications..."
+apt install $INTERACTIVE \
+    $DEFAULT_CLI_TOOLS \
+    --no-install-recommends
+judge "Install default cli applications"
+
 print_ok "Installing gnome multimedia support..."
 apt install $INTERACTIVE \
     gstreamer1.0-libav \
@@ -151,7 +149,6 @@ judge "Install gnome fonts"
 print_ok "Installing gnome printer support..."
 apt install $INTERACTIVE \
     cups \
-    system-config-printer \
     cups-bsd \
     cups-browsed \
     cups-pk-helper \
@@ -174,7 +171,7 @@ apt install $INTERACTIVE \
 judge "Install python3"
 
 print_ok "Remove the default htop.desktop file"
-rm /usr/share/applications/htop.desktop
+rm /usr/share/applications/htop.desktop || true
 judge "Remove the default htop.desktop file"
 
 print_ok "Remove the default vim.desktop file"
