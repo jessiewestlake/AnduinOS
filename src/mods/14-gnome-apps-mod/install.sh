@@ -30,6 +30,7 @@ apt install $INTERACTIVE \
     smartmontools \
     software-properties-common \
     gnome-remote-desktop \
+    mesa-vulkan-drivers \
     squashfs-tools \
     sysstat \
     traceroute \
