@@ -12,7 +12,7 @@ Test at least `en_US` and `zh_CN` locales.
 * Ensure right clicking the desktop can open console here.
 * Ensure desktop icons are shown.
 * Ensure there is start button on the task bar with the logo of our distro.
-* Right click the icon on taskbar, ensure the menu is localized, shows `Unpin from taskbar`.
+* Right click the icon on taskbar, ensure the menu is localized, shows `Remove from taskbar`.
 * Right click the icon on start menu, ensure the menu is localized, shows `Pin to taskbar` and `Unpin from Start menu`.
 * Ensure Super + Tab, Alt + Tab, Super + I are functional. (Super + I is (UNDER DEVELOPMENT))
 * Ensure Super + U can toggle network stat display.
@@ -24,54 +24,7 @@ Test at least `en_US` and `zh_CN` locales.
 * Ensure there will be a `DO` sound (Yaru) when typing tab on terminal.
 * Ensure when running `sudo apt update`, it's connecting to localized apt source.
 * Ensure `lsb_release` with arg `-i -d -r -c -a` will show the correct information.
-* Ensure some necessary system tools are available, such as:
-  * lspci
-  * lsusb
-  * lsblk
-  * fdisk
-  * df
-  * free
-  * top
-  * htop
-  * ip
-  * ping
-  * curl
-  * wget
-  * zip
-  * unzip
-  * xargs
-  * tar
-  * time
-  * zstd
-  * ssh
-  * adduser
-  * ufw
-  * man
-  * vim
-  * mount
-  * umount
-  * systemctl
-  * journalctl
-  * dmesg
-  * hostname
-  * hostnamectl
-  * cat
-  * echo
-  * grep
-  * awk
-  * sed
-  * cut
-  * find
-  * xargs
-  * ps
-  * less
-  * kmod
-  * iptables
-  * ip6tables
-  * netstat
-  * ss
-  * route
-  * tcpdump
+* Ensure `https://gist.aiursoft.cn/anduin/53650b8fdc7446b591d4b40cc667bab6/raw/HEAD/check.sh` runs well.
 * Ensure folders are sorted before files in nautilus.
 * Ensure the `help` in nautilus is working and localized.
 * Ensure `/opt` folder is empty.
