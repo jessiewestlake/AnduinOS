@@ -203,13 +203,13 @@ export DEFAULT_APPS="
 "
 
 export DEFAULT_CLI_TOOLS="
+    curl \
     git \
     build-essential \
     make \
     gcc \
     g++ \
     dpkg-dev \
-    gettext \
     net-tools \
     htop \
     httping \
