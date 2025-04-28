@@ -31,7 +31,6 @@ apt install $INTERACTIVE \
     init \
     iproute2 \
     iptables \
-    irqbalance \
     libpam-systemd \
     linux-firmware \
     locales \
