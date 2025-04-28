@@ -181,6 +181,7 @@ export DEFAULT_APPS="
     totem totem-plugins \
     transmission-gtk transmission-common \
     ffmpegthumbnailer \
+    libgdk-pixbuf2.0-bin \
     usb-creator-gtk \
     baobab \
     file-roller \
