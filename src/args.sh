@@ -49,7 +49,7 @@ echo "Language environment has been set to $LANG_MODE"
 export TARGET_UBUNTU_VERSION="plucky"
 
 # See https://docs.anduinos.com/Install/Select-Best-Apt-Source.html
-export BUILD_UBUNTU_MIRROR="http://sg.archive.ubuntu.com/ubuntu/"
+export BUILD_UBUNTU_MIRROR="http://mirror.aiursoft.cn/ubuntu/"
 
 # Must be lowercase without special characters and spaces
 export TARGET_NAME="anduinos"
@@ -161,7 +161,7 @@ export CONFIG_WEATHER_LOCATION="[(uint32 0, 'San Francisco, California, United S
 #============================
 # Live system configuration
 #============================
-export LIVE_UBUNTU_MIRROR="http://sg.archive.ubuntu.com/ubuntu/"
+export LIVE_UBUNTU_MIRROR="http://archive.ubuntu.com/ubuntu/"
 
 #============================
 # System apps configuration
