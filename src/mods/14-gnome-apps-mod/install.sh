@@ -114,6 +114,7 @@ judge "Install gnome additional applications"
 
 print_ok "Installing default cli applications..."
 apt install $INTERACTIVE \
+    wget \
     $DEFAULT_CLI_TOOLS \
     --no-install-recommends
 judge "Install default cli applications"
