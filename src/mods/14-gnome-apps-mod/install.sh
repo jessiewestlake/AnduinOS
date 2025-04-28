@@ -42,7 +42,6 @@ apt install $INTERACTIVE \
     python3-babel \
     unattended-upgrades \
     exfatprogs \
-    vdpau-driver-all \
     iw \
     xxd \
     xdg-utils \
