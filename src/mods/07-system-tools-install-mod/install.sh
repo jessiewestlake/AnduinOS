@@ -86,6 +86,13 @@ apt install $INTERACTIVE \
     libpam-cap \
     ibverbs-providers \
     xauth \
+    busybox-initramfs \
+    dhcpcd-base \
+    kmod \
+    linux-base \
+    cifs-utils \
+    eject \
+    initramfs-tools \
     --no-install-recommends
 judge "Install basic system tool packages"
 
