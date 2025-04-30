@@ -85,9 +85,19 @@ export TARGET_PACKAGE_REMOVE="
 # snap:     use gnome software to browse the app store, and install snap as plugin
 export STORE_PROVIDER="flatpak"
 
+# The mirror URL for flathub. Can be: "https://mirror.sjtu.edu.cn/flathub"
 export FLATHUB_MIRROR=""
+if [[ "$FLATHUB_MIRROR" != "" && "$STORE_PROVIDER" != "flatpak" ]]; then
+    echo "Error: FLATHUB_MIRROR is set, but STORE_PROVIDER is not set to flatpak"
+    exit 1
+fi
 
+# The gpg file for the flathub mirror. Can be: "https://mirror.sjtu.edu.cn/flathub/flathub.gpg"
 export FLATHUB_GPG=""
+if [[ "$FLATHUB_GPG" != "" && "$FLATHUB_MIRROR" == "" ]]; then
+    echo "Error: FLATHUB_GPG is set, but FLATHUB_MIRROR is not set"
+    exit 1
+fi
 
 #============================
 # Browser configuration
@@ -146,11 +156,18 @@ if [[ "$CONFIG_IBUS_RIME" == "true" && "$INPUT_METHOD_INSTALL" != *"ibus-rime"* 
 fi
 
 # The default keyboard layout. Can be:
+# * [('xkb', 'us')]
+# * [('xkb', 'us'), ('ibus', 'rime')]
+# * [('xkb', 'us'), ('ibus', 'chewing')]
+# * [('xkb', 'us'), ('xkb', 'fr')]
 export CONFIG_INPUT_METHOD="[('xkb', 'us')]"
 
 #============================
 # Time zone configuration
 #============================
+
+# The timezone for the new OS being built (In chroot environment)
+# To view available options, run: `ls /usr/share/zoneinfo/`
 export TIMEZONE="America/Los_Angeles"
 
 #============================
