@@ -1,4 +1,4 @@
-# List of Open-Source Software included in AnduinOS
+# List of Third-party Software included in AnduinOS
 
 * [Linux](https://www.kernel.org/)
 * [Debian](https://www.debian.org/)
