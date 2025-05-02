@@ -42,6 +42,7 @@ Test at least `en_US` and `zh_CN` locales.
 * Ensure the text `遍角次亮采之门` in org.gnome.TextEditor.desktop is shown correctly.
 * Ensure the text `http://` in org.gnome.TextEditor.desktop is shown correctly.
 * Try installing Motrix and see if it can be shown successfully on the tray.
+* Try installing Google Chrome and make sure re-login won't prompt: `ubuntu an application wants access to the keyring`.
 * Ensure the corners of the Motrix window is rounded.
 * Try installing VSCode and ensure it can be opened successfully, and the corners of the window is rounded.
 * Download a H264 video and try to play with `totem` and ensure it can play.
