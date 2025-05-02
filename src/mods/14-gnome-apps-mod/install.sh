@@ -61,6 +61,10 @@ apt install $INTERACTIVE \
     spice-vdagent \
     xserver-xorg \
     gdm3 \
+    orca \
+    libpam-gnome-keyring \
+    gnome-keyring \
+    gnome-keyring-pkcs11 \
     --no-install-recommends
 judge "Install gnome basic sessions"
 
