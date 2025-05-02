@@ -3,13 +3,15 @@ set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
 print_ok "Downloading Fluent icon theme"
-git clone https://git.aiursoft.cn/PublicVault/Fluent-icon-theme ./themes/Fluent-icon-theme
+mkdir -p ./themes/
+wget https://git.aiursoft.cn/PublicVault/Fluent-icon-theme/archive/master.zip -O ./themes/fluent-icon-theme.zip
+unzip -O UTF-8 ./themes/fluent-icon-theme.zip -d ./themes/
 judge "Download Fluent icon theme"
 
 print_ok "Installing Fluent icon theme"
 (
     print_ok "Installing Fluent icon theme" && \
-    cd ./themes/Fluent-icon-theme/ && \
+    cd ./themes/fluent-icon-theme/ && \
     ./install.sh standard
 )
 judge "Install Fluent icon theme"
@@ -19,7 +21,7 @@ judge "Install Fluent icon theme"
 print_ok "Installing Fluent cursor theme"
 (
     print_ok "Installing Fluent cursor theme" && \
-    cd ./themes/Fluent-icon-theme/cursors/ && \
+    cd ./themes/fluent-icon-theme/cursors/ && \
     ./install.sh
 )
 judge "Install Fluent cursor theme"

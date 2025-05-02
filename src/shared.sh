@@ -44,12 +44,25 @@ function judge() {
   fi
 }
 
-function waitNetwork() {
-    while curl -s mirror.aiursoft.cn > /dev/null; [ $? -ne 0 ]; do
+function wait_network() {
+    local WGET_OPTS="--spider -q --timeout=5 --tries=1"
+
+    until wget $WGET_OPTS https://mirror.aiursoft.cn; do
         echo "Waiting for registry (https://mirror.aiursoft.cn) to start... ETA: 25s"
         sleep 1
     done
+
     print_ok "Network is online. Continue..."
 }
 
-export -f print_ok print_error print_warn judge waitNetwork print_info
+function install_opt() {
+    print_ok "Installing $1... if available…"
+    if apt-cache show $1 >/dev/null 2>&1; then
+        apt install $INTERACTIVE -y $1 --no-install-recommends
+        judge "Install $1"
+    else
+        print_warn "Package $1 is not available for $TARGET_UBUNTU_VERSION"
+    fi
+}
+
+export -f print_ok print_error print_warn judge wait_network print_info install_opt
