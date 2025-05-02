@@ -73,7 +73,6 @@ apt install $INTERACTIVE \
     dbus-user-session \
     dnsmasq-base \
     wpasupplicant \
-    linux-sysctl-defaults \
     python3-rich\
     systemd-hwe-hwdb \
     efibootmgr \
