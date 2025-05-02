@@ -12,7 +12,7 @@ elif [ "$FIREFOX_PROVIDER" == "deb" ]; then
     if [ -n "$FIREFOX_MIRROR" ]; then
         print_ok "Replace ppa.launchpadcontent.net with $FIREFOX_MIRROR to get faster download speed"
         sed -i "s/ppa.launchpadcontent.net/$FIREFOX_MIRROR/g" \
-            /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-$(lsb_release -sc).sources
+            /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-$(lsb_release -sc).list
     fi
     cat << EOF > /etc/apt/preferences.d/mozilla-firefox
 Package: *
