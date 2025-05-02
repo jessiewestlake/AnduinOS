@@ -60,13 +60,13 @@ fi
 # 3. Cleanup old files
 # -----------------------------------------------------------------------------
 echo "[INFO] Removing old distribution files..."
-sudo rm -rf ./dist/*
+sudo rm -rf ./src/dist/*
 
 # -----------------------------------------------------------------------------
 # 4. Check for required files
 # -----------------------------------------------------------------------------
-if [[ ! -f "args.sh" || ! -f "build.sh" ]]; then
-  echo "[ERROR] args.sh or build.sh does not exist."
+if [[ ! -f "./src/args.sh" || ! -f "./src/build.sh" ]]; then
+  echo "[ERROR] ./src/args.sh or ./src/build.sh does not exist."
   exit 1
 fi
 
@@ -88,19 +88,19 @@ for ((i=0; i<lang_count; i++)); do
   echo "$lang_info" | jq '.'
   echo "================================================="
   
-  # Dynamically update all fields in args.sh
+  # Dynamically update all fields in ./src/args.sh
   # Get all keys from the current language configuration
   keys=$(echo "$lang_info" | jq -r 'keys[]')
   
-  # For each key, update the corresponding environment variable in args.sh
+  # For each key, update the corresponding environment variable in ./src/args.sh
   for key in $keys; do
     # Convert key to uppercase for environment variable naming
     env_var=$(echo "$key" | tr '[:lower:]' '[:upper:]')
     # Get the value and escape any special characters
     value=$(echo "$lang_info" | jq -r --arg k "$key" '.[$k]')
-    # Replace the line in args.sh
+    # Replace the line in ./src/args.sh
     escaped_value=$(echo "$value" | sed 's/[\/&]/\\&/g')
-    sed -i "s|^export ${env_var}=\".*\"|export ${env_var}=\"${escaped_value}\"|" args.sh
+    sed -i "s|^export ${env_var}=\".*\"|export ${env_var}=\"${escaped_value}\"|" ./src/args.sh
   done
 
   # Initialize retry parameters
@@ -110,7 +110,8 @@ for ((i=0; i<lang_count; i++)); do
   while [ $attempt -le $MAX_RETRIES ]; do
     echo "[INFO] Build attempt $attempt for LANG_MODE: ${LANG_MODE}"
     
-    if ./build.sh; then
+    # cd ./src and run the build script
+    if ./src/build.sh; then
       echo "[INFO] Build succeeded for LANG_MODE: ${LANG_MODE} on attempt $attempt."
       break
     else

@@ -6,8 +6,9 @@
 set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
-source ./shared.sh
-source ./args.sh
+export SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+source $SCRIPT_DIR/shared.sh
+source $SCRIPT_DIR/args.sh
 
 function check_host() {
 
