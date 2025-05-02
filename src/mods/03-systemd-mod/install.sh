@@ -16,8 +16,6 @@ apt install $INTERACTIVE \
     publicsuffix \
     libnss-systemd \
     networkd-dispatcher \
-    systemd-cryptsetup \
-    linux-sysctl-defaults \
     shared-mime-info \
     dmsetup \
     xdg-user-dirs \
