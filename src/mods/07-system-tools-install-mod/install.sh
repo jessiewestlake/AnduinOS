@@ -32,6 +32,13 @@ apt install $INTERACTIVE \
     iproute2 \
     iptables \
     libpam-systemd \
+    libpam-cap \
+    libpam-fprintd \
+    libpam-modules \
+    libpam-modules-bin \
+    libpam-pwquality \
+    libpam-sss \
+    libpam-systemd \
     linux-firmware \
     locales \
     logrotate \
@@ -76,7 +83,6 @@ apt install $INTERACTIVE \
     python3-rich\
     systemd-hwe-hwdb \
     efibootmgr \
-    libpam-cap \
     ibverbs-providers \
     xauth \
     busybox-initramfs \

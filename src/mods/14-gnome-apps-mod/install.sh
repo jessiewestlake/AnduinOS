@@ -62,11 +62,8 @@ apt install $INTERACTIVE \
     xserver-xorg \
     gdm3 \
     orca \
-    libpam-fprintd \
-    libpam-sss \
-    libpam-pkcs11 \
     libpam-gnome-keyring \
-    libpam-gnome-keyring \
+    gnome-keyring \
     gnome-keyring-pkcs11 \
     --no-install-recommends
 judge "Install gnome basic sessions"
