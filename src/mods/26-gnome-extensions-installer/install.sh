@@ -49,6 +49,7 @@ extensions=(
     "lockkeys@vaina.lt"
     "tiling-assistant@leleat-on-github"
     "mediacontrols@cliffniff.github.com"
+    "clipboard-indicator@tudmotu.com"
 )
 
 for extension in "${extensions[@]}"; do

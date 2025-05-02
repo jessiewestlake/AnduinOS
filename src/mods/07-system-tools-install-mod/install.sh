@@ -2,13 +2,13 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
+wait_network
 print_ok "Installing basic system tool packages..."
-waitNetwork
-apt install -y \
+apt install $INTERACTIVE \
     apparmor \
-    apt-utils \
     bash-completion \
     bind9-dnsutils \
+    bolt \
     busybox-static \
     command-not-found \
     coreutils \
@@ -19,22 +19,18 @@ apt install -y \
     dmidecode \
     dosfstools \
     ed \
+    ethtool \
     fdisk \
     file \
     firmware-sof-signed \
     ftp \
     grub-common \
-    grub-efi-amd64 \
     grub2-common \
     hdparm \
     hwdata \
-    info \
     init \
     iproute2 \
     iptables \
-    iputils-ping \
-    iputils-tracepath \
-    irqbalance \
     libpam-systemd \
     linux-firmware \
     locales \
@@ -43,13 +39,17 @@ apt install -y \
     lsof \
     man-db \
     manpages \
+    manpages-dev \
+    dns-root-data \
+    usb-modeswitch \
+    libmbim-utils \
     media-types \
     mtr-tiny \
-    net-tools \
     network-manager \
     nftables \
     numactl \
     openssh-client \
+    python3-systemd \
     parted \
     pciutils \
     psmisc \
@@ -61,10 +61,33 @@ apt install -y \
     telnet \
     time \
     ufw \
+    unzip \
     usbutils \
     uuid-runtime \
     wget \
-    xz-utils
+    xz-utils \
+    zstd \
+    zip \
+    powermgmt-base \
+    modemmanager \
+    dbus-user-session \
+    dnsmasq-base \
+    wpasupplicant \
+    python3-rich\
+    systemd-hwe-hwdb \
+    efibootmgr \
+    libpam-cap \
+    ibverbs-providers \
+    xauth \
+    busybox-initramfs \
+    dhcpcd-base \
+    kmod \
+    linux-base \
+    cifs-utils \
+    eject \
+    gettext \
+    initramfs-tools \
+    --no-install-recommends
 judge "Install basic system tool packages"
 
 print_ok "Fixing the package base-files to avoid system upgrading it..."

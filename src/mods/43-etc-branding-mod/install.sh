@@ -26,4 +26,5 @@ BUG_REPORT_URL="https://github.com/Anduin2017/AnduinOS/issues"
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
 UBUNTU_CODENAME=$TARGET_UBUNTU_VERSION
 EOF
+# The ID have to be ubuntu to support some Ubuntu features, like add-apt-repository
 judge "Update os-release"

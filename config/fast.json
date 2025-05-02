@@ -1,0 +1,22 @@
+[
+    {
+        "lang_mode": "en_US",
+        "lang_pack_code": "en",
+        "input_method_install": "",
+        "config_ibus_rime": "false",
+        "timezone": "America/Los_Angeles",
+        "config_weather_location": "[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]",
+        "config_input_method": "[('xkb', 'us')]",
+        "live_ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/"
+    },
+    {
+        "lang_mode": "zh_CN",
+        "lang_pack_code": "zh",
+        "input_method_install": "ibus-rime",
+        "config_ibus_rime": "true",
+        "timezone": "Asia/Shanghai",
+        "config_weather_location": "[(uint32 0, '苏州, 江苏', uint32 0, '31.311123,120.6212881')]",
+        "config_input_method": "[('xkb', 'us'), ('ibus', 'rime')]",
+        "live_ubuntu_mirror": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/"
+    }
+]

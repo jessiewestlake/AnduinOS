@@ -2,8 +2,60 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
-print_ok "Adding new app called AnduinOS Software..."
-cat << EOF > /usr/share/applications/anduinos-software.desktop
+
+# STORE_PROVIDER = none, flatpak, web, snap
+
+if [ "$STORE_PROVIDER" == "none" ]; then
+    print_ok "No need to install a store because STORE_PROVIDER is set to none, please check the config file"
+elif [ "$STORE_PROVIDER" == "flatpak" ]; then
+    print_ok "Installing gnome software and flatpak support"
+    apt install $INTERACTIVE \
+        flatpak \
+        gnome-software \
+        gnome-software-plugin-flatpak --no-install-recommends
+    install_opt gnome-software-plugin-deb
+    judge "Install gnome software with flatpak support"
+
+    print_ok "Adding official flathub repository..."
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    judge "Add official flatpak repository"
+
+    if [ -n "$FLATHUB_MIRROR" ]; then
+        print_warn "Using mirror for flatpak. Replacing flathub repository with mirror $FLATHUB_MIRROR..."
+
+        # FLATHUB_GPG
+        if [ -n "$FLATHUB_GPG" ]; then
+            print_ok "Adding flathub gpg key..."
+            wget $FLATHUB_GPG -O /tmp/flathub.gpg
+
+            print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR and gpg key: $FLATHUB_GPG"
+            flatpak remote-modify flathub --url="$FLATHUB_MIRROR" --gpg-import=/tmp/flathub.gpg
+            judge "Set flathub mirror"
+
+            rm /tmp/flathub.gpg
+            judge "Clear temp flathub.gpg"
+        else
+            print_ok "Adding flathub repository with mirror $FLATHUB_MIRROR..."
+            flatpak remote-modify flathub --url="$FLATHUB_MIRROR"
+            judge "Set flathub mirror"
+        fi
+    fi
+
+    print_ok "Current flathub repository:"
+    flatpak remotes --columns=name,url
+
+elif [ "$STORE_PROVIDER" == "snap" ]; then
+    print_ok "Installing snap store..."
+    apt install $INTERACTIVE \
+        snapd \
+        snap \
+        gnome-software \
+        gnome-software-plugin-snap --no-install-recommends
+    install_opt gnome-software-plugin-deb
+    judge "Install snap store"
+elif [ "$STORE_PROVIDER" == "web" ]; then
+    print_ok "Adding new app called AnduinOS Software..."
+    cat << EOF > /usr/share/applications/anduinos-software.desktop
 [Desktop Entry]
 Name=Apps Store
 GenericName=Apps Store
@@ -53,3 +105,8 @@ Type=Application
 Icon=system-software-install
 StartupNotify=true
 EOF
+else
+    print_error "Unknown store provider: $STORE_PROVIDER"
+    print_error "Please check the config file"
+    exit 1
+fi

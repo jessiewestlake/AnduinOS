@@ -9,7 +9,11 @@ judge "Set up hostname to $TARGET_NAME"
 
 print_ok "Configuring locales and resolvconf..."
 apt update
-apt install -y locales resolvconf apt-utils
+apt install $INTERACTIVE \
+    locales \
+    resolvconf \
+    apt-utils \
+    --no-install-recommends
 judge "Install locales and resolvconf"
 
 print_ok "Configuring locales..."

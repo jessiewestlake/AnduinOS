@@ -16,4 +16,24 @@ print_ok "Enabling gnome extensions for root..."
 /root/.local/bin/gext -F enable lockkeys@vaina.lt
 /root/.local/bin/gext -F enable tiling-assistant@leleat-on-github
 /root/.local/bin/gext -F enable mediacontrols@cliffniff.github.com
+/root/.local/bin/gext -F enable clipboard-indicator@tudmotu.com
 judge "Enable gnome extensions"
+
+# Install jq:
+print_ok "Updating gnome extensions to force enable for gnome 48..."
+apt install $INTERACTIVE jq --no-install-recommends
+find /usr/share/gnome-shell/extensions -type f -name metadata.json | while IFS= read -r file; do
+    if jq -e 'has("shell-version")' "$file" > /dev/null; then
+        if jq -e '.["shell-version"] | index("48")' "$file" > /dev/null; then
+            print_info "$file already supports gnome \"48\"."
+        else
+            print_warn "$file does not contain \"48\", updating file..."
+            tmpfile=$(mktemp)
+            jq '.["shell-version"] += ["48"]' "$file" > "$tmpfile" && mv "$tmpfile" "$file"
+            chmod 644 "$file"
+        fi
+    else
+        print_error "$file does not contain \"shell-version\"!"
+        exit 1
+    fi
+done

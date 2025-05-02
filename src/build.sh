@@ -6,8 +6,9 @@
 set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
-source ./shared.sh
-source ./args.sh
+export SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+source $SCRIPT_DIR/shared.sh
+source $SCRIPT_DIR/args.sh
 
 function check_host() {
 
@@ -41,7 +42,17 @@ function clean() {
 function setup_host() {
     print_ok "Setting up host environment..."
     sudo apt update
-    sudo apt install -y binutils debootstrap squashfs-tools xorriso grub-pc-bin grub-efi-amd64 grub2-common mtools dosfstools unzip
+    sudo apt install -y \
+        binutils \
+        debootstrap \
+        squashfs-tools \
+        xorriso \
+        grub-pc-bin \
+        grub-efi-amd64 \
+        grub2-common \
+        mtools \
+        dosfstools \
+        --no-install-recommends
     judge "Install required tools"
 
     print_ok "Creating new_building_os directory..."
@@ -60,6 +71,10 @@ function download_base_system() {
 }
 
 function mount_folers() {
+    print_ok "Reloading systemd daemon..."
+    sudo systemctl daemon-reload
+    judge "Reload systemd daemon"
+
     print_ok "Mounting /dev /run from host to new_building_os..."
     sudo mount --bind /dev new_building_os/dev
     sudo mount --bind /run new_building_os/run
@@ -98,9 +113,9 @@ function umount_folers() {
     judge "Clean up new_building_os /root/mods"
 
     print_ok "Unmounting /proc /sys /dev/pts within chroot..."
-    sudo chroot new_building_os umount /proc || sudo chroot new_building_os umount -lf /proc
-    sudo chroot new_building_os umount /sys || sudo chroot new_building_os umount -lf /sys
     sudo chroot new_building_os umount /dev/pts || sudo chroot new_building_os umount -lf /dev/pts
+    sudo chroot new_building_os umount /sys || sudo chroot new_building_os umount -lf /sys
+    sudo chroot new_building_os umount /proc || sudo chroot new_building_os umount -lf /proc
     judge "Unmount /proc /sys /dev/pts"
 
     print_ok "Unmounting /dev /run outside of chroot..."
@@ -125,6 +140,8 @@ function build_iso() {
     
     print_ok "Generating grub.cfg..."
     touch image/$TARGET_NAME
+    cp $SCRIPT_DIR/args.sh image/$TARGET_NAME
+    judge "Copy build args to disk"
 
     # Configurations are setup in new_building_os/usr/share/initramfs-tools/scripts/casper-bottom/25configure_init
     TRY_TEXT="Install $TARGET_BUSINESS_NAME"
@@ -209,7 +226,7 @@ EOF
     cat << EOF > image/README.md
 # $TARGET_BUSINESS_NAME $TARGET_BUILD_VERSION
 
-$TARGET_BUSINESS_NAME is a custom Debian-based Linux distribution that aims to facilitate developers transitioning from Windows to Ubuntu by maintaining familiar operational habits and workflows.
+$TARGET_BUSINESS_NAME is a custom Ubuntu-based Linux distribution that aims to facilitate developers transitioning from Windows to Linux by maintaining familiar operational habits and workflows.
 
 This image is built with the following configurations:
 
@@ -270,7 +287,7 @@ EOF
     judge "Create hybrid boot image"
 
     print_ok "Creating .disk/info..."
-    echo "$TARGET_BUSINESS_NAME $TARGET_BUILD_VERSION "Noble Numbat" - Release amd64 ($(date +%Y%m%d))" | sudo tee .disk/info
+    echo "$TARGET_BUSINESS_NAME $TARGET_BUILD_VERSION $TARGET_UBUNTU_VERSION - Release amd64 ($(date +%Y%m%d))" | sudo tee .disk/info
     judge "Create .disk/info"
 
     print_ok "Creating md5sum.txt..."
