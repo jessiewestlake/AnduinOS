@@ -125,12 +125,10 @@ judge "Install default cli applications"
 
 print_ok "Installing gnome multimedia support..."
 apt install $INTERACTIVE \
-    gstreamer1.0-libav \
     gstreamer1.0-alsa \
     gstreamer1.0-gtk3 \
     gstreamer1.0-x \
     gstreamer1.0-gl \
-    gstreamer1.0-vaapi \
     gstreamer1.0-tools \
     gstreamer1.0-pipewire \
     gstreamer1.0-packagekit \

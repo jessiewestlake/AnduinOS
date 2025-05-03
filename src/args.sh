@@ -16,9 +16,9 @@ export INTERACTIVE="-y"
 #==========================
 
 # Set the language environment. Can be: en_US, zh_CN, zh_TW, zh_HK, ja_JP, ko_KR, vi_VN, th_TH, de_DE, fr_FR, es_ES, ru_RU, it_IT, pt_BR, pt_PT, ar_SA, nl_NL, sv_SE, pl_PL, tr_TR
-export LANG_MODE="en_US"
+export LANG_MODE="zh_CN"
 # Set the language pack code. Can be: zh, en, ja, ko, vi, th, de, fr, es, ru, it, pt, pt, ar, nl, sv, pl, tr
-export LANG_PACK_CODE="en"
+export LANG_PACK_CODE="zh"
 
 export LC_ALL=$LANG_MODE.UTF-8
 export LC_CTYPE=$LANG_MODE.UTF-8
@@ -146,10 +146,10 @@ fi
 # * ibus-hangul
 # * ibus-unikey
 # * ibus-libthai
-export INPUT_METHOD_INSTALL=""
+export INPUT_METHOD_INSTALL="ibus-rime"
 
 # Boolean indicator for whether to install anduinos-ibus-rime
-export CONFIG_IBUS_RIME="false"
+export CONFIG_IBUS_RIME="true"
 if [[ "$CONFIG_IBUS_RIME" == "true" && "$INPUT_METHOD_INSTALL" != *"ibus-rime"* ]]; then
     echo "Error: CONFIG_IBUS_RIME is set to true, but INPUT_METHOD_INSTALL is not set to ibus-rime"
     exit 1
@@ -160,7 +160,7 @@ fi
 # * [('xkb', 'us'), ('ibus', 'rime')]
 # * [('xkb', 'us'), ('ibus', 'chewing')]
 # * [('xkb', 'us'), ('xkb', 'fr')]
-export CONFIG_INPUT_METHOD="[('xkb', 'us')]"
+export CONFIG_INPUT_METHOD="[('xkb', 'us'), ('ibus', 'rime')]"
 
 #============================
 # Time zone configuration
@@ -168,17 +168,17 @@ export CONFIG_INPUT_METHOD="[('xkb', 'us')]"
 
 # The timezone for the new OS being built (In chroot environment)
 # To view available options, run: `ls /usr/share/zoneinfo/`
-export TIMEZONE="America/Los_Angeles"
+export TIMEZONE="Asia/Shanghai"
 
 #============================
 # Weather plugin configuration
 #============================
-export CONFIG_WEATHER_LOCATION="[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]"
+export CONFIG_WEATHER_LOCATION="[(uint32 0, '苏州, 江苏', uint32 0, '31.311123,120.6212881')]"
 
 #============================
 # Live system configuration
 #============================
-export LIVE_UBUNTU_MIRROR="http://archive.ubuntu.com/ubuntu/"
+export LIVE_UBUNTU_MIRROR="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/"
 
 #============================
 # System apps configuration
