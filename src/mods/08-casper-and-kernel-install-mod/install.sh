@@ -16,7 +16,6 @@ judge "Install live-boot"
 TARGET_KERNEL_PACKAGE=$(apt search linux-generic-hwe-* | awk -F'/' '/linux-generic-hwe-/ {print $1}' | sort | head -n 1)
 print_ok "Installing kernel package $TARGET_KERNEL_PACKAGE..."
 apt install $INTERACTIVE \
-    ubuntu-kernel-accessories \
     thermald \
     $TARGET_KERNEL_PACKAGE
 judge "Install kernel package"
