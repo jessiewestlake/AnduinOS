@@ -17,21 +17,20 @@ Test at least `en_US` and `zh_CN` locales.
 * Ensure Super + Tab, Alt + Tab, Super + I are functional. (Super + I is (UNDER DEVELOPMENT))
 * Ensure Super + U can toggle network stat display.
 * Ensure Super + Shift + S will take a screenshot.
-* Ensure if the user search `spotify` in the start menu, it will show `Spotify` and can be opened in store.
+* Ensure if the user search `spotify` in the start menu, it will show `Spotify` and can be opened in store. (1.3+)
 * Ensure if the device has a battery, battery is shown on the task bar. Otherwise, it's hidden.
 * Ensure sound theme, icon theme, shell theme are all set.
 * Ensure all extensions are working instead of showing an error.
-* If it's loaded via X11, press `Alt + F2`, then type `r` and press `Enter`. Ensure the shell can be restarted successfully.
+* If it's loaded via X11 (1.1), press `Alt + F2`, then type `r` and press `Enter`. Ensure the shell can be restarted successfully.
 * Ensure there will be a `DO` sound (Yaru) when typing tab on terminal.
 * Ensure when running `sudo apt update`, it's connecting to localized apt source.
 * Ensure `lsb_release` with arg `-i -d -r -c -a` will show the correct information.
 * Ensure `https://gist.aiursoft.cn/anduin/53650b8fdc7446b591d4b40cc667bab6/raw/HEAD/check.sh` runs well.
 * Ensure folders are sorted before files in nautilus.
-* Ensure the `help` in nautilus is working and localized.
-* Ensure `/opt` folder is empty.
+* Ensure the `help` in nautilus is working.
 * Ensure double click a photo file is opened with shotwell; double click a video file is opened with totem; double click a music file is opened with rhythmbox.
 * Download a png file and a mp4 file. Ensure the photo and video files have previews on nautilus.
-* Ensure double clicking a .deb file will open gnome-software.
+* Ensure double clicking a .deb file will open gnome-software (1.3+) or Ubiquty (1.1 & 1.2).
 * Try start instllation (Ubiquty) and ensure all language texts are shown correctly. (Without square boxes)
 * Try running installation. Select `中文`. Ensure in the log there is no error like ``Gtk-WARNING **: Locale not supported by C library. `
 * After installation, ensure the start menu apps' names are localized.
@@ -44,8 +43,7 @@ Test at least `en_US` and `zh_CN` locales.
 * Ensure the text `http://` in org.gnome.TextEditor.desktop is shown correctly.
 * Try installing Motrix and see if it can be shown successfully on the tray.
 * Try installing Google Chrome and make sure re-login won't prompt: `ubuntu an application wants access to the keyring`.
-* Ensure the corners of the Motrix window is rounded.
-* Try installing VSCode and ensure it can be opened successfully, and the corners of the window is rounded.
+* Try installing VSCode and ensure it can be opened successfully.
 * Download a H264 video and try to play with `totem` and ensure it can play.
 * Try switching from dark and light theme in the bottom drop down menu. And the text should be localized. Both GTK and QT apps should be switched.
 * Try pressing `Ctrl + Alt + F6` and ensure it can switch to tty6. Message is `AnduinOS`.
