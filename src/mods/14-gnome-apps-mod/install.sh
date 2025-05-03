@@ -14,6 +14,8 @@ apt install $INTERACTIVE \
     gnupg \
     gpg \
     gvfs-fuse \
+    gvfs-backends \
+    wsdd \
     libsass1 \
     lsb-release \
     nano \
