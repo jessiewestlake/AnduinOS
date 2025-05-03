@@ -20,7 +20,8 @@ Test at least `en_US` and `zh_CN` locales.
 * Ensure if the user search `spotify` in the start menu, it will show `Spotify` and can be opened in store.
 * Ensure if the device has a battery, battery is shown on the task bar. Otherwise, it's hidden.
 * Ensure sound theme, icon theme, shell theme are all set.
-* Press `Alt + F2`, then type `r` and press `Enter`. Ensure the shell can be restarted successfully.
+* Ensure all extensions are working instead of showing an error.
+* If it's loaded via X11, press `Alt + F2`, then type `r` and press `Enter`. Ensure the shell can be restarted successfully.
 * Ensure there will be a `DO` sound (Yaru) when typing tab on terminal.
 * Ensure when running `sudo apt update`, it's connecting to localized apt source.
 * Ensure `lsb_release` with arg `-i -d -r -c -a` will show the correct information.
