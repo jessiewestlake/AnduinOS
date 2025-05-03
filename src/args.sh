@@ -185,6 +185,7 @@ export LIVE_UBUNTU_MIRROR="http://archive.ubuntu.com/ubuntu/"
 #============================
 # The default apps to be installed.
 export DEFAULT_APPS="
+    gdebi \
     gnome-chess \
     gnome-clocks \
     gnome-weather \
