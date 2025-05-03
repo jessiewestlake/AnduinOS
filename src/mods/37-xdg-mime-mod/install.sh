@@ -139,8 +139,8 @@ xdg-mime default org.gnome.TextEditor.desktop text/plain
 # torrent with transmission-gtk
 xdg-mime default transmission-gtk.desktop application/x-bittorrent
 xdg-mime default transmission-gtk.desktop application/x-utorrent
-# deb with gnome-software
-xdg-mime default gnome-software.desktop application/vnd.debian.binary-package
+# deb with gdebi
+xdg-mime default gdebi.desktop application/vnd.debian.binary-package
 
 print_ok "Copying root's default applications to /etc/skel"
 mkdir -p /etc/skel/.config
