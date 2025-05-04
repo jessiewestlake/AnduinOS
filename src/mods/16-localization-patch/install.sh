@@ -133,25 +133,42 @@ if [ $DEFAULT_APPS =~ "baobab" ]; then
 fi
 
 if [[ $DEFAULT_APPS =~ "qalculate" ]]; then
+    DESKTOP_FILE="/usr/share/applications/qalculate-gtk.desktop"
     print_ok "Patching qalculate localization..."
-    sed -i "/^Name=/a Name[zh_CN]=计算器" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[zh_TW]=計算器" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[zh_HK]=計算器" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[ja_JP]=計算機" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[ko_KR]=계산기" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[vi_VN]=Máy tính" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[th_TH]=เครื่องคิดเลข" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[de_DE]=Taschenrechner" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[fr_FR]=Calculatrice" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[es_ES]=Calculadora" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[ru_RU]=Калькулятор" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[it_IT]=Calcolatrice" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[pt_PT]=Calculadora" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[pt_BR]=Calculadora" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[ar_SA]=آلة حاسبة" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[nl_NL]=Rekenmachine" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[sv_SE]=Kalkylator" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[pl_PL]=Kalkulator" /usr/share/applications/qalculate-gtk.desktop
-    sed -i "/^Name=/a Name[tr_TR]=Hesap Makinesi" /usr/share/applications/qalculate-gtk.desktop
-    judge "Patch qalculate localization"
+
+    # Map of locale codes → translated application name
+    declare -A LOCALIZED_NAMES=(
+        [zh_CN]="计算器"
+        [zh_TW]="計算器"
+        [zh_HK]="計算器"
+        [ja_JP]="計算機"
+        [ko_KR]="계산기"
+        [vi_VN]="Máy tính"
+        [th_TH]="เครื่องคิดเลข"
+        [de_DE]="Taschenrechner"
+        [fr_FR]="Calculatrice"
+        [es_ES]="Calculadora"
+        [ru_RU]="Калькулятор"
+        [it_IT]="Calcolatrice"
+        [pt_PT]="Calculadora"
+        [pt_BR]="Calculadora"
+        [ar_SA]="آلة حاسبة"
+        [nl_NL]="Rekenmachine"
+        [sv_SE]="Kalkylator"
+        [pl_PL]="Kalkulator"
+        [tr_TR]="Hesap Makinesi"
+    )
+
+    # For each locale: remove any existing Name[<locale>] line, then insert our translation
+    for locale in "${!LOCALIZED_NAMES[@]}"; do
+        name="${LOCALIZED_NAMES[$locale]}"
+        # delete any old entries
+        sed -i "/^Name\[$locale\]=/d" "$DESKTOP_FILE"
+        # insert immediately after the default Name= line
+        sed -i "/^Name=/a Name[$locale]=${name}" "$DESKTOP_FILE"
+        judge "Patch qalculate localization for $locale"
+    done
+
+    print_ok "Done. All locales patched in $DESKTOP_FILE."
+
 fi
