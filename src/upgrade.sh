@@ -79,6 +79,29 @@ function upgrade_122_to_123() {
     judge "Upgrade from 1.2.2 to 1.2.3 completed"
 }
 
+function upgrade_123_to_124() {
+    print_ok "Upgrading from 1.2.3 to 1.2.4..."
+    sudo rm /usr/lib/firefox/mozilla.cfg || true
+    sudo apt update
+    sudo apt install -y \
+      orca \
+      spice-vdagent \
+      bpfcc-tools \
+      bpftrace \
+      exfatprogs \
+      gdb \
+      gir1.2-wnck-3.0 \
+      ieee-data \
+      iw --no-install-recommends
+    sudo apt -y install \
+      linux-headers-$(uname -r) \
+      linux-modules-$(uname -r) \
+      linux-tools-$(uname -r) \
+      linux-tools-common \
+      --no-install-recommends
+    judge "Upgrade from 1.2.3 to 1.2.4 completed"
+}
+
 function applyLsbRelease() {
 
     # Update /etc/os-release
