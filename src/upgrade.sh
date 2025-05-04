@@ -61,6 +61,16 @@ function ensureCurrentOsAnduinOs() {
     fi
 }
 
+function upgrade_130_to_131() {
+    print_ok "Upgrading from 1.3.0 to 1.3.1..."
+    sudo apt update
+    sudo apt upgrade -y \
+      gstreamer1.0-libav \
+      libpam-gnome-keyring \
+      --no-install-recommends
+    judge "Upgrade from 1.3.0 to 1.3.1 completed"
+}
+
 function applyLsbRelease() {
 
     # Update /etc/os-release
