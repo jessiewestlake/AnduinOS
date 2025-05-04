@@ -104,6 +104,16 @@ function upgrade_113_to_114() {
     judge "Upgrade from 1.1.3 to 1.1.4 completed"
 }
 
+function upgrade_114_to_115() {
+    print_ok "Upgrading from 1.1.4 to 1.1.5..."
+    sudo apt update
+    sudo apt upgrade -y
+    sudo apt install -y \
+      gstreamer1.0-libav \
+      --no-install-recommends
+    judge "Upgrade from 1.1.4 to 1.1.5 completed"
+}
+
 function applyLsbRelease() {
 
   # Update /etc/os-release
