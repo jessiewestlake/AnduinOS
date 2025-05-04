@@ -117,10 +117,11 @@ done
 echo "[INFO] All build tasks have been completed."
 echo "[INFO] Generating torrent files..."
 
+shopt -s extglob
+
 (
   cd ./src/dist || exit 1
   sudo apt install -y mktorrent
-  shopt -s extglob
 
   for f in AnduinOS-*-+([0-9]).@(iso|sha256); do
     mv -- "$f" "${f%-+([0-9]).@(iso|sha256)}.${f##*.}"
