@@ -85,6 +85,7 @@ function upgrade_123_to_124() {
     sudo apt update
     sudo apt install -y \
       orca \
+      gstreamer1.0-libav \
       spice-vdagent \
       bpfcc-tools \
       bpftrace \
@@ -100,16 +101,6 @@ function upgrade_123_to_124() {
       linux-tools-common \
       --no-install-recommends
     judge "Upgrade from 1.2.3 to 1.2.4 completed"
-}
-
-function upgrade_114_to_115() {
-    print_ok "Upgrading from 1.1.4 to 1.1.5..."
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt install -y \
-      gstreamer1.0-libav \
-      --no-install-recommends
-    judge "Upgrade from 1.1.4 to 1.1.5 completed"
 }
 
 function applyLsbRelease() {
