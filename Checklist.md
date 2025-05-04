@@ -62,11 +62,6 @@ Test at least `en_US` and `zh_CN` locales.
 
 ## Helpfull commands
 
-To rename the built binary to release format:
-
-```bash
-for file in AnduinOS-1.0.1-*{.iso,.sha256}; do mv "$file" "$(echo "$file" | sed -E 's/-[0-9]{10}//')"; done
-```
 
 To check the checksums of all .iso files and their corresponding .sha256 files:
 
