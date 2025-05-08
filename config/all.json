@@ -12,6 +12,18 @@
         "flathub_gpg": ""
     },
     {
+        "lang_mode": "en_GB",
+        "lang_pack_code": "en",
+        "input_method_install": "",
+        "config_ibus_rime": "false",
+        "timezone": "Europe/London",
+        "config_weather_location": "[(uint32 0, 'London, United Kingdom', uint32 0, '51.507351,-0.127758')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'gb')]",
+        "live_ubuntu_mirror": "https://mirror.cov.ukservers.com/ubuntu/",
+        "flathub_mirror": "",
+        "flathub_gpg": ""
+    },
+    {
         "lang_mode": "zh_CN",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-rime",
