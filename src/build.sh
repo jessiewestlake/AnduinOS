@@ -144,7 +144,7 @@ function build_iso() {
     judge "Copy build args to disk"
 
     # Configurations are setup in new_building_os/usr/share/initramfs-tools/scripts/casper-bottom/25configure_init
-    TRY_TEXT="Install $TARGET_BUSINESS_NAME"
+    TRY_TEXT="Try and Install $TARGET_BUSINESS_NAME"
     cat << EOF > image/isolinux/grub.cfg
 
 search --set=root --file /$TARGET_NAME
