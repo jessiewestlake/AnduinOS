@@ -24,14 +24,6 @@ You MUST be using an `AMD64` architecture to build AnduinOS.
 
 To edit the build parameters, modify the `./src/args.sh` file.
 
-The first two parts of the `TARGET_BUILD_VERSION` MUST be the same as the git branch name. For example:
-
-```bash
-TARGET_BUILD_VERSION="1.1.0"
-```
-
-Then the git branch name MUST be `1.1`.
-
 To build the OS, run the following command:
 
 ```bash
