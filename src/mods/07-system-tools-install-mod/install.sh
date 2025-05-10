@@ -92,6 +92,7 @@ apt install $INTERACTIVE \
     cifs-utils \
     eject \
     gettext \
+    cracklib-runtime \
     initramfs-tools \
     --no-install-recommends
 judge "Install basic system tool packages"
