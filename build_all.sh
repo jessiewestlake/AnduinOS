@@ -139,7 +139,6 @@ shopt -s extglob
     "udp://tracker1.bt.moack.co.kr:80/announce"
     "udp://tracker-udp.gbitt.info:80/announce"
     "udp://explodie.org:6969/announce"
-    "https://tracker.tamersunion.org:443/announce"
     "udp://tracker.tiny-vps.com:6969/announce"
     "udp://tracker.dump.cl:6969/announce"
     "udp://tracker.ccp.ovh:6969/announce"
