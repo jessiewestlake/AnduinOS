@@ -129,37 +129,22 @@ shopt -s extglob
 
   shopt -u extglob
 
-  TRACKERS=(
-    "udp://tracker.opentrackr.org:1337/announce"
-    "udp://open.tracker.cl:1337/announce"
-    "udp://open.demonii.com:1337/announce"
-    "udp://open.stealth.si:80/announce"
-    "udp://exodus.desync.com:6969/announce"
-    "udp://tracker.torrent.eu.org:451/announce"
-    "udp://tracker1.bt.moack.co.kr:80/announce"
-    "udp://tracker-udp.gbitt.info:80/announce"
-    "udp://explodie.org:6969/announce"
-    "udp://tracker.tiny-vps.com:6969/announce"
-    "udp://tracker.dump.cl:6969/announce"
-    "udp://tracker.ccp.ovh:6969/announce"
-    "udp://tracker.bittor.pw:1337/announce"
-    "udp://run.publictracker.xyz:6969/announce"
-    "udp://retracker01-msk-virt.corbina.net:80/announce"
-    "udp://public.publictracker.xyz:6969/announce"
-    "udp://opentracker.io:6969/announce"
-    "udp://open.free-tracker.ga:6969/announce"
-    "udp://new-line.net:6969/announce"
-  )
+  tracker=$(mktemp)
+  curl -fsSL -o "$tracker" \
+    https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt
+
+  mapfile -t raw_trackers < "$tracker"
+  rm "$tracker"
+
+  trackers=()
+  for t in "${raw_trackers[@]}"; do
+    [[ -n "$t" ]] && trackers+=( -a "$t" )
+  done
 
   for iso in AnduinOS-*.iso; do
     base="${iso%.iso}"
     echo "[INFO] Generating torrent for $iso"
-    
-    args=()
-    for t in "${TRACKERS[@]}"; do
-      args+=( -a "$t" )
-    done
-
-    mktorrent "${args[@]}" -o "${base}.torrent" "$iso"
+    echo "[INFO] Using trackers: ${trackers[@]}"
+    mktorrent "${trackers[@]}" -o "${base}.torrent" "$iso"
   done
 )
