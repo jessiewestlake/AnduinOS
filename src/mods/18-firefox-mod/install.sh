@@ -48,4 +48,4 @@ else
 fi
 
 flatpak install -y flathub org.chromium.Chromium
-
+flatpak install -y flathub org.onlyoffice.desktopeditors

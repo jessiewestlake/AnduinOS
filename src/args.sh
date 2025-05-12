@@ -179,7 +179,7 @@ export LIVE_UBUNTU_MIRROR="https://mirror.cov.ukservers.com/ubuntu/"
 export DEFAULT_APPS="
     vlc \
     aisleriot \
-    gnome-chess \
+    gnome-mines \
     gnome-clocks \
     gnome-weather \
     gnome-nettool \

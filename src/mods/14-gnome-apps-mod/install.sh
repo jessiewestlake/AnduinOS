@@ -119,12 +119,6 @@ apt install $INTERACTIVE \
     --no-install-recommends
 judge "Install gnome additional applications"
 
-# print_ok "Installing Chromium browser..."
-# add-apt-repository -y ppa:saiarcot895/chromium-beta
-# apt-get install $INTERACTIVE \
-#     chromium-browser
-# judge "Install chromium browser"
-
 print_ok "Installing default cli applications..."
 apt install $INTERACTIVE \
     wget \
