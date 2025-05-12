@@ -48,6 +48,7 @@ apt install $INTERACTIVE \
     xxd \
     xdg-utils \
     zenity \
+    power-profiles-daemon \
     --no-install-recommends
 judge "Install basic CLI tools"
 
