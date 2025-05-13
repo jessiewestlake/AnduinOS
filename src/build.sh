@@ -10,8 +10,8 @@ export SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 source $SCRIPT_DIR/shared.sh
 source $SCRIPT_DIR/args.sh
 
-function exit_on_exit() {
-    print_ok "Exit on exit..."
+function action_on_exit() {
+    print_ok "Action on exit..."
     ## Do something before exit.
     sleep 2
     umount_on_exit
@@ -25,7 +25,7 @@ function bind_signal() {
     ## * `help trap`
     ##
     print_ok "Bind signal..."
-    trap exit_on_exit EXIT
+    trap action_on_exit EXIT
     judge "Bind signal"
 }
 
