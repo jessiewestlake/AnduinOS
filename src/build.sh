@@ -10,32 +10,10 @@ export SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 source $SCRIPT_DIR/shared.sh
 source $SCRIPT_DIR/args.sh
 
-function action_on_exit() {
-    print_ok "Action on exit..."
-    ## Do something before exit.
-    sleep 2
-    umount_on_exit
-    sleep 2
-    exit 0
-}
-
 function bind_signal() {
-    ##
-    ## * [man 1 bash](https://manpages.debian.org/stable/bash/bash.1.en.html)
-    ## * `help trap`
-    ##
     print_ok "Bind signal..."
-    trap action_on_exit EXIT
+    trap umount_on_exit EXIT
     judge "Bind signal"
-}
-
-function umount_on_exit() {
-    print_ok "Umount before exit..."
-    sudo umount new_building_os/dev || sudo umount -lf new_building_os/dev || true
-    sudo umount new_building_os/run || sudo umount -lf new_building_os/run || true
-    sudo umount new_building_os/proc || sudo umount -lf new_building_os/proc || true
-    sudo umount new_building_os/sys || sudo umount -lf new_building_os/sys || true
-    judge "Umount before exit"
 }
 
 function check_host() {
@@ -55,10 +33,10 @@ function check_host() {
 
 function clean() {
     print_ok "Cleaning up..."
+    sudo umount new_building_os/sys || sudo umount -lf new_building_os/sys || true
+    sudo umount new_building_os/proc || sudo umount -lf new_building_os/proc || true
     sudo umount new_building_os/dev || sudo umount -lf new_building_os/dev || true
     sudo umount new_building_os/run || sudo umount -lf new_building_os/run || true
-    sudo umount new_building_os/proc || sudo umount -lf new_building_os/proc || true
-    sudo umount new_building_os/sys || sudo umount -lf new_building_os/sys || true
     sudo rm -rf new_building_os || true
     judge "Clean up rootfs"
     sudo rm -rf image || true
@@ -361,6 +339,16 @@ EOF
     judge "Generate sha256 checksum"
 
     popd
+}
+
+function umount_on_exit() {
+    sleep 2
+    print_ok "Umount before exit..."
+    sudo umount new_building_os/sys || sudo umount -lf new_building_os/sys || true
+    sudo umount new_building_os/proc || sudo umount -lf new_building_os/proc || true
+    sudo umount new_building_os/dev || sudo umount -lf new_building_os/dev || true
+    sudo umount new_building_os/run || sudo umount -lf new_building_os/run || true
+    judge "Umount before exit"
 }
 
 # =============   main  ================
