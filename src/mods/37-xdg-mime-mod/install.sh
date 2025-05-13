@@ -9,10 +9,10 @@ set -u                  # treat unset variable as error
 # xdg-mime default firefox.desktop x-scheme-handler/https
 
 # # Web with Chromium
-xdg-mime default chromium-browser.desktop x-scheme-handler/http
-xdg-mime default chromium-browser.desktop text/html
-xdg-mime default chromium-browser.desktop application/xhtml+xml
-xdg-mime default chromium-browser.desktop x-scheme-handler/https
+xdg-mime default google-chrome.desktop x-scheme-handler/http
+xdg-mime default google-chrome.desktop text/html
+xdg-mime default google-chrome.desktop application/xhtml+xml
+xdg-mime default google-chrome.desktop x-scheme-handler/https
 
 
 # images with shotwell

@@ -47,5 +47,10 @@ else
     exit 1
 fi
 
-flatpak install -y flathub org.chromium.Chromium
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome.deb
+sudo apt install ./google-chrome.deb -y
+rm google-chrome.deb
+
 flatpak install -y flathub org.onlyoffice.desktopeditors
+
+sudo apt install ./mintstick.deb -y
