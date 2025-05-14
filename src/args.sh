@@ -206,6 +206,7 @@ export DEFAULT_APPS="
     gnome-sushi \
     qalculate-gtk \
     yelp \
+    gnome-shell-extension-prefs \
     gnome-user-docs \
     gnome-disk-utility \
     gnome-logs \
@@ -225,6 +226,8 @@ export DEFAULT_APPS="
 
 export DEFAULT_CLI_TOOLS="
     curl \
+    vim \
+    nano \
     git \
     build-essential \
     make \
