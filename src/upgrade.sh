@@ -96,6 +96,12 @@ function upgrade_131_to_132() {
           print_ok "Switch completed."
       fi
     fi
+
+    sudo apt update
+    sudo apt install -y \
+        vim \
+        --no-install-recommends
+    judge "Install vim completed"
 }
 
 
