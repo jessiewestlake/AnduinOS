@@ -18,7 +18,6 @@ apt install $INTERACTIVE \
     wsdd \
     libsass1 \
     lsb-release \
-    nano \
     systemd-timesyncd \
     fwupd \
     fwupd-signed \
@@ -105,7 +104,6 @@ judge "Install nautilus"
 
 print_ok "Installing gnome extension utilities..."
 apt install $INTERACTIVE \
-    gnome-shell-extension-prefs \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extension-appindicator --no-install-recommends
 judge "Install gnome extension utilities"
