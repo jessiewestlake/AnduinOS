@@ -83,6 +83,22 @@ function upgrade_130_to_131() {
     judge "Upgrade from 1.3.0 to 1.3.1 completed"
 }
 
+function upgrade_131_to_132() {
+    # If the flatpak remote is https://mirror.sjtu.edu.cn/flathub
+    # Change it to sudo flatpak remote-modify flathub --url=https://mirrors.ustc.edu.cn/flathub
+
+    # If flatpak installed
+    if command -v flatpak &> /dev/null; then
+      current_url=$(flatpak remotes --columns=name,url | awk '$1=="flathub"{print $2}')
+      if [[ "$current_url" == *"https://mirror.sjtu.edu.cn/flathub"* ]]; then
+          print_ok "Detected SJTU mirror for flathub. Switching to USTC mirror..."
+          sudo flatpak remote-modify flathub --url=https://mirrors.ustc.edu.cn/flathub
+          print_ok "Switch completed."
+      fi
+    fi
+}
+
+
 function applyLsbRelease() {
 
     # Update /etc/os-release
