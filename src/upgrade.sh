@@ -103,6 +103,20 @@ function upgrade_123_to_124() {
     judge "Upgrade from 1.2.3 to 1.2.4 completed"
 }
 
+function upgrade_124_to_125() {
+    print_ok "Upgrading from 1.2.4 to 1.2.5..."
+    sudo apt update
+    sudo apt install -y \
+        vim \
+        power-profiles-daemon \
+        libfuse2t64 \
+        libfuse3-3 \
+        libopengl0 \
+        --no-install-recommends
+    judge "Install vim completed"
+    judge "Upgrade from 1.2.4 to 1.2.5 completed"
+}
+
 function applyLsbRelease() {
 
     # Update /etc/os-release
