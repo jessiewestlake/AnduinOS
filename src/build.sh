@@ -41,6 +41,8 @@ function clean() {
     judge "Clean up rootfs"
     sudo rm -rf image || true
     judge "Clean up image"
+    sudo rm -rf dist || true
+    judge "Clean up dist" || true
     sudo rm -f $TARGET_NAME.iso || true
     judge "Clean up iso"
 }
