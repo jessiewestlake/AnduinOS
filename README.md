@@ -20,20 +20,19 @@ AnduinOS works based on donations from users. We are grateful for your support.
 
 ## How to build
 
-You MUST be using an `AMD64` architecture to build AnduinOS.
-
-To edit the build parameters, modify the `./src/args.sh` file.
+It is suggested to use AnduinOS to build AnduinOS.
 
 To build the OS, run the following command:
 
 ```bash
-cd ./src
-./build.sh
+make
 ```
+
+To edit the build parameters, modify the `./src/args.sh` file.
 
 That's it. The built file will be an ISO file in the `./src/dist` directory.
 
-Simply mount the built ISO file to an virtual machine, and you can start installing it.
+Simply mount the built ISO file to an virtual machine, and you can start testing it.
 
 ## Document
 
@@ -58,6 +57,8 @@ For bug reports and feature requests, please use the [Issues](https://github.com
 * ARM support.
 * WSL support.
 * Docker container support.
+* Layer based OS. Including: WSL\Server\Pro\Lite\Home\Workstation
+* LiberOS.
 * Customized installer instead of ubiquity.
 * Customized apt source with our own override.
 * Customized kernel with our own override. -->
