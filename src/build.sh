@@ -16,21 +16,6 @@ function bind_signal() {
     judge "Bind signal"
 }
 
-function check_host() {
-
-    local os_ver
-    os_ver=`lsb_release -i | grep -E "(Ubuntu|Debian|AnduinOS)"`
-    if [[ -z "$os_ver" ]]; then
-        print_warn "This script is only supported on Ubuntu, Debian or AnduinOS."
-        areYouSure
-    fi
-
-    if [ $(id -u) -eq 0 ]; then
-        print_error "This script should not be run as 'root'"
-        exit 1
-    fi
-}
-
 function clean() {
     print_ok "Cleaning up..."
     sudo umount new_building_os/sys || sudo umount -lf new_building_os/sys || true
@@ -41,8 +26,6 @@ function clean() {
     judge "Clean up rootfs"
     sudo rm -rf image || true
     judge "Clean up image"
-    sudo rm -rf dist || true
-    judge "Clean up dist" || true
     sudo rm -f $TARGET_NAME.iso || true
     judge "Clean up iso"
 }
@@ -356,7 +339,6 @@ function umount_on_exit() {
 # =============   main  ================
 cd $SCRIPT_DIR
 bind_signal
-check_host
 clean
 setup_host
 download_base_system
