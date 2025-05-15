@@ -7,6 +7,8 @@ print_ok "Removing unused packages..."
 apt autoremove -y --purge
 judge "Remove unused packages"
 
+EXIT_IF_UNNECESSARY_PACKAGE_FOUND=1
+
 print_ok "Purging unnecessary packages"
 packages=(
     gnome-mahjongg
@@ -34,11 +36,24 @@ packages=(
     ubuntu-advantage-tools
     ubuntu-pro-client-l10n
     software-properties-gtk
+    popularity-contest
+    ubuntu-report
+    apport
+    whoopsie
+    snapd
+    snap
+    snap-store
 )
 
 for pkg in "${packages[@]}"; do
     if dpkg -l "$pkg" 2>/dev/null | grep -q '^ii'; then
         print_warn "Error: package '$pkg' is installed." >&2
+
+        if [[ $EXIT_IF_UNNECESSARY_PACKAGE_FOUND -eq 1 ]]; then
+            print_error "Unnecessary package found: $pkg"
+            exit 1
+        fi
+
         apt autoremove -y --purge "$pkg"
         judge "Purge package $pkg"
     fi
