@@ -17,6 +17,7 @@ function bind_signal() {
 }
 
 function clean() {
+    # This clean function is used to clean up the places where current build may touch and create
     print_ok "Cleaning up..."
     sudo umount new_building_os/sys || sudo umount -lf new_building_os/sys || true
     sudo umount new_building_os/proc || sudo umount -lf new_building_os/proc || true
