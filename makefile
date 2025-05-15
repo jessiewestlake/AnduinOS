@@ -1,11 +1,22 @@
 # Makefile —— AnduinOS build orchestrator
-SHELL      := /usr/bin/env bash
+SHELL         := /usr/bin/env bash
 .DEFAULT_GOAL := current
 
-SRC_DIR    := src
-CONFIG_DIR := config
+SRC_DIR       := src
+CONFIG_DIR    := config
 
-.PHONY: all fast current clean check-env help
+DEPS := \
+  binutils \
+  debootstrap \
+  squashfs-tools \
+  xorriso \
+  grub-pc-bin \
+  grub-efi-amd64 \
+  grub2-common \
+  mtools \
+  dosfstools
+
+.PHONY: all fast current clean bootstrap help
 
 help:
 	@echo "Usage:"
@@ -13,29 +24,45 @@ help:
 	@echo "  make all                          Build all languages"
 	@echo "  make fast                         Build fast config languages"
 	@echo "  make clean                        Remove build artifacts"
-	@echo "  make check-env                   Validate environment"
+	@echo "  make bootstrap                    Validate environment and deps"
 
-check-env:
+bootstrap:
 	@if [ "$$(id -u)" -eq 0 ]; then \
-	  echo "Error: Do not run as root"; exit 1; \
+	  echo "Error: Do not run as root"; \
+	  exit 1; \
 	fi
 	@if ! lsb_release -i | grep -qE "(Ubuntu|Debian|AnduinOS)"; then \
-	  echo "Error: Unsupported OS — only Ubuntu, Debian or AnduinOS allowed"; exit 1; \
+	  echo "Error: Unsupported OS — only Ubuntu, Debian or AnduinOS allowed"; \
+	  exit 1; \
 	fi
 
-current: check-env
+	@missing="" ; \
+	for pkg in $(DEPS); do \
+	  if ! dpkg -s $$pkg >/dev/null 2>&1; then \
+	    missing="$$missing $$pkg"; \
+	  fi; \
+	done; \
+	if [ -n "$$missing" ]; then \
+	  echo "Missing packages:$$missing"; \
+	  echo "Installing missing dependencies..."; \
+	  sudo apt-get update && sudo apt-get install -y$$missing; \
+	else \
+	  echo "[MAKE] All required packages are already installed."; \
+	fi
+
+current: bootstrap
 	@echo "[MAKE] Building current language..."
 	@cd $(SRC_DIR) && ./build.sh
 
-all: check-env
+all: bootstrap
 	@echo "[MAKE] Building ALL languages (all.json)..."
 	@./build_all.sh -c $(CONFIG_DIR)/all.json
 
-fast: check-env
+fast: bootstrap
 	@echo "[MAKE] Building FAST languages (fast.json)..."
 	@./build_all.sh -c $(CONFIG_DIR)/fast.json
 
 clean:
 	@echo "[MAKE] Cleaning build artifacts..."
-	@rm -rf $(SRC_DIR)/dist/* $(SRC_DIR)/image
+	@cd $(SRC_DIR) && ./clean.sh
 	@echo "[MAKE] Clean complete."
