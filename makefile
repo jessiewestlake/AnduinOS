@@ -64,5 +64,5 @@ fast: bootstrap
 
 clean:
 	@echo "[MAKE] Cleaning build artifacts..."
-	@cd $(SRC_DIR) && ./clean.sh
+	@./clean_all.sh
 	@echo "[MAKE] Clean complete."
