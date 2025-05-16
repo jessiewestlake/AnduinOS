@@ -35,7 +35,6 @@ packages=(
     ubuntu-advantage-desktop-daemon
     ubuntu-advantage-tools
     ubuntu-pro-client-l10n
-    software-properties-gtk
     popularity-contest
     ubuntu-report
     apport
