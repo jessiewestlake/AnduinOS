@@ -3,7 +3,11 @@ set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
 print_ok "Downloading software-properties-gtk..."
-apt install -y python3-dateutil gir1.2-handy-1 --no-install-recommends
+apt install -y \
+  python3-dateutil \
+  gir1.2-handy-1 \
+  libgtk3-perl \
+  --no-install-recommends
 judge "Install python3-dateutil"
 
 apt-get download "software-properties-gtk"
