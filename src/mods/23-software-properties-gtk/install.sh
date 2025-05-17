@@ -46,3 +46,7 @@ sudo sed -i '/^from \.UbuntuProPage import UbuntuProPage$/d' "$FILE"
 sudo sed -i '/^[[:space:]]*def init_ubuntu_pro/,/^[[:space:]]*$/d' "$FILE"
 sudo sed -i '/^[[:space:]]*if is_current_distro_lts()/,/self.init_ubuntu_pro()/d' "$FILE"
 judge "Edit $FILE"
+
+print_ok "Marking software-properties-gtk as held..."
+apt-mark hold software-properties-gtk
+judge "Mark software-properties-gtk as held"
