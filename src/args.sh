@@ -162,6 +162,14 @@ fi
 # * [('xkb', 'us'), ('xkb', 'fr')]
 export CONFIG_INPUT_METHOD="[('xkb', 'us'), ('ibus', 'rime')]"
 
+
+#============================
+# Software properties configuration
+#============================
+
+# To install software-properties-gtk, set to "true" or "false"
+export INSTALL_MODIFIED_SOFTWARE_PROPERTIES_GTK="true"
+
 #============================
 # Time zone configuration
 #============================
