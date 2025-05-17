@@ -2,6 +2,11 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
+if [ "$INSTALL_MODIFIED_SOFTWARE_PROPERTIES_GTK" != "true" ]; then
+    print_ok "We don't need to install software-properties-gtk, please check the config file"
+    exit 0
+fi
+
 print_ok "Downloading software-properties-gtk..."
 apt install -y \
   python3-dateutil \
