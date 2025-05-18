@@ -160,6 +160,8 @@ function upgrade_131_to_132() {
     sudo apt update
     sudo apt install -y \
         vim \
+        cracklib-runtime \
+        power-profiles-daemon \
         --no-install-recommends
     judge "Install vim completed"
 
