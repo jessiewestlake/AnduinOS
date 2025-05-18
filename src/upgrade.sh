@@ -103,6 +103,66 @@ function upgrade_123_to_124() {
     judge "Upgrade from 1.2.3 to 1.2.4 completed"
 }
 
+function install_spg() {
+    print_ok "Downloading software-properties-gtk..."
+    sudo apt install -y \
+        python3-dateutil \
+        gir1.2-handy-1 \
+        libgtk3-perl \
+        --no-install-recommends
+    judge "Install python3-dateutil"
+
+    sudo apt-get download "software-properties-gtk"
+    judge "Download software-properties-gtk"
+
+    DEB_FILE=$(ls *.deb)
+    print_ok "Found $DEB_FILE"
+    sudo chown $USER:$USER "$DEB_FILE"
+
+    print_ok "Extracting $DEB_FILE..."
+    mkdir original
+    dpkg-deb -R "$DEB_FILE" original
+    judge "Extract $DEB_FILE"
+
+    print_ok "Patching control file..."
+    sed -i \
+    '/^Depends:/s/, *ubuntu-pro-client//; /^Depends:/s/, *ubuntu-advantage-desktop-daemon//' \
+    original/DEBIAN/control
+    judge "Edit control file"
+
+    MOD_DEB="modified.deb"
+
+    print_ok "Repackaging $MOD_DEB..."
+    dpkg-deb -b original "$MOD_DEB"
+    judge "Repackage $MOD_DEB"
+
+    print_ok "Cleaning up temp folder..."
+    rm -rf original
+
+    print_ok "Installing $MOD_DEB..."
+    sudo dpkg -i "$MOD_DEB"
+    judge "Install $MOD_DEB"
+
+    print_ok "Cleaning up $MOD_DEB and $DEB_FILE..."
+    rm -f "$MOD_DEB"
+    rm -f "$DEB_FILE"
+    judge "Clean up $MOD_DEB and $DEB_FILE"
+
+    FILE=/usr/lib/python3/dist-packages/softwareproperties/gtk/SoftwarePropertiesGtk.py
+
+    print_ok "Patching $FILE... to disable Ubuntu Pro"
+    sudo cp "$FILE" "${FILE}.bak"
+    sudo sed -i '/^from \.UbuntuProPage import UbuntuProPage$/d' "$FILE"
+    sudo sed -i '/^[[:space:]]*def init_ubuntu_pro/,/^[[:space:]]*$/d' "$FILE"
+    sudo sed -i '/^[[:space:]]*if is_current_distro_lts()/,/self.init_ubuntu_pro()/d' "$FILE"
+    judge "Edit $FILE"
+
+    print_ok "Marking software-properties-gtk as held..."
+    sudo apt-mark hold software-properties-gtk
+    judge "Mark software-properties-gtk as held"
+
+}
+
 function upgrade_124_to_125() {
     print_ok "Upgrading from 1.2.4 to 1.2.5..."
     sudo apt update
@@ -112,8 +172,17 @@ function upgrade_124_to_125() {
         libfuse2t64 \
         libfuse3-3 \
         libopengl0 \
+        cracklib-runtime \
+        power-profiles-daemon \
         --no-install-recommends
     judge "Install vim completed"
+
+    apt list --installed | grep software-properties-gtk || install_spg
+
+    fonts_config="https://gitlab.aiursoft.cn/anduin/anduinos/-/raw/1.4/src/mods/15-fonts-mod/local.conf?ref_type=heads"
+    sudo wget -O /etc/fonts/local.conf $fonts_config
+    fc-cache -f
+
     judge "Upgrade from 1.2.4 to 1.2.5 completed"
 }
 
