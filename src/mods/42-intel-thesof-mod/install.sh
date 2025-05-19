@@ -19,6 +19,11 @@ LINK="https://github.com/thesofproject/sof-bin/releases/download/v2025.01.1/sof-
     tar -xzf sof-bin.tar.gz
     judge "Extracted SOF binaries"
 
+    print_ok "Removing old SOF binaries"
+    rm /lib/firmware/intel/sof*
+    rm /usr/local/bin/sof-*
+    judge "Removed old SOF binaries"
+
     cd ./sof-bin-2025.01.1
     print_ok "Installing SOF binaries"
     ./install.sh
