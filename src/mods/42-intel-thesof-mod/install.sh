@@ -2,7 +2,8 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
-LINK="https://github.com/thesofproject/sof-bin/releases/download/v2025.01.1/sof-bin-2025.01.1.tar.gz"
+SOF_BIN_LINK="https://github.com/thesofproject/sof-bin/releases/download/v2025.01.1/sof-bin-2025.01.1.tar.gz"
+ALSA_UCM_CONF_LINK="https://git.aiursoft.cn/PublicVault/alsa-ucm-conf/archive/master.zip"
 
 (
     print_ok "Installing Intel SOF Mod"
@@ -12,7 +13,7 @@ LINK="https://github.com/thesofproject/sof-bin/releases/download/v2025.01.1/sof-
     cd "$tempdir" || exit 1
 
     print_ok "Downloading SOF binaries"
-    wget "$LINK" -O sof-bin.tar.gz
+    wget "$SOF_BIN_LINK" -O sof-bin.tar.gz
     judge "Downloaded SOF binaries"
 
     print_ok "Extracting SOF binaries"
@@ -31,7 +32,7 @@ LINK="https://github.com/thesofproject/sof-bin/releases/download/v2025.01.1/sof-
     cd ..
 
     print_ok "Downloading alsa-ucm-conf"
-    wget https://git.aiursoft.cn/PublicVault/alsa-ucm-conf/archive/master.zip -O ./alsa-ucm-conf.zip
+    wget $ALSA_UCM_CONF_LINK -O ./alsa-ucm-conf.zip
     judge "Download alsa-ucm-conf"
 
     print_ok "Unzipping alsa-ucm-conf"
