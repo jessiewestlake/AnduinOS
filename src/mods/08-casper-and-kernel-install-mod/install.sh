@@ -17,5 +17,6 @@ TARGET_KERNEL_PACKAGE=$(apt search linux-generic-hwe-* | awk -F'/' '/linux-gener
 print_ok "Installing kernel package $TARGET_KERNEL_PACKAGE..."
 apt install $INTERACTIVE \
     thermald \
-    $TARGET_KERNEL_PACKAGE
+    $TARGET_KERNEL_PACKAGE \
+    --no-install-recommends
 judge "Install kernel package"
