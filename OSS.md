@@ -16,6 +16,10 @@
 * [Dash to panel](https://github.com/home-sweet-gnome/dash-to-panel)
 * [Network Dtats](https://github.com/noroadsleft000/gnome-network-stats)
 * [Open weather](https://gitlab.com/skrewball/openweather)
+* [Lockkeys](https://github.com/kazysmaster/gnome-shell-extension-lockkeys)
+* [Tiling-assistant](https://github.com/Leleat/Tiling-Assistant)
+* [Mediacontrols](https://github.com/sakithb/media-controls)
+* [Clipboard-indicator](https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator)
 
 ```
 accountsservice 23.13.9-2ubuntu6
