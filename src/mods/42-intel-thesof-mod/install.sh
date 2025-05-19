@@ -20,17 +20,33 @@ LINK="https://github.com/thesofproject/sof-bin/releases/download/v2025.01.1/sof-
     judge "Extracted SOF binaries"
 
     print_ok "Removing old SOF binaries"
-    rm /lib/firmware/intel/sof*
-    rm /usr/local/bin/sof-*
+    rm -rf /lib/firmware/intel/sof*
+    rm -rf /usr/local/bin/sof-*
     judge "Removed old SOF binaries"
 
-    cd ./sof-bin-2025.01.1
     print_ok "Installing SOF binaries"
+    cd ./sof-bin-2025.01.1
     ./install.sh
     judge "Installed SOF binaries"
-
-    print_ok "Cleaning up"
     cd ..
-    rm -rvf "$tempdir"
-    judge "Cleaned up"
+
+    print_ok "Downloading alsa-ucm-conf"
+    wget https://git.aiursoft.cn/PublicVault/alsa-ucm-conf/archive/master.zip -O ./alsa-ucm-conf.zip
+    judge "Download alsa-ucm-conf"
+
+    print_ok "Unzipping alsa-ucm-conf"
+    mkdir -p ./alsa-ucm/
+    unzip -O UTF-8 ./alsa-ucm-conf.zip -d ./alsa-ucm/
+    judge "Unzip alsa-ucm-conf"
+
+    print_ok "Copying alsa-ucm-conf to /usr/share/alsa/ucm2/"
+    rsync -Aax --update --delete ./alsa-ucm/alsa-ucm-conf/ucm2/ /usr/share/alsa/ucm2/
+    judge "Copy alsa-ucm-conf to /usr/share/alsa/ucm2/"
+
+    print_ok "Cleaning up alsa-ucm-conf"
+    cd ..
+    rm -rf ./alsa-ucm/
+    rm -rf ./alsa-ucm-conf.zip
+    rm -rf "$tempdir"
+    judge "Clean up alsa-ucm-conf"
 )
