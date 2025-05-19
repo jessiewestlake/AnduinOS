@@ -16,6 +16,12 @@
 * [Dash to panel](https://github.com/home-sweet-gnome/dash-to-panel)
 * [Network Dtats](https://github.com/noroadsleft000/gnome-network-stats)
 * [Open weather](https://gitlab.com/skrewball/openweather)
+* [Lockkeys](https://github.com/kazysmaster/gnome-shell-extension-lockkeys)
+* [Tiling-assistant](https://github.com/Leleat/Tiling-Assistant)
+* [Mediacontrols](https://github.com/sakithb/media-controls)
+* [alsa-ucm-conf](https://github.com/alsa-project/alsa-ucm-conf)
+* [Clipboard-indicator](https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator)
+* [sof-bin](https://github.com/thesofproject/sof-bin)
 
 ```
 accountsservice 23.13.9-7ubuntu1
