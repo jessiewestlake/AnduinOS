@@ -55,3 +55,11 @@ judge "Edit $FILE"
 print_ok "Marking software-properties-gtk as held..."
 apt-mark hold software-properties-gtk
 judge "Mark software-properties-gtk as held"
+
+print_ok "Marking software-properties-gtk as not upgradeable..."
+cat << EOF > /etc/apt/preferences.d/no-upgrade-software-properties-gtk
+Package: software-properties-gtk
+Pin: release o=Ubuntu
+Pin-Priority: -1
+EOF
+judge "Create PIN file for software-properties-gtk"
