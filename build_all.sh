@@ -147,4 +147,8 @@ shopt -s extglob
     echo "[INFO] Using trackers: ${trackers[@]}"
     mktorrent "${trackers[@]}" -o "${base}.torrent" "$iso"
   done
+
+  burner="https://gist.aiursoft.cn/anduin/7ef713580cc641e68ebe1f22f4952e7c/raw/HEAD/burn.sh"
+  wget -O burn.sh "$burner"
+  chmod +x burn.sh
 )
