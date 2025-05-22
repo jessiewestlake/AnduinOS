@@ -165,6 +165,9 @@ function upgrade_131_to_132() {
         --no-install-recommends
     judge "Install vim completed"
 
+    ext_source="https://gitlab.aiursoft.cn/anduin/anduinos/-/blob/1.4/src/mods/29-gnome-extension-anduinos-switcher/switcher@anduinos/extension.js?ref_type=heads"
+    sudo wget -O /usr/share/gnome-shell/extensions/switcher@anduinos/extension.js $ext_source
+
     apt list --installed | grep software-properties-gtk || install_spg
 }
 
