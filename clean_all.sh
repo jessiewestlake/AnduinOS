@@ -15,7 +15,7 @@ function clean_all() {
     sudo umount ./src/new_building_os/proc || sudo umount -lf ./src/new_building_os/proc || true
     sudo umount ./src/new_building_os/dev || sudo umount -lf ./src/new_building_os/dev || true
     sudo umount ./src/new_building_os/run || sudo umount -lf ./src/new_building_os/run || true
-    sudo rm -rf ./src/ew_building_os || true
+    sudo rm -rf ./src/new_building_os || true
     sudo rm -rf ./src/image || true
     sudo rm -rf ./src/dist || true
 }
