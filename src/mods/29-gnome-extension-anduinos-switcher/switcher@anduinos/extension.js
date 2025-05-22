@@ -72,8 +72,6 @@ export default class LightDarkSwitcherExtension extends Extension {
             'changed::color-scheme',
             () => this._syncTheme()
         );
-
-        this._syncTheme();
     }
 
     disable() {
