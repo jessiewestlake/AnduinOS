@@ -183,6 +183,9 @@ function upgrade_124_to_125() {
     sudo wget -O /etc/fonts/local.conf $fonts_config
     fc-cache -f
 
+    ext_source="https://gitlab.aiursoft.cn/anduin/anduinos/-/blob/1.4/src/mods/29-gnome-extension-anduinos-switcher/switcher@anduinos/extension.js?ref_type=heads"
+    sudo wget -O /usr/share/gnome-shell/extensions/switcher@anduinos/extension.js $ext_source
+
     judge "Upgrade from 1.2.4 to 1.2.5 completed"
 }
 
