@@ -61,7 +61,12 @@ apt install $INTERACTIVE \
     gnome-menus \
     gnome-shell-extensions \
     spice-vdagent \
+    xorg \
     xserver-xorg \
+    xserver-xorg-legacy \
+    xserver-xorg-input-wacom \
+    xserver-xorg-video-intel \
+    xserver-xorg-video-qxl \
     xserver-xorg-video-all \
     gdm3 \
     orca \
