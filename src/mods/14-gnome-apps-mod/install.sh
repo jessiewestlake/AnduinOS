@@ -62,6 +62,7 @@ apt install $INTERACTIVE \
     gnome-shell-extensions \
     spice-vdagent \
     xserver-xorg \
+    xserver-xorg-video-all \
     gdm3 \
     orca \
     libpam-gnome-keyring \
