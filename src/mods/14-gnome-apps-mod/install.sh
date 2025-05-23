@@ -61,7 +61,6 @@ apt install $INTERACTIVE \
     gnome-menus \
     gnome-shell-extensions \
     spice-vdagent \
-    xorg \
     xserver-xorg \
     xserver-xorg-legacy \
     xserver-xorg-input-wacom \
@@ -180,6 +179,12 @@ apt install $INTERACTIVE \
     pipx \
     --no-install-recommends
 judge "Install python3"
+
+print_ok "Installing gnome software..."
+apt install $INTERACTIVE \
+    xorg \
+    --no-install-recommends
+judge "Install gnome software"
 
 print_ok "Remove the default htop.desktop file"
 rm /usr/share/applications/htop.desktop || true
