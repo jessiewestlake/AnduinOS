@@ -61,9 +61,9 @@ apt install $INTERACTIVE \
     gnome-menus \
     gnome-shell-extensions \
     spice-vdagent \
+    xserver-xorg-input-all \
     xserver-xorg \
     xserver-xorg-legacy \
-    xserver-xorg-input-wacom \
     xserver-xorg-video-intel \
     xserver-xorg-video-qxl \
     xserver-xorg-video-all \
