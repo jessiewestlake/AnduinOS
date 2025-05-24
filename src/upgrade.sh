@@ -165,6 +165,35 @@ function install_spg() {
 
 }
 
+function install_desktop_mon() {
+    print_ok "Clean up deskmon..."
+    sudo rm -f /usr/local/bin/deskmon || true
+    sudo rm -f /usr/local/bin/deskmon.service || true
+    sudo rm -f /etc/systemd/user/deskmon.service || true
+    sudo rm -f /etc/systemd/user/default.target.wants/deskmon.service || true
+
+    link="https://gitlab.aiursoft.cn/anduin/anduinos/-/raw/1.4/src/mods/20-deskmon-mod/deskmon?ref_type=heads"
+    print_ok "Downloading deskmon..."
+    sudo rm -f /usr/local/bin/deskmon || true
+    sudo wget -O /usr/local/bin/deskmon "$link"
+    sudo chmod +x /usr/local/bin/deskmon
+    judge "Download deskmon"
+
+    print_ok "Installing deskmon.service"
+    service_link="https://gitlab.aiursoft.cn/anduin/anduinos/-/raw/1.4/src/mods/20-deskmon-mod/deskmon.service?ref_type=heads"
+    wget -O deskmon.service "$service_link"
+    sudo install -D deskmon.service /etc/systemd/user/deskmon.service
+    sudo mkdir -p /etc/systemd/user/default.target.wants
+    sudo ln -s /etc/systemd/user/deskmon.service \
+            /etc/systemd/user/default.target.wants/deskmon.service
+    systemctl --user daemon-reload
+    sudo rm deskmon.service
+    print_ok "Deskmon service installed. Starting deskmon..."
+    systemctl --user start deskmon.service
+    systemctl --user enable deskmon.service
+    judge "Install deskmon.service"
+}
+
 function upgrade_114_to_115() {
     print_ok "Upgrading from 1.1.4 to 1.1.5..."
     sudo apt update
@@ -188,6 +217,10 @@ function upgrade_114_to_115() {
     sudo wget -O /usr/share/gnome-shell/extensions/switcher@anduinos/extension.js $ext_source
 
     apt list --installed | grep software-properties-gtk || install_spg
+
+    if [ ! -f /usr/local/bin/deskmon ]; then
+        install_desktop_mon
+    fi
 
     judge "Upgrade from 1.1.4 to 1.1.5 completed"
 }
