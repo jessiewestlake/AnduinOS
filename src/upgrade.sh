@@ -202,6 +202,11 @@ function upgrade_124_to_125() {
         libfuse3-3 \
         libopengl0 \
         cracklib-runtime \
+        xserver-xorg-input-all \
+        xorg \
+        xserver-xorg-legacy \
+        xserver-xorg-video-intel \
+        xserver-xorg-video-qxl \
         power-profiles-daemon \
         --no-install-recommends
     judge "Install vim completed"
