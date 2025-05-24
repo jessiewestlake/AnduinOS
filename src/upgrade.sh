@@ -191,6 +191,11 @@ function upgrade_131_to_132() {
         vim \
         cracklib-runtime \
         power-profiles-daemon \
+        xserver-xorg-input-all \
+        xorg \
+        xserver-xorg-legacy \
+        xserver-xorg-video-intel \
+        xserver-xorg-video-qxl \
         --no-install-recommends
     judge "Install vim completed"
 
