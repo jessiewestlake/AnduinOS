@@ -207,6 +207,11 @@ function upgrade_114_to_115() {
       gstreamer1.0-libav \
       cracklib-runtime \
       power-profiles-daemon \
+      xserver-xorg-input-all \
+      xorg \
+      xserver-xorg-legacy \
+      xserver-xorg-video-intel \
+      xserver-xorg-video-qxl \
       --no-install-recommends
 
     fonts_config="https://gitlab.aiursoft.cn/anduin/anduinos/-/raw/1.4/src/mods/15-fonts-mod/local.conf?ref_type=heads"
