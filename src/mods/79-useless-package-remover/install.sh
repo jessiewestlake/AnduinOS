@@ -42,6 +42,7 @@ packages=(
     snapd
     snap
     snap-store
+    xterm
 )
 
 for pkg in "${packages[@]}"; do
