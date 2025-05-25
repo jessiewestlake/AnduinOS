@@ -261,7 +261,7 @@ EOF"
 " | sudo tee /etc/issue
 
     # Update /usr/lib/os-release
-    sudo cp /etc/os-release /usr/lib/os-release
+    sudo cp /etc/os-release /usr/lib/os-release || true
 }
 
 function main() {
