@@ -6,7 +6,7 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 export DEBIAN_FRONTEND=noninteractive
-export LATEST_VERSION="1.3.1"
+export LATEST_VERSION="1.3.2"
 export CODE_NAME="plucky"
 export OS_ID="AnduinOS"
 export CURRENT_VERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | cut -d "=" -f 2)
@@ -202,7 +202,7 @@ function upgrade_131_to_132() {
     ext_source="https://gitlab.aiursoft.cn/anduin/anduinos/-/blob/1.4/src/mods/29-gnome-extension-anduinos-switcher/switcher@anduinos/extension.js?ref_type=heads"
     sudo wget -O /usr/share/gnome-shell/extensions/switcher@anduinos/extension.js $ext_source
 
-    apt list --installed | grep software-properties-gtk || install_spg.
+    apt list --installed | grep software-properties-gtk || install_spg
 
     if [ ! -f /usr/local/bin/deskmon ]; then
         install_desktop_mon
@@ -264,8 +264,12 @@ function main() {
     case "$CURRENT_VERSION" in
           "1.3.0")
               upgrade_130_to_131
+              upgrade_131_to_132
               ;;
           "1.3.1")
+              upgrade_131_to_132
+              ;;
+          "1.3.2")
               print_ok "Your system is already up to date. No update available."
               exit 0
               ;;
