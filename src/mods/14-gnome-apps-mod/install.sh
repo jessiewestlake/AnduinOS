@@ -68,12 +68,19 @@ apt install $INTERACTIVE \
     xserver-xorg-video-qxl \
     xserver-xorg-video-all \
     gdm3 \
-    orca \
     libpam-gnome-keyring \
     gnome-keyring \
     gnome-keyring-pkcs11 \
     --no-install-recommends
 judge "Install gnome basic sessions"
+
+apt install $INTERACTIVE \
+    orca \
+    speech-dispatcher-espeak-ng \
+    speech-dispatcher-audio-plugins \
+    speech-dispatcher \
+    espeak-ng-data \
+    --no-install-recommends
 
 install_opt ubuntu-session-xsession
 
