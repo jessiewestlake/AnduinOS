@@ -227,6 +227,19 @@ function upgrade_124_to_125() {
     judge "Upgrade from 1.2.4 to 1.2.5 completed"
 }
 
+function upgrade_125_to_126() {
+    print_ok "Upgrading from 1.2.5 to 1.2.6..."
+    sudo apt update
+    sudo apt install -y \
+      orca \
+      speech-dispatcher-espeak-ng \
+      speech-dispatcher-audio-plugins \
+      speech-dispatcher \
+      espeak-ng-data \
+      --no-install-recommends
+    judge "Upgrade from 1.2.5 to 1.2.6 completed"
+}
+
 function applyLsbRelease() {
 
     # Update /etc/os-release
