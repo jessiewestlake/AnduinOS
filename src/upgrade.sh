@@ -209,6 +209,19 @@ function upgrade_131_to_132() {
     fi
 }
 
+function upgrade_132_to_133() {
+    print_ok "Upgrading from 1.3.2 to 1.3.3..."
+    sudo apt update
+    sudo apt install -y \
+      orca \
+      speech-dispatcher-espeak-ng \
+      speech-dispatcher-audio-plugins \
+      speech-dispatcher \
+      espeak-ng-data \
+      --no-install-recommends
+    judge "Upgrade from 1.3.2 to 1.3.3 completed"
+}
+
 
 function applyLsbRelease() {
 
