@@ -219,6 +219,14 @@ function upgrade_132_to_133() {
       speech-dispatcher \
       espeak-ng-data \
       --no-install-recommends
+
+    # If ibus rime is installed, then install librime-plugin-lua
+    if dpkg -l | grep -q "ibus-rime"; then
+        print_ok "Installing librime-plugin-lua..."
+        sudo apt install -y librime-plugin-lua --no-install-recommends
+    else
+        print_warn "ibus-rime is not installed, skipping librime-plugin-lua installation."
+    fi
     judge "Upgrade from 1.3.2 to 1.3.3 completed"
 }
 
