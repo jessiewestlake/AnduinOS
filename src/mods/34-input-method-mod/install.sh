@@ -16,7 +16,10 @@ fi
 # If config ibus rime:
 if [ "$CONFIG_IBUS_RIME" == "true" ]; then
     print_ok "Installing im-config..."
-    apt install $INTERACTIVE im-config --no-install-recommends
+    apt install $INTERACTIVE \
+        im-config \
+        librime-plugin-lua \
+        --no-install-recommends
     judge "Install im-config"
 
     print_ok "Setting up ibus..."
