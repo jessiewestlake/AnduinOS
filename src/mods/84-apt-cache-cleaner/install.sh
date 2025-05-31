@@ -7,3 +7,7 @@ apt update
 apt clean -y
 rm -rf /var/cache/apt/archives/*
 judge "Clean up apt cache"
+
+print_ok "Cleaning up log files..."
+rm -rf /var/log/*
+judge "Clean up log files"
