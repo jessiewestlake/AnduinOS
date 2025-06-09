@@ -229,7 +229,8 @@ export DEFAULT_APPS="
     gnome-font-viewer \
     gnome-browser-connector \
     gnome-control-center-faces \
-    gnome-startup-applications
+    gnome-startup-applications \
+    policykit-desktop-privileges
 "
 
 export DEFAULT_CLI_TOOLS="
