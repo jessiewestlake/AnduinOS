@@ -236,6 +236,7 @@ function upgrade_125_to_126() {
       speech-dispatcher-audio-plugins \
       speech-dispatcher \
       espeak-ng-data \
+      policykit-desktop-privileges \
       --no-install-recommends
 
     # If ibus rime is installed, then install librime-plugin-lua
