@@ -108,7 +108,7 @@ fi
 # flatpak:  install firefox from flathub (Only available if STORE_PROVIDER is set to "flatpak")
 # snap:     install firefox from snap (Only available if STORE_PROVIDER is set to "snap")
 # TODO: Snap firefox seems to be broken. Investigation required.
-export FIREFOX_PROVIDER="deb"
+export FIREFOX_PROVIDER="none"
 if [[ "$FIREFOX_PROVIDER" == "flatpak" && "$STORE_PROVIDER" != "flatpak" ]]; then
     echo "Error: FIREFOX_PROVIDER is set to flatpak, but STORE_PROVIDER is not set to flatpak"
     exit 1
@@ -121,13 +121,15 @@ fi
 # Whether to install firefox with apt. If set, it will be installed from the PPA. If empty, it will be installed from the default source
 # Must set FIREFOX_PROVIDER to "deb" before using this option
 # Sample: mirror-ppa.aiursoft.cn
-export FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
+# export FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
+export FIREFOX_MIRROR=""
 if [[ "$FIREFOX_MIRROR" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
     echo "Error: FIREFOX_MIRROR is set, but FIREFOX_PROVIDER is not set to deb"
     exit 1
 fi
 
-export FIREFOX_LOCALE_PACKAGE="firefox-locale-$LANG_PACK_CODE*"
+# export FIREFOX_LOCALE_PACKAGE="firefox-locale-$LANG_PACK_CODE*"
+export FIREFOX_LOCALE_PACKAGE=""
 if [[ "$FIREFOX_LOCALE_PACKAGE" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
     echo "Error: FIREFOX_LOCALE_PACKAGE is set, but FIREFOX_PROVIDER is not set to deb"
     exit 1
