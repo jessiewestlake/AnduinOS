@@ -253,3 +253,32 @@ export DEFAULT_CLI_TOOLS="
     whois \
     nmap
     "
+
+export DEFAULT_FLATPAK_TOOLS=""
+# export DEFAULT_FLATPAK_TOOLS="
+#     chat.revolt.RevoltDesktop \
+#     com.discordapp.Discord \
+#     com.google.EarthPro \
+#     com.jetbrains.Rider \
+#     com.obsproject.Studio \
+#     com.spotify.Client \
+#     com.tencent.WeChat \
+#     com.valvesoftware.Steam \
+#     io.github.shiftey.Desktop \
+#     net.agalwood.Motrix \
+#     org.musescore.MuseScore \
+#     org.qbittorrent.qBittorrent \
+#     org.signal.Signal \
+#     org.gnome.Boxes \
+#     org.kde.krita \
+#     io.missioncenter.MissionCenter \
+#     com.getpostman.Postman \
+#     org.shotcut.Shotcut \
+#     org.blender.Blender \
+#     org.videolan.VLC \
+#     com.wps.Office \
+#     org.chromium.Chromium \
+#     com.dosbox_x.DOSBox-X \
+#     com.mojang.Minecraft \
+#     org.codeblocks.codeblocks
+#     "
