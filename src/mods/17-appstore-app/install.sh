@@ -44,6 +44,18 @@ elif [ "$STORE_PROVIDER" == "flatpak" ]; then
     print_ok "Current flathub repository:"
     flatpak remotes --columns=name,url
 
+    print_ok "Installing default flatpak tools..."
+    for pkg in $DEFAULT_FLATPAK_TOOLS; do
+        # trim leading/trailing whitespace
+        pkg="${pkg## }"
+        pkg="${pkg%% }"
+        [[ -z "$pkg" ]] && continue
+
+        print_ok "Installing ${pkg}…"
+        flatpak install -y flathub "${pkg}"
+        judge "Install flatpak tool ${pkg}"
+    done
+
 elif [ "$STORE_PROVIDER" == "snap" ]; then
     print_ok "Installing snap store..."
     apt install $INTERACTIVE \
