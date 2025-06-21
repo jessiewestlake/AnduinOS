@@ -7,7 +7,7 @@
         "timezone": "America/Los_Angeles",
         "config_weather_location": "[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]",
         "config_input_method": "[('xkb', 'us')]",
-        "live_ubuntu_mirror": "http://archive.ubuntu.com/ubuntu/"
+        "live_firefox_mirror": "ppa.launchpadcontent.net"
     },
     {
         "lang_mode": "zh_CN",
@@ -17,6 +17,7 @@
         "timezone": "Asia/Shanghai",
         "config_weather_location": "[(uint32 0, '苏州, 江苏', uint32 0, '31.311123,120.6212881')]",
         "config_input_method": "[('xkb', 'us'), ('ibus', 'rime')]",
-        "live_ubuntu_mirror": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/"
+        "live_ubuntu_mirror": "https://mirrors.tuna.tsinghua.edu.cn/ubuntu/",
+        "live_firefox_mirror": "mirror-ppa.aiursoft.cn"
     }
 ]

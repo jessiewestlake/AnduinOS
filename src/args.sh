@@ -121,9 +121,18 @@ fi
 # Whether to install firefox with apt. If set, it will be installed from the PPA. If empty, it will be installed from the default source
 # Must set FIREFOX_PROVIDER to "deb" before using this option
 # Sample: mirror-ppa.aiursoft.cn
-export FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
-if [[ "$FIREFOX_MIRROR" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
-    echo "Error: FIREFOX_MIRROR is set, but FIREFOX_PROVIDER is not set to deb"
+export BUILD_FIREFOX_MIRROR="mirror-ppa.aiursoft.cn"
+if [[ "$BUILD_FIREFOX_MIRROR" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
+    echo "Error: BUILD_FIREFOX_MIRROR is set, but FIREFOX_PROVIDER is not set to deb"
+    exit 1
+fi
+
+# The Firefox mirror for live system. If set, it will be used to replace the default PPA mirror.
+# This must be set if FIREFOX_PROVIDER is set to "deb"
+# Default: ppa.launchpadcontent.net
+export LIVE_FIREFOX_MIRROR="ppa.launchpadcontent.net"
+if [[ "$FIREFOX_PROVIDER" == "deb" && -z "$LIVE_FIREFOX_MIRROR" ]]; then
+    echo "Error: FIREFOX_PROVIDER is deb, but didn't set LIVE_FIREFOX_MIRROR"
     exit 1
 fi
 
@@ -132,7 +141,6 @@ if [[ "$FIREFOX_LOCALE_PACKAGE" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
     echo "Error: FIREFOX_LOCALE_PACKAGE is set, but FIREFOX_PROVIDER is not set to deb"
     exit 1
 fi
-
 #============================
 # Input method configuration
 #============================
