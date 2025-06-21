@@ -249,6 +249,12 @@ function upgrade_115_to_116() {
     else
         print_warn "ibus-rime is not installed, skipping librime-plugin-lua installation."
     fi
+
+    if [ -f /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-noble.sources ]; then
+        print_ok "Replacing mirror-ppa.aiursoft.cn with ppa.launchpadcontent.net in mozillateam-ubuntu-ppa-noble.sources"
+        sudo sed -i 's/mirror-ppa.aiursoft.cn/ppa.launchpadcontent.net/g' /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-noble.sources
+        judge "Replace mirror-ppa.aiursoft.cn with ppa.launchpadcontent.net"
+    fi
     judge "Upgrade from 1.1.5 to 1.1.6 completed"
 }
 
