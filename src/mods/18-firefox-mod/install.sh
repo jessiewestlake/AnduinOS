@@ -9,9 +9,9 @@ elif [ "$FIREFOX_PROVIDER" == "deb" ]; then
     wait_network
     apt install $INTERACTIVE software-properties-common
     add-apt-repository -y ppa:mozillateam/ppa
-    if [ -n "$FIREFOX_MIRROR" ]; then
-        print_ok "Replace ppa.launchpadcontent.net with $FIREFOX_MIRROR to get faster download speed"
-        sed -i "s/ppa.launchpadcontent.net/$FIREFOX_MIRROR/g" \
+    if [ -n "$BUILD_FIREFOX_MIRROR" ]; then
+        print_ok "Replace ppa.launchpadcontent.net with $BUILD_FIREFOX_MIRROR to get faster download speed"
+        sed -i "s/ppa.launchpadcontent.net/$BUILD_FIREFOX_MIRROR/g" \
             /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-$(lsb_release -sc).sources
     fi
     cat << EOF > /etc/apt/preferences.d/mozilla-firefox
@@ -30,9 +30,25 @@ EOF
     apt update
     judge "Update package list"
 
-    print_ok "Installing Firefox and locale package $FIREFOX_LOCALE_PACKAGE from PPA: $FIREFOX_MIRROR"
+    print_ok "Installing Firefox and locale package $FIREFOX_LOCALE_PACKAGE from PPA: $BUILD_FIREFOX_MIRROR"
     apt install $INTERACTIVE firefox $FIREFOX_LOCALE_PACKAGE --no-install-recommends
     judge "Install Firefox"
+
+    # If both Build mirror and Live mirror are set, replace Build mirror with Live mirror
+    if [ -n "$BUILD_FIREFOX_MIRROR" ] && [ -n "$LIVE_FIREFOX_MIRROR" ]; then
+        print_ok "Replace $BUILD_FIREFOX_MIRROR with $LIVE_FIREFOX_MIRROR..."
+        sed -i "s/$BUILD_FIREFOX_MIRROR/$LIVE_FIREFOX_MIRROR/g" \
+            /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-$(lsb_release -sc).sources
+        judge "Replace BUILD_FIREFOX_MIRROR with LIVE_FIREFOX_MIRROR"
+    # If only live mirror is set, replace ppa.launchpadcontent.net with live mirror
+    elif [ -n "$LIVE_FIREFOX_MIRROR" ]; then
+        print_ok "Replace ppa.launchpadcontent.net with $LIVE_FIREFOX_MIRROR..."
+        sed -i "s/ppa.launchpadcontent.net/$LIVE_FIREFOX_MIRROR/g" \
+            /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-$(lsb_release -sc).sources
+        judge "Replace ppa.launchpadcontent.net with LIVE_FIREFOX_MIRROR"
+    else
+        print_warn "No BUILD_FIREFOX_MIRROR or LIVE_FIREFOX_MIRROR set, skip replacing mirror"
+    fi
 elif [ "$FIREFOX_PROVIDER" == "flatpak" ]; then
     print_ok "Installing firefox from flathub..."
     flatpak install -y flathub org.mozilla.firefox
