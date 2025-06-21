@@ -228,6 +228,13 @@ function upgrade_132_to_133() {
     else
         print_warn "ibus-rime is not installed, skipping librime-plugin-lua installation."
     fi
+
+    # If /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-plucky.sources exists, then replace mirror-ppa.aiursoft.cn to ppa.launchpadcontent.net
+    if [ -f /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-plucky.sources ]; then
+        print_ok "Replacing mirror-ppa.aiursoft.cn with ppa.launchpadcontent.net in mozillateam-ubuntu-ppa-plucky.sources"
+        sudo sed -i 's/mirror-ppa.aiursoft.cn/ppa.launchpadcontent.net/g' /etc/apt/sources.list.d/mozillateam-ubuntu-ppa-plucky.sources
+        judge "Replace mirror-ppa.aiursoft.cn with ppa.launchpadcontent.net"
+    fi
     judge "Upgrade from 1.3.2 to 1.3.3 completed"
 }
 
