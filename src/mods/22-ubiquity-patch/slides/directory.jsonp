@@ -226,5 +226,17 @@ ubiquitySlideshowDirectoryCb({
             "welcome.html"
         ],
         "media": []
+    },
+    "ro": {
+        "slides": [
+            "apps.html",
+            "build.html",
+            "gaming.html",
+            "privacy.html",
+            "root.html",
+            "support.html",
+            "welcome.html"
+        ],
+        "media": []
     }
 });
