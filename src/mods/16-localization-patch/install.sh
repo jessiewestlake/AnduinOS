@@ -24,6 +24,7 @@ if [[ $DEFAULT_APPS =~ "shotwell" ]]; then
     sed -i "/^Name=/a Name[sv_SE]=Foton" /usr/share/applications/org.gnome.Shotwell.desktop
     sed -i "/^Name=/a Name[pl_PL]=Zdjęcia" /usr/share/applications/org.gnome.Shotwell.desktop
     sed -i "/^Name=/a Name[tr_TR]=Fotoğraflar" /usr/share/applications/org.gnome.Shotwell.desktop
+    sed -i "/^Name=/a Name[ro_RO]=Fotografii" /usr/share/applications/org.gnome.Shotwell.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_CN]=图库" /usr/share/applications/org.gnome.Shotwell.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_TW]=圖庫" /usr/share/applications/org.gnome.Shotwell.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_HK]=圖庫" /usr/share/applications/org.gnome.Shotwell.desktop
@@ -43,6 +44,7 @@ if [[ $DEFAULT_APPS =~ "shotwell" ]]; then
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[sv_SE]=Foton" /usr/share/applications/org.gnome.Shotwell.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[pl_PL]=Zdjęcia" /usr/share/applications/org.gnome.Shotwell.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[tr_TR]=Fotoğraflar" /usr/share/applications/org.gnome.Shotwell.desktop
+    sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[ro_RO]=Fotografii" /usr/share/applications/org.gnome.Shotwell.desktop
     judge "Patch Shotwell localization"
 fi
 
@@ -67,6 +69,7 @@ if [[ $DEFAULT_APPS =~ "rhythmbox" ]]; then
     sed -i "/^Name=Rhythmbox/a Name[sv_SE]=Musik" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     sed -i "/^Name=Rhythmbox/a Name[pl_PL]=Muzyka" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     sed -i "/^Name=Rhythmbox/a Name[tr_TR]=Müzik" /usr/share/applications/org.gnome.Rhythmbox3.desktop
+    sed -i "/^Name=Rhythmbox/a Name[ro_RO]=Muzică" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_CN]=音乐" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_TW]=音樂" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_HK]=音樂" /usr/share/applications/org.gnome.Rhythmbox3.desktop
@@ -86,6 +89,7 @@ if [[ $DEFAULT_APPS =~ "rhythmbox" ]]; then
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[sv_SE]=Musik" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[pl_PL]=Muzyka" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[tr_TR]=Müzik" /usr/share/applications/org.gnome.Rhythmbox3.desktop
+    sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[ro_RO]=Muzică" /usr/share/applications/org.gnome.Rhythmbox3.desktop
     judge "Patch rhythmbox localization"
 fi
 
@@ -110,6 +114,7 @@ if [ $DEFAULT_APPS =~ "baobab" ]; then
     sed -i "/^Name=/a Name[sv_SE]=Diskanvändning" /usr/share/applications/org.gnome.baobab.desktop
     sed -i "/^Name=/a Name[pl_PL]=Analiza użycia dysku" /usr/share/applications/org.gnome.baobab.desktop
     sed -i "/^Name=/a Name[tr_TR]=Disk Kullanım Analizi" /usr/share/applications/org.gnome.baobab.desktop
+    sed -i "/^Name=/a Name[ro_RO]=Analizator de utilizare a hard discului" /usr/share/applications/org.gnome.baobab.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_CN]=磁盘分析" /usr/share/applications/org.gnome.baobab.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_TW]=磁碟分析" /usr/share/applications/org.gnome.baobab.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[zh_HK]=磁碟分析" /usr/share/applications/org.gnome.baobab.desktop
@@ -129,6 +134,7 @@ if [ $DEFAULT_APPS =~ "baobab" ]; then
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[sv_SE]=Diskanvändning" /usr/share/applications/org.gnome.baobab.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[pl_PL]=Analiza użycia dysku" /usr/share/applications/org.gnome.baobab.desktop
     sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[tr_TR]=Disk Kullanım Analizi" /usr/share/applications/org.gnome.baobab.desktop
+    sed -i "/^X-GNOME-FullName=/a X-GNOME-FullName[ro_RO]=Analizator de utilizare a hard discului" /usr/share/applications/org.gnome.baobab.desktop
     judge "Patch baobab localization"
 fi
 
@@ -157,6 +163,7 @@ if [[ $DEFAULT_APPS =~ "qalculate" ]]; then
         [sv_SE]="Kalkylator"
         [pl_PL]="Kalkulator"
         [tr_TR]="Hesap Makinesi"
+        [ro_RO]="Calculator"
     )
 
     # For each locale: remove any existing Name[<locale>] line, then insert our translation
