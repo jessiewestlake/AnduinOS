@@ -150,7 +150,7 @@
         "timezone": "Europe/Madrid",
         "config_weather_location": "[(uint32 0, 'Madrid, España', uint32 0, '40.4167754,-3.7037902')]",
         "config_input_method": "[('xkb', 'us'), ('xkb', 'es')]",
-        "live_ubuntu_mirror": "https://labs.eif.urjc.es/mirror/ubuntu/",
+        "live_ubuntu_mirror": "https://es.archive.ubuntu.com/ubuntu/",
         "live_firefox_mirror": "ppa.launchpadcontent.net",
         "flathub_mirror": "",
         "flathub_gpg": ""
@@ -189,7 +189,7 @@
         "timezone": "Europe/Lisbon",
         "config_weather_location": "[(uint32 0, 'Lisboa, Portugal', uint32 0, '38.7222524,-9.1393366')]",
         "config_input_method": "[('xkb', 'us'), ('xkb', 'pt')]",
-        "live_ubuntu_mirror": "https://labs.eif.urjc.es/mirror/ubuntu/",
+        "live_ubuntu_mirror": "http://archive.ubuntumirror.dei.uc.pt/ubuntu/",
         "live_firefox_mirror": "ppa.launchpadcontent.net",
         "flathub_mirror": "",
         "flathub_gpg": ""
