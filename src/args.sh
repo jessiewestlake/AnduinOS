@@ -58,7 +58,7 @@ export TARGET_NAME="anduinos"
 export TARGET_BUSINESS_NAME="AnduinOS"
 
 # Version number. Must be in the format of x.y.z
-export TARGET_BUILD_VERSION="1.2.6"
+export TARGET_BUILD_VERSION="1.2.7"
 
 # Fork version. Must be in the format of x.y
 export TARGET_BUILD_BRANCH=$(git rev-parse --abbrev-ref HEAD)
