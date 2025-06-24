@@ -87,6 +87,7 @@ function install_spg() {
     print_ok "Downloading software-properties-gtk..."
     sudo apt install -y \
         python3-dateutil \
+        python3-distro-info \
         gir1.2-handy-1 \
         libgtk3-perl \
         --no-install-recommends
