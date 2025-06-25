@@ -3,6 +3,9 @@ set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
 print_ok "Patch plymouth"
+# hold theme spinner because after the upgrade replace the logo
+apt-mark hold plymouth-theme-spinner
+# Replace original spinner logo and text with ours
 cp ./logo_128.png      /usr/share/plymouth/themes/spinner/bgrt-fallback.png
 cp ./anduinos_text.png /usr/share/plymouth/ubuntu-logo.png
 cp ./anduinos_text.png /usr/share/plymouth/themes/spinner/watermark.png
