@@ -22,6 +22,7 @@ help:
 	@echo "Usage:"
 	@echo "  make          (or make current)   Build current language"
 	@echo "  make all                          Build all languages"
+	@echo "  make ro_RO                        Build for Romanian language"
 	@echo "  make fast                         Build fast config languages"
 	@echo "  make clean                        Remove build artifacts"
 	@echo "  make bootstrap                    Validate environment and deps"
@@ -53,6 +54,10 @@ bootstrap:
 current: bootstrap
 	@echo "[MAKE] Building current language..."
 	@cd $(SRC_DIR) && ./build.sh
+
+ro_RO: bootstrap
+	@echo "[MAKE] Building for Romanian language (ro_RO.json)..."
+	@./build_all.sh -c $(CONFIG_DIR)/ro_RO.json
 
 all: bootstrap
 	@echo "[MAKE] Building ALL languages (all.json)..."
