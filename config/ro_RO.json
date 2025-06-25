@@ -1,0 +1,15 @@
+[
+    {
+        "lang_mode": "ro_RO",
+        "lang_pack_code": "ro",
+        "input_method_install": "",
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Bucharest",
+        "config_weather_location": "[(uint32 0, 'Suceava,România', uint32 0, '47.5326534,25.8345939')]",
+        "config_input_method": "[('xkb', 'ro'), ('xkb', 'us')]",
+        "live_ubuntu_mirror": "https://ro.archive.ubuntu.com/ubuntu/",
+        "live_firefox_mirror": "ppa.launchpadcontent.net",
+        "flathub_mirror": "",
+        "flathub_gpg": ""
+    }
+]
