@@ -61,7 +61,7 @@
         "config_ibus_rime": "false",
         "timezone": "Asia/Tokyo",
         "config_weather_location": "[(uint32 0, '東京都, 日本', uint32 0, '35.6894875,139.6917064')]",
-        "config_input_method": "[('xkb', 'us'), ('ibus', 'mozc-jp')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'jp'), ('ibus', 'mozc-jp')]",
         "live_ubuntu_mirror": "https://ftp.udx.icscoe.jp/Linux/ubuntu/",
         "live_firefox_mirror": "ppa.launchpadcontent.net"
     },
