@@ -8,9 +8,30 @@ set -u                  # treat unset variable as error
 # - Then remove the dconf settings from root user
 
 print_ok "Loading dconf settings"
-export $(dbus-launch)
 
+print_ok "Exporting dbus session"
+export $(dbus-launch)
+judge "Export dbus session"
+
+print_ok "Loading dconf settings for org.gnome"
 dconf load /org/gnome/ < ./dconf.ini
+judge "Load dconf settings for org.gnome"
+
+# print_ok "Patching dconf settings for dash-to-panel"
+# mkdir -p /etc/dconf/db/local.d
+# tee /etc/dconf/db/local.d/11-dash-to-panel <<'EOF'
+# [org/gnome/shell/extensions/dash-to-panel]
+# panel-element-positions='{"0":[{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
+# EOF
+# judge "Patch dconf settings for dash-to-panel"
+
+# print_ok "Locking dconf settings for dash-to-panel"
+# mkdir -p /etc/dconf/db/local.d/locks
+# tee /etc/dconf/db/local.d/locks/dash-to-panel-lock <<'EOF'
+# /org/gnome/shell/extensions/dash-to-panel/panel-element-positions
+# EOF
+# judge "Lock dconf settings for dash-to-panel"
+
 dconf write /org/gtk/settings/file-chooser/sort-directories-first true
 dconf write /org/gnome/desktop/input-sources/xkb-options "@as []"
 dconf write /org/gnome/desktop/input-sources/mru-sources "[('xkb', 'us')]"
