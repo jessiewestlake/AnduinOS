@@ -239,6 +239,14 @@ function upgrade_132_to_133() {
     judge "Upgrade from 1.3.2 to 1.3.3 completed"
 }
 
+function upgrade_133_to_134() {
+    print_ok "Upgrading from 1.3.3 to 1.3.4..."
+    sudo apt update
+    sudo apt install -y \
+      xclip
+      --no-install-recommends
+}
+
 
 function applyLsbRelease() {
 
