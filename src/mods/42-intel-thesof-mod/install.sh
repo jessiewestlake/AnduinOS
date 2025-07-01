@@ -37,7 +37,7 @@ ALSA_UCM_CONF_LINK="https://git.aiursoft.cn/PublicVault/alsa-ucm-conf/archive/ma
 
     print_ok "Unzipping alsa-ucm-conf"
     mkdir -p ./alsa-ucm/
-    unzip -O UTF-8 ./alsa-ucm-conf.zip -d ./alsa-ucm/
+    unzip -q -O UTF-8 ./alsa-ucm-conf.zip -d ./alsa-ucm/
     judge "Unzip alsa-ucm-conf"
 
     print_ok "Copying alsa-ucm-conf to /usr/share/alsa/ucm2/"

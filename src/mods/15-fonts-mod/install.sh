@@ -4,7 +4,7 @@ set -u                  # treat unset variable as error
 
 print_ok "Patching fonts..."
 cp ./local.conf /etc/fonts/
-unzip -O UTF-8 ./fonts.zip -d /usr/share/fonts/
+unzip -q -O UTF-8 ./fonts.zip -d /usr/share/fonts/
 judge "Patch fonts"
 
 print_ok "Updating font cache"
