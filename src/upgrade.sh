@@ -259,6 +259,14 @@ function upgrade_115_to_116() {
     judge "Upgrade from 1.1.5 to 1.1.6 completed"
 }
 
+function upgrade_116_to_117() {
+    print_ok "Upgrading from 1.1.6 to 1.1.7..."
+    sudo apt update
+    sudo apt install -y \
+      xclip
+      --no-install-recommends
+}
+
 function applyLsbRelease() {
 
   # Update /etc/os-release
