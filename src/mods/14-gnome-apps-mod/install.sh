@@ -52,6 +52,8 @@ apt install $INTERACTIVE \
 judge "Install basic CLI tools"
 
 print_ok "Installing gnome basic sessions..."
+
+# Base packages for all architectures
 apt install $INTERACTIVE \
     gnome-shell \
     ubuntu-session \
@@ -65,7 +67,6 @@ apt install $INTERACTIVE \
     xserver-xorg-input-all \
     xserver-xorg \
     xserver-xorg-legacy \
-    xserver-xorg-video-intel \
     xserver-xorg-video-qxl \
     xserver-xorg-video-all \
     gdm3 \
@@ -73,6 +74,21 @@ apt install $INTERACTIVE \
     gnome-keyring \
     gnome-keyring-pkcs11 \
     --no-install-recommends
+
+# Architecture-specific video drivers
+case "$TARGET_ARCH" in
+    amd64)
+        print_ok "Installing Intel video driver for x86_64..."
+        apt install $INTERACTIVE \
+            xserver-xorg-video-intel \
+            --no-install-recommends
+        ;;
+    arm64)
+        print_ok "Skipping Intel video driver on ARM64..."
+        # ARM64 systems typically use integrated GPU drivers included in xserver-xorg-video-all
+        ;;
+esac
+
 judge "Install gnome basic sessions"
 
 apt install $INTERACTIVE \
