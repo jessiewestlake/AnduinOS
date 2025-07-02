@@ -14,7 +14,7 @@ AnduinOS is a custom Ubuntu-based Linux distribution that aims to facilitate dev
 
 ![Screenshot](./screenshot.png)
 
-AnduinOS works based on donations from users. We are grateful for your support.
+AnduinOS is funded by user donations. We are grateful for your support.
 
 <span class="paypal"><a href="https://www.paypal.com/paypalme/anduinxue2017" title="Donate to this project using Paypal"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal donate button" /></a></span>
 
