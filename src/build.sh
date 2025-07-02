@@ -34,17 +34,31 @@ function clean() {
 function setup_host() {
     print_ok "Setting up host environment..."
     sudo apt update
-    sudo apt install -y \
+    
+    # Base packages
+    local packages="\
         binutils \
         debootstrap \
         squashfs-tools \
         xorriso \
         grub-pc-bin \
-        grub-efi-amd64 \
         grub2-common \
         mtools \
-        dosfstools \
-        --no-install-recommends
+        dosfstools"
+    
+    # Architecture-specific GRUB packages
+    case "$TARGET_ARCH" in
+        amd64)
+            packages="$packages grub-efi-amd64"
+            ;;
+        arm64)
+            # For ARM64, we need grub-efi-arm64 (may need to be available in repos)
+            # For now, we'll try to install it if available, otherwise warn
+            packages="$packages grub-efi-arm64"
+            ;;
+    esac
+    
+    sudo apt install -y $packages --no-install-recommends
     judge "Install required tools"
 
     print_ok "Creating new_building_os directory..."
@@ -58,7 +72,7 @@ function setup_host() {
 
 function download_base_system() {
     print_ok "Calling debootstrap to download base debian system..."
-    sudo debootstrap  --arch=amd64 --variant=minbase $TARGET_UBUNTU_VERSION new_building_os $BUILD_UBUNTU_MIRROR
+    sudo debootstrap  --arch=$TARGET_ARCH --variant=minbase $TARGET_UBUNTU_VERSION new_building_os $BUILD_UBUNTU_MIRROR
     judge "Download base system"
 }
 
@@ -201,12 +215,23 @@ EOF
     judge "Generate filesystem.size"
 
     print_ok "Generating README.diskdefines..."
+    # Architecture-specific defines
+    local arch_upper=""
+    case "$TARGET_ARCH" in
+        amd64)
+            arch_upper="amd64"
+            ;;
+        arm64)
+            arch_upper="arm64"
+            ;;
+    esac
+    
     cat << EOF > image/README.diskdefines
 #define DISKNAME  Try $TARGET_BUSINESS_NAME
 #define TYPE  binary
 #define TYPEbinary  1
-#define ARCH  amd64
-#define ARCHamd64  1
+#define ARCH  $TARGET_ARCH
+#define ARCH$arch_upper  1
 #define DISKNUM  1
 #define DISKNUM1  1
 #define TOTALNUM  0
@@ -279,7 +304,7 @@ EOF
     judge "Create hybrid boot image"
 
     print_ok "Creating .disk/info..."
-    echo "$TARGET_BUSINESS_NAME $TARGET_BUILD_VERSION $TARGET_UBUNTU_VERSION - Release amd64 ($(date +%Y%m%d))" | sudo tee .disk/info
+    echo "$TARGET_BUSINESS_NAME $TARGET_BUILD_VERSION $TARGET_UBUNTU_VERSION - Release $TARGET_ARCH ($(date +%Y%m%d))" | sudo tee .disk/info
     judge "Create .disk/info"
 
     print_ok "Creating md5sum.txt..."

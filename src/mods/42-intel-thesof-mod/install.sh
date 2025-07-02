@@ -2,6 +2,17 @@ set -e                  # exit on error
 set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
+# Check if we're on an Intel/x86 architecture
+case "$TARGET_ARCH" in
+    amd64)
+        print_ok "Installing Intel SOF Mod for x86_64 architecture"
+        ;;
+    *)
+        print_ok "Skipping Intel SOF Mod - not applicable for $TARGET_ARCH architecture"
+        exit 0
+        ;;
+esac
+
 SOF_BIN_LINK="https://github.com/thesofproject/sof-bin/releases/download/v2025.01.1/sof-bin-2025.01.1.tar.gz"
 ALSA_UCM_CONF_LINK="https://git.aiursoft.cn/PublicVault/alsa-ucm-conf/archive/master.zip"
 

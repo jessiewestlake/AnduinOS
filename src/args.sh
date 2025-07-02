@@ -43,6 +43,27 @@ export LANGUAGE_PACKS="language-pack-$LANG_PACK_CODE* language-pack-gnome-$LANG_
 echo "Language environment has been set to $LANG_MODE"
 
 #==========================
+# Architecture information
+#==========================
+# Auto-detect host architecture, can be overridden
+# Supported: amd64, arm64
+export HOST_ARCH=$(dpkg --print-architecture)
+# Target architecture for the build (defaults to host architecture)
+# Can be: amd64, arm64
+export TARGET_ARCH="${TARGET_ARCH:-$HOST_ARCH}"
+
+# Validate supported architectures
+case "$TARGET_ARCH" in
+    amd64|arm64)
+        echo "Building for architecture: $TARGET_ARCH"
+        ;;
+    *)
+        echo "Error: Unsupported architecture '$TARGET_ARCH'. Supported: amd64, arm64"
+        exit 1
+        ;;
+esac
+
+#==========================
 # OS system information
 #==========================
 # Can be: jammy noble oracular plucky questing
