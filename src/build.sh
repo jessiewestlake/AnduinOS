@@ -288,20 +288,29 @@ EOF
     )
     judge "Create EFI boot image"
 
-    print_ok "Creating BIOS boot image on /isolinux/bios.img..."
-    grub-mkstandalone \
-        --format=i386-pc \
-        --output=isolinux/core.img \
-        --install-modules="linux16 linux normal iso9660 biosdisk memdisk search tar ls" \
-        --modules="linux16 linux normal iso9660 biosdisk search" \
-        --locales="" \
-        --fonts="" \
-        "boot/grub/grub.cfg=isolinux/grub.cfg"
-    judge "Create BIOS boot image"
+    # Architecture-specific boot image creation
+    case "$TARGET_ARCH" in
+        amd64)
+            print_ok "Creating BIOS boot image on /isolinux/bios.img (x86 only)..."
+            grub-mkstandalone \
+                --format=i386-pc \
+                --output=isolinux/core.img \
+                --install-modules="linux16 linux normal iso9660 biosdisk memdisk search tar ls" \
+                --modules="linux16 linux normal iso9660 biosdisk search" \
+                --locales="" \
+                --fonts="" \
+                "boot/grub/grub.cfg=isolinux/grub.cfg"
+            judge "Create BIOS boot image"
 
-    print_ok "Creating hybrid boot image on /isolinux/bios.img..."
-    cat /usr/lib/grub/i386-pc/cdboot.img isolinux/core.img > isolinux/bios.img
-    judge "Create hybrid boot image"
+            print_ok "Creating hybrid boot image on /isolinux/bios.img..."
+            cat /usr/lib/grub/i386-pc/cdboot.img isolinux/core.img > isolinux/bios.img
+            judge "Create hybrid boot image"
+            ;;
+        arm64)
+            print_ok "Skipping BIOS boot image creation (ARM64 uses UEFI only)..."
+            # ARM64 systems typically only support UEFI boot, no BIOS compatibility needed
+            ;;
+    esac
 
     print_ok "Creating .disk/info..."
     echo "$TARGET_BUSINESS_NAME $TARGET_BUILD_VERSION $TARGET_UBUNTU_VERSION - Release $TARGET_ARCH ($(date +%Y%m%d))" | sudo tee .disk/info
@@ -312,30 +321,55 @@ EOF
     judge "Create md5sum.txt"
 
     print_ok "Creating iso image on $SCRIPT_DIR/$TARGET_NAME.iso..."
-    sudo xorriso \
-        -as mkisofs \
-        -iso-level 3 \
-        -full-iso9660-filenames \
-        -volid "$TARGET_NAME" \
-        -eltorito-boot boot/grub/bios.img \
-            -no-emul-boot \
-            -boot-load-size 4 \
-            -boot-info-table \
-            --eltorito-catalog boot/grub/boot.cat \
-            --grub2-boot-info \
-            --grub2-mbr /usr/lib/grub/i386-pc/boot_hybrid.img \
-        -eltorito-alt-boot \
-            -e EFI/efiboot.img \
-            -no-emul-boot \
-            -append_partition 2 0xef isolinux/efiboot.img \
-        -output "$SCRIPT_DIR/$TARGET_NAME.iso" \
-        -m "isolinux/efiboot.img" \
-        -m "isolinux/bios.img" \
-        -graft-points \
-            "/EFI/efiboot.img=isolinux/efiboot.img" \
-            "/boot/grub/grub.cfg=isolinux/grub.cfg" \
-            "/boot/grub/bios.img=isolinux/bios.img" \
-            "."
+    
+    # Architecture-specific ISO creation
+    case "$TARGET_ARCH" in
+        amd64)
+            # x86_64 with both BIOS and UEFI boot support
+            sudo xorriso \
+                -as mkisofs \
+                -iso-level 3 \
+                -full-iso9660-filenames \
+                -volid "$TARGET_NAME" \
+                -eltorito-boot boot/grub/bios.img \
+                    -no-emul-boot \
+                    -boot-load-size 4 \
+                    -boot-info-table \
+                    --eltorito-catalog boot/grub/boot.cat \
+                    --grub2-boot-info \
+                    --grub2-mbr /usr/lib/grub/i386-pc/boot_hybrid.img \
+                -eltorito-alt-boot \
+                    -e EFI/efiboot.img \
+                    -no-emul-boot \
+                    -append_partition 2 0xef isolinux/efiboot.img \
+                -output "$SCRIPT_DIR/$TARGET_NAME.iso" \
+                -m "isolinux/efiboot.img" \
+                -m "isolinux/bios.img" \
+                -graft-points \
+                    "/EFI/efiboot.img=isolinux/efiboot.img" \
+                    "/boot/grub/grub.cfg=isolinux/grub.cfg" \
+                    "/boot/grub/bios.img=isolinux/bios.img" \
+                    "."
+            ;;
+        arm64)
+            # ARM64 with UEFI-only boot support
+            sudo xorriso \
+                -as mkisofs \
+                -iso-level 3 \
+                -full-iso9660-filenames \
+                -volid "$TARGET_NAME" \
+                -eltorito-alt-boot \
+                    -e EFI/efiboot.img \
+                    -no-emul-boot \
+                    -append_partition 2 0xef isolinux/efiboot.img \
+                -output "$SCRIPT_DIR/$TARGET_NAME.iso" \
+                -m "isolinux/efiboot.img" \
+                -graft-points \
+                    "/EFI/efiboot.img=isolinux/efiboot.img" \
+                    "/boot/grub/grub.cfg=isolinux/grub.cfg" \
+                    "."
+            ;;
+    esac
 
     judge "Create iso image"
 
