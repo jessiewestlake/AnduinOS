@@ -11,10 +11,12 @@ DEPS := \
   squashfs-tools \
   xorriso \
   grub-pc-bin \
-  grub-efi-amd64 \
   grub2-common \
   mtools \
   dosfstools
+
+# Architecture-specific dependencies will be handled in build.sh
+# grub-efi-amd64 for amd64, grub-efi-arm64 for arm64
 
 .PHONY: all fast current clean bootstrap help
 

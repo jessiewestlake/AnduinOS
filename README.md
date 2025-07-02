@@ -10,6 +10,8 @@
 
 AnduinOS is a custom Ubuntu-based Linux distribution that aims to facilitate developers transitioning from Windows to Linux by maintaining familiar operational habits and workflows.
 
+**Supported Architectures:** AMD64 (x86_64) and ARM64 (AArch64), including devices with Snapdragon Elite X processors.
+
 [Download AnduinOS](https://www.anduinos.com/)
 
 ![Screenshot](./screenshot.png)
@@ -28,7 +30,19 @@ To build the OS, run the following command:
 make
 ```
 
+By default, the build system will auto-detect your host architecture and build for that target. To build for a specific architecture, set the `TARGET_ARCH` environment variable:
+
+```bash
+# Build for ARM64/AArch64
+TARGET_ARCH=arm64 make
+
+# Build for AMD64/x86_64
+TARGET_ARCH=amd64 make
+```
+
 To edit the build parameters, modify the `./src/args.sh` file.
+
+**Note:** When building for ARM64, ensure your system has the necessary ARM64 build tools and `grub-efi-arm64` package available.
 
 That's it. The built file will be an ISO file in the `./src/dist` directory.
 
@@ -54,7 +68,6 @@ For bug reports and feature requests, please use the [Issues](https://github.com
 
 <!-- Planned future work:
 
-* ARM support.
 * WSL support.
 * Docker container support.
 * Layer based OS. Including: WSL\Server\Pro\Lite\Home\Workstation
