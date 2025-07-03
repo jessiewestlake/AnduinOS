@@ -5,18 +5,32 @@ SHELL         := /usr/bin/env bash
 SRC_DIR       := src
 CONFIG_DIR    := config
 
-DEPS := \
+# Auto-detect host architecture, can be overridden with TARGET_ARCH=<arch>
+HOST_ARCH     := $(shell dpkg --print-architecture)
+TARGET_ARCH   ?= $(HOST_ARCH)
+
+# Base dependencies (architecture-independent)
+BASE_DEPS := \
   binutils \
   debootstrap \
   squashfs-tools \
   xorriso \
-  grub-pc-bin \
   grub2-common \
   mtools \
   dosfstools
 
-# Architecture-specific dependencies will be handled in build.sh
-# grub-efi-amd64 for amd64, grub-efi-arm64 for arm64
+# Architecture-specific dependencies
+# x86/amd64: Requires BIOS boot support (grub-pc-bin) and UEFI support (grub-efi-amd64)
+DEPS_amd64 := \
+  grub-pc-bin \
+  grub-efi-amd64
+
+# ARM64: Requires only UEFI support (grub-efi-arm64)
+DEPS_arm64 := \
+  grub-efi-arm64
+
+# Combined dependencies for target architecture
+DEPS := $(BASE_DEPS) $(DEPS_$(TARGET_ARCH))
 
 .PHONY: all fast current clean bootstrap help
 
@@ -27,8 +41,18 @@ help:
 	@echo "  make fast                         Build fast config languages"
 	@echo "  make clean                        Remove build artifacts"
 	@echo "  make bootstrap                    Validate environment and deps"
+	@echo ""
+	@echo "Architecture Selection:"
+	@echo "  TARGET_ARCH=amd64                 Build for x86_64 (default on amd64 hosts)"
+	@echo "  TARGET_ARCH=arm64                 Build for ARM64 (default on arm64 hosts)"
+	@echo "  Current target: $(TARGET_ARCH)"
+	@echo ""
+	@echo "Examples:"
+	@echo "  make TARGET_ARCH=arm64            Build current language for ARM64"
+	@echo "  make all TARGET_ARCH=amd64        Build all languages for x86_64"
 
 bootstrap:
+	@echo "[MAKE] Target architecture: $(TARGET_ARCH)"
 	@if [ "$$(id -u)" -eq 0 ]; then \
 	  echo "Error: Do not run as root"; \
 	  exit 1; \
@@ -37,6 +61,15 @@ bootstrap:
 	  echo "Error: Unsupported OS — only Ubuntu, Debian, Tuxedo or AnduinOS allowed"; \
 	  exit 1; \
 	fi
+	
+	@# Validate target architecture
+	@case "$(TARGET_ARCH)" in \
+	  amd64|arm64) \
+	    echo "[MAKE] Building for supported architecture: $(TARGET_ARCH)" ;; \
+	  *) \
+	    echo "Error: Unsupported architecture '$(TARGET_ARCH)'. Supported: amd64, arm64"; \
+	    exit 1 ;; \
+	esac
 
 	@missing="" ; \
 	for pkg in $(DEPS); do \
@@ -45,24 +78,24 @@ bootstrap:
 	  fi; \
 	done; \
 	if [ -n "$$missing" ]; then \
-	  echo "Missing packages:$$missing"; \
+	  echo "Missing packages for $(TARGET_ARCH):$$missing"; \
 	  echo "Installing missing dependencies..."; \
 	  sudo apt-get update && sudo apt-get install -y$$missing; \
 	else \
-	  echo "[MAKE] All required packages are already installed."; \
+	  echo "[MAKE] All required packages for $(TARGET_ARCH) are already installed."; \
 	fi
 
 current: bootstrap
-	@echo "[MAKE] Building current language..."
-	@cd $(SRC_DIR) && ./build.sh
+	@echo "[MAKE] Building current language for $(TARGET_ARCH)..."
+	@cd $(SRC_DIR) && TARGET_ARCH=$(TARGET_ARCH) ./build.sh
 
 all: bootstrap
-	@echo "[MAKE] Building ALL languages (all.json)..."
-	@./build_all.sh -c $(CONFIG_DIR)/all.json
+	@echo "[MAKE] Building ALL languages (all.json) for $(TARGET_ARCH)..."
+	@TARGET_ARCH=$(TARGET_ARCH) ./build_all.sh -c $(CONFIG_DIR)/all.json
 
 fast: bootstrap
-	@echo "[MAKE] Building FAST languages (fast.json)..."
-	@./build_all.sh -c $(CONFIG_DIR)/fast.json
+	@echo "[MAKE] Building FAST languages (fast.json) for $(TARGET_ARCH)..."
+	@TARGET_ARCH=$(TARGET_ARCH) ./build_all.sh -c $(CONFIG_DIR)/fast.json
 
 clean:
 	@echo "[MAKE] Cleaning build artifacts..."
